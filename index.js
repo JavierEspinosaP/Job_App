@@ -1,6 +1,7 @@
 const express = require('express')
 
 require('./utils/dbmongo');
+require('./utils/db_sql');
 const cowsay = require('cowsay2');
 const owl = require('cowsay2/cows/owl');
 
