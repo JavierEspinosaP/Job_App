@@ -9,7 +9,7 @@ const manage404 = require('./middlewares/error404')
 
 const app = express()
 const cors = require("cors");
-const port = 3000
+const port = 3005
 
 
 //Read body from request
