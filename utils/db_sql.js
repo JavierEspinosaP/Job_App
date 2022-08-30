@@ -1,14 +1,28 @@
-const { Pool } = require('pg');
-const pool = new Pool({
-    url:process.env.DATABASE_URL,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME
-  })  
-
-  module.exports = pool;
+const pg = require('pg');
+const ClientClass = pg.Client
+const pgUrl = "postgres://asmlztcc:m_gSxwvBV_YOoJw_bbWfGRjYY6J5i8MY@tyke.db.elephantsql.com/asmlztcc"
+const client = new ClientClass(pgUrl)
+module.exports = client
 
 
+async function connect (client) {
+  try {
+    await client.connect()
+    console.log('Client connected')
+
+    const {rows} = await client.query('SELECT * FROM users')
+    console.table(rows)
+    await client.end()
+  }
+  catch (ex){
+    console.log("Some error" +  ex);
+  }
+
+finally {
+  await client.end()
+}
+}
+connect (client)
 
 // let postgressUrl = "postgres://asmlztcc:m_gSxwvBV_YOoJw_bbWfGRjYY6J5i8MY@tyke.db.elephantsql.com/asmlztcc" 
 // let users = new Pool(postgressUrl);
