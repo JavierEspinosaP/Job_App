@@ -1,11 +1,7 @@
 const express = require('express')
-const usersApiControllers = require("../controllers/usersApiControllers");
-const usersApiRouter = express.Router();
+const frontController = require("../controllers/frontControllers");
+const frontRouter = express.Router();
 
+frontRouter.get('/', frontController.getHome);
 
-
-frontRouter.get('/', frontController.getHome)
-
-
-
-module.exports = usersApiRouter;
+module.exports = frontRouter;
