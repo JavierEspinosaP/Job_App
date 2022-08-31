@@ -27,6 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 //ENDPOINTS
+app.use('/', frontRoutes)
 app.use('/users', userRoutes)
 
 
