@@ -30,10 +30,8 @@ const owl = require('cowsay2/cows/owl');
 
 //Middleware 404
 const manage404 = require('./middlewares/error404')
-
-const app = express()
 const cors = require("cors");
-const port = 3005
+
 
 
 //Read body from request
