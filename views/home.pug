@@ -1,10 +1,7 @@
-include ./head.pug
-   body
-      include ./header.pug
-      
-      main
-        h1 Estás en la sección #{section}
-        p.greetings#people Mi primera plantilla!
-        p #{msj}
-
-      include ./footer.pug
+doctype html
+html
+  include ./head.pug
+  body
+    h1 My Site
+    p Welcome to my super lame site.
+    include ./footer.pug
