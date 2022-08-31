@@ -30,10 +30,8 @@ const owl = require('cowsay2/cows/owl');
 
 //Middleware 404
 const manage404 = require('./middlewares/error404')
-
-const app = express()
 const cors = require("cors");
-const port = 3005
+
 
 
 //Read body from request
@@ -45,6 +43,9 @@ app.use(express.urlencoded({ extended: true }));
 
 
 //ENDPOINTS
+// app.use('/', frontRoutes)
+app.use('/users', userRoutes)
+
 //WEB
 app.use('/', frontRoutes);
 // app.use('/users', userRoutes);

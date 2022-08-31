@@ -1,0 +1,57 @@
+//-------- Pasos a seguir para tener todos la misma info en la bbdd SQL LOCAL (pgAdmin4)--------//
+
+Abrimos pgAdmin, a la derecha de la pantalla, donde pone "Servers", hacemos click con el botón derecho del ratón, nos posicionamos sobre "register" y hacemos click en "Server..."
+
+Se creará un servidor nuevo, añade el nombre, en mi caso "jobApp" y dale a 'Save'.
+
+Una vez hecho esto, en la línea que está justo encima de 'Servers', aparece 'Browser', a la izquierda de 'Browser' tenemos la opción 'Dashboard', haz click en 'Dashboard' y se desplegará una pantalla nueva, haz click en 'Add New Server'.
+
+Indica el nombre, en mi caso "jobapp" y cambia a la pestaña "Connection". Completa los campos siguientes: 
+
+    *Host = localhost
+    *Port = 5432 (viene por defecto)
+    *Username = (el nombre de usuario que introdujiste al instalar pgAdmin)
+    *Password = (contraseña que indicaste al instalar pgAdmin)
+
+Dale a "Save" y se creará la bbdd en LOCAL.
+
+Haz click en "jobApp" y, dentro, en "jobapp", haz click en "Schemas" y abajo verás la opción de "Tables".
+
+Haz click con el botón derecho del ratón en 'Tables', 'Create' , 'Table'.
+
+Nombre de la tabla: users
+
+Ve a la pestaña de "Columns" y haz click en el '+' que aparece a la izquierda; así iremos añadiendo las columnas de la Tabla.
+
+Nombres de las columnas, tipo de dato, longitud...
+
+user_id   SERIAL    PRIMARY KEY     NOT NULL,
+name    character varying   (40)    NOT NULL,
+surname     character varying   (40)    NOT NULL,
+email    TEXT   NOT NULL,
+password    character varying   (40)    NOT NULL,
+role    TEXT     NOT NULL
+
+Después, dale a 'Save' y se creará la tabla.Aparecerá en la columna de la derecha la tabla creada, pero estará vacía.
+
+Haz click con el botón derecho del ratón en la tabla "users", 'script', 'insert script'
+
+Para añadir un par de documentos a la tabla utiliza la siguiente query:
+
+INSERT INTO users(name, surname, email, password,  role)
+VALUES('Manolo', 'Seva', 'manoloseva@gmail.com','contraseña1', 'member');
+
+
+INSERT INTO users(name, surname, email, password,  role)
+VALUES('Sara', 'Salesynoentras', 'sarasales@gmail.com','contraseña2', 'member');
+
+
+
+ya tienes 2 documentos añadidos a la tabla, para verificar que están guardados utiliza la siguiente query:
+
+
+SELECT * FROM users
+
+
+te aparecerán ambos documentos.
+
