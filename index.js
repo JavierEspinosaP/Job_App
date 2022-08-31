@@ -13,6 +13,7 @@ const manage404 = require('./middlewares/error404')
 const app = express()
 const cors = require("cors");
 const port = 3005
+app.use(express.static('public'));
 
 // View engine
 app.set('view engine', 'pug');
