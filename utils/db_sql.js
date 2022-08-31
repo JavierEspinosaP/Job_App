@@ -1,10 +1,22 @@
 const pg = require('pg');
+require('dotenv').config()
 const ClientClass = pg.Client
 const pgUrl = "postgres://asmlztcc:m_gSxwvBV_YOoJw_bbWfGRjYY6J5i8MY@tyke.db.elephantsql.com/asmlztcc"
 const client = new ClientClass(pgUrl)
+
+//SQL Local
+const { Pool } = require('pg');
+const pool = new Pool({
+    host: req.query.HOST_LOCAL,
+    user: req.query.USER_LOCAL,
+    database: req.query.DB_LOCAL,
+    password: req.query.PASSWORD_LOCAL
+  })
+
+
 module.exports = client
 
-
+//SQL en la nube
 async function connect (client) {
   try {
     await client.connect()
