@@ -6,7 +6,7 @@ const cowsay = require('cowsay2');
 const owl = require('cowsay2/cows/owl');
 
 //routes
-const userRoutes = require('./routes/usersApiRoutes')
+const frontRoutes = require('./routes/frontRoutes')
 
 //Middlewares
 const manage404 = require('./middlewares/error404')
@@ -25,8 +25,8 @@ app.use(express.urlencoded({ extended: true }));
 
 //ENDPOINTS
 //WEB
-// app.use('/', frontRoutes);
-app.use('/users', userRoutes);
+app.use('/', frontRoutes);
+// app.use('/users', userRoutes);
 
 //If routes fail, show error 404
 app.use(manage404);
