@@ -7,10 +7,10 @@ const client = new ClientClass(pgUrl)
 //SQL Local
 const { Pool } = require('pg');
 const pool = new Pool({
-    host: req.query.HOST_LOCAL,
-    user: req.query.USER_LOCAL,
-    database: req.query.DB_LOCAL,
-    password: req.query.PASSWORD_LOCAL
+    host: process.env.HOST_LOCAL,
+    user: process.env.USER_LOCAL,
+    database: process.env.DB_LOCAL,
+    password: process.env.PASSWORD_LOCAL
   })
 
 
