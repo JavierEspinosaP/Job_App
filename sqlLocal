@@ -65,5 +65,9 @@ Para que nos traiga solo el documento donde role = admin
 SELECT * FROM users 
 WHERE role = 'admin' 
 
+Query para seleccionar email + password de los usuarios conectados:
+SELECT email, password FROM users
+WHERE logged = true
+
 
 
