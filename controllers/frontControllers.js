@@ -1,5 +1,8 @@
 // const Front = require('../models/frontModels')
 
+//Traer el scraper
+const scraper = require('../utils/scraper')
+
 // "/"
 const getHome = async (req, res) => {
     try {
@@ -70,6 +73,18 @@ const getDashboard = async (req, res) => {
     }
 };
 
+// "/scrap"
+
+const getScrap = async (req, res) => {
+    try{
+        const offers = await scraper.scrap("https://ticjob.es/esp/freelances-it")
+        res.status(200).json(offers)
+    }
+    catch (err){
+        res.status(404).json({})
+    }
+}
+
 module.exports = {
     getHome,
     getSingup,
@@ -77,5 +92,6 @@ module.exports = {
     getFavorites,
     getProfile,
     getUsers,
-    getDashboard
+    getDashboard,
+    getScrap
 };
