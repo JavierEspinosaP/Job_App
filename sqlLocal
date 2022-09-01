@@ -70,4 +70,16 @@ SELECT email, password FROM users
 WHERE logged = true
 
 
+Para crear la tabla 'favorites':
+
+CREATE TABLE favorites (
+  offer_id serial not null,
+  url_offer varchar not null,
+	job_title varchar (50) not null,
+	job_company varchar (40) not null,
+	job_date  date,
+	job_location varchar (30) not null,
+	job_desc varchar not null,
+	id_offer_admin  varchar
+ );
 
