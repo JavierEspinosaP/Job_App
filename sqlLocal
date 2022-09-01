@@ -31,6 +31,7 @@ surname     character varying   (40)    NOT NULL,
 email    TEXT   NOT NULL,
 password    character varying   (40)    NOT NULL,
 role    TEXT     NOT NULL
+logged  boolean NOT NULL
 
 Después, dale a 'Save' y se creará la tabla.Aparecerá en la columna de la derecha la tabla creada, pero estará vacía.
 
@@ -38,12 +39,12 @@ Haz click con el botón derecho del ratón en la tabla "users", 'script', 'inser
 
 Para añadir un par de documentos a la tabla utiliza la siguiente query:
 
-INSERT INTO users(name, surname, email, password,  role)
-VALUES('Manolo', 'Seva', 'manoloseva@gmail.com','contraseña1', 'member');
+INSERT INTO users(name, surname, email, password,  role, logged)
+VALUES('Manolo', 'Seva', 'manoloseva@gmail.com','contraseña1', 'member', false);
 
 
-INSERT INTO users(name, surname, email, password,  role)
-VALUES('Sara', 'Salesynoentras', 'sarasales@gmail.com','contraseña2', 'member');
+INSERT INTO users(name, surname, email, password,  role, logged)
+VALUES('Sara', 'Salesynoentras', 'sarasales@gmail.com','contraseña2', 'member', false);
 
 
 
@@ -54,4 +55,15 @@ SELECT * FROM users
 
 
 te aparecerán ambos documentos.
+
+**** para añadir usuario admin:
+INSERT INTO users(name, surname, email, password,  role, logged)
+VALUES('Rocio', 'Funciona', 'rociofunc@gmail.com','contraseña3', 'admin', false);
+
+
+Para que nos traiga solo el documento donde role = admin
+SELECT * FROM users 
+WHERE role = 'admin' 
+
+
 
