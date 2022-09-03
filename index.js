@@ -15,6 +15,7 @@ const searchRoutes = require("./routes/searchApiRoutes")
 const adsRoutes = require("./routes/adsApiRoutes")
 const favoritesRoutes = require("./routes/favoritesApiRoutes")
 const recoverPasswordRoutes = require("./routes/recoverPasswordApiRoutes")
+const restorePasswordRoutes = require("./routes/restorePasswordApiRoutes")
 
 //Middlewares
 const manage404 = require('./middlewares/error404')
@@ -50,7 +51,7 @@ app.use('/search', searchRoutes);
 app.use('/ads', adsRoutes);
 app.use('/favorites',favoritesRoutes);
 app.use('/recoverpassword', recoverPasswordRoutes);
-
+app.use('/restorepassword', restorePasswordRoutes);
 
 
 //If routes fail, show error 404
