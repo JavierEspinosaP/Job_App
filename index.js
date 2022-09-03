@@ -9,7 +9,8 @@ const owl = require('cowsay2/cows/owl');
 //routes
 const frontRoutes = require('./routes/frontRoutes')
 const userRoutes = require("./routes/usersApiRoutes")
-const routesLogin = require("./routes/loginApiRoutes")
+const loginRoutes = require("./routes/loginApiRoutes")
+const logoutRoutes = require("./routes/logoutApiRoutes")
 
 //Middlewares
 const manage404 = require('./middlewares/error404')
@@ -39,7 +40,8 @@ app.use('/', frontRoutes);
 
 //Endpoints Api
 app.use('/users', userRoutes);
-app.use('/login', routesLogin);
+app.use('/login', loginRoutes);
+app.use('/logout', logoutRoutes);
 
 
 //If routes fail, show error 404
