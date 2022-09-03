@@ -34,7 +34,8 @@ app.use(express.urlencoded({ extended: true }));
 
 //WEB
 app.use('/', frontRoutes);
-// app.use('/users', userRoutes);
+app.use('/users', userRoutes);
+// /users endpoints creados
 
 //If routes fail, show error 404
 app.use(manage404);
