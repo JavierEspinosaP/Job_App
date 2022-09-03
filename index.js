@@ -11,6 +11,7 @@ const frontRoutes = require('./routes/frontRoutes')
 const userRoutes = require("./routes/usersApiRoutes")
 const loginRoutes = require("./routes/loginApiRoutes")
 const logoutRoutes = require("./routes/logoutApiRoutes")
+const searchRoutes = require("./routes/searchApiRoutes")
 
 //Middlewares
 const manage404 = require('./middlewares/error404')
@@ -42,6 +43,7 @@ app.use('/', frontRoutes);
 app.use('/users', userRoutes);
 app.use('/login', loginRoutes);
 app.use('/logout', logoutRoutes);
+app.use('/search', searchRoutes);
 
 
 //If routes fail, show error 404
