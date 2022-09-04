@@ -1,12 +1,17 @@
 //Importamos la función scraper de la carpeta utils
 const scraper = require('../utils/scraper')
 
+
+
 async function getOffers (req, res) {
     try {
-        // const offers1 = await scraper.scrap("https://www.workana.com/jobs?language=en%2Ces")
-        const offers2= await scraper.scrap2("https://www.freelancer.com/jobs/web-development/")
-        console.log(offers2);
-        res.status(200).json(offers2)
+       let url = ["https://www.workana.com/jobs?language=en%2Ces", "https://www.freelancer.com/jobs/web-development/"]
+        const offers = []
+        for (let i = 0; i < url.length; i++) {
+            let dataOffers = await scraper.arrScrapers[i](url[i])
+            offers.push(dataOffers)
+        }
+        res.status(200).json(offers)
     }
     catch (err) {
         res.status(404).json({})
