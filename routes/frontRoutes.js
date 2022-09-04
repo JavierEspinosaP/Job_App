@@ -14,5 +14,6 @@ frontRouter.get('/scrap', offerController.getOffers);
 //Vistas solo de admin
 frontRouter.get('/users', frontController.getUsers);
 frontRouter.get('/dashboard', frontController.getDashboard);
+frontRouter.post('/search', frontController.getSearch)
 
 module.exports = frontRouter;

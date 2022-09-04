@@ -9,7 +9,6 @@ const loginContainer = document.getElementById('loginContainer')
 const comeBackButton2 = document.getElementById('comeBackButton2')
 
 
-
 //Navegacion
 
 signUpAccess.addEventListener('click', ()=>{

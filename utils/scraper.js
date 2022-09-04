@@ -1,12 +1,11 @@
 const puppeteer = require("puppeteer");
 
-//Función para extraer los datos de una oferta concreta
 
 let searchQuery = "javascript"
 
 //Iniciar el scraping
 
-const arrScrapers = [ scrap = async (url) => {
+const arrScrapers = [ scrap = async (url, inputQuery) => {
     try {
         //Creamos objeto vacío para almacenar la info de la oferta
         
@@ -32,7 +31,7 @@ const arrScrapers = [ scrap = async (url) => {
 
 
         await page.waitForSelector('#Query', {visible: true}) // Esperamos a que aparezca el elemento
-        await page.type('#Query', searchQuery) //Introducimos la petición en el buscador
+        await page.type('#Query', inputQuery) //Introducimos la petición en el buscador
         await page.waitForTimeout(3000)//Tiempo para que refresque la búsqueda
 
         //Arrays con los datos de las ofertas
@@ -54,7 +53,7 @@ const arrScrapers = [ scrap = async (url) => {
         //Bucle para formar cada objeto con los datos de cada oferta
         for (let index = 0; index < arrNames.length; index++) {
             offerData = {}
-            offerData['proyect-name'] = arrNames[index]
+            offerData['proyect_name'] = arrNames[index]
             offerData['published'] = arrPublished[index]
             offerData['budget'] = arrBudgets[index]
             offerData['description'] = arrDescriptions[index]
@@ -73,7 +72,7 @@ const arrScrapers = [ scrap = async (url) => {
     }
 },
 
-scrap2 = async (url2) => {
+scrap2 = async (url2, inputQuery) => {
     try {
         //Creamos objeto vacío para almacenar la info de la oferta
 
@@ -98,7 +97,7 @@ scrap2 = async (url2) => {
         let arrBudgetsClean = []
 
         await page2.waitForSelector('#keyword-input', {visible: true}) // Esperamos a que aparezca el elemento
-        await page2.type('#keyword-input', searchQuery) //Introducimos la petición en el buscador
+        await page2.type('#keyword-input', inputQuery) //Introducimos la petición en el buscador
         //Tiempo para que refresque la búsqueda
         await page2.waitForTimeout(3000)
         //Arrays con los datos de las ofertas
@@ -123,7 +122,7 @@ scrap2 = async (url2) => {
         //Bucle para formar cada objeto con los datos de cada oferta
         for (let index = 0; index < arrNames2.length; index++) {
             offerData = {}
-            offerData['proyect-name'] = arrNames2[index]
+            offerData['proyect_name'] = arrNames2[index]
             offerData['published'] = arrPublished2[index]
             offerData['budget'] = arrBudgetsClean[index]
             offerData['description'] = arrDescriptions[index]
