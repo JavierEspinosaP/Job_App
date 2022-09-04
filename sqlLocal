@@ -79,17 +79,19 @@ ALTER TABLE favorites
 ADD CONSTRAINT fk_favorites_users 
 FOREIGN KEY (user_id) REFERENCES users (user_id);
 
-*****//no podemos insertar estos documentos porque aun no se ha dado ningún favorito desde un registro de usuario//
+*****//no podemos insertar estos documentos porque aun no se ha dado ningún favorito desde un registro de usuario
 
 Insertamos documentos en 'favorites'
-INSERT INTO favorites(reference_offer)
-VALUES('https://ticjob.es/esp/busqueda/trabajo/fullstack-developer-junior/55403');
+INSERT INTO favorites(user_id, reference_offer)
+VALUES(1, 'https://ticjob.es/esp/busqueda/trabajo/fullstack-developer-junior/55403');
 
-(urls:
-https://ticjob.es/esp/busqueda/trabajo/backend-developer/55037
-https://ticjob.es/esp/busqueda/trabajo/backend-developer/55037
-https://ticjob.es/esp/busqueda/trabajo/fullstack-developer-junior/55403)
+INSERT INTO favorites(user_id, reference_offer)
+VALUES(1, 'https://ticjob.es/esp/busqueda/trabajo/backend-developer/55037');
+
 
 relacionamos tabla de 'users' + tabla 'favorites':
 SELECT reference_offer FROM favorites
-WHERE user_id = 3
+WHERE user_id = 1 
+
+Aparecerán los 2 links asociados al user_id 1
+
