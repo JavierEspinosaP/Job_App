@@ -48,8 +48,6 @@ ya tienes 2 documentos añadidos a la tabla, para verificar que están guardados
 SELECT * FROM users
 
 
-te aparecerán ambos documentos.
-
 **** para añadir usuario admin:
 INSERT INTO users(name, surname, email, password,  role, logged)
 VALUES('Rocio', 'Funciona', 'rociofunc@gmail.com','contraseña3', 'admin', false);
@@ -79,7 +77,6 @@ ALTER TABLE favorites
 ADD CONSTRAINT fk_favorites_users 
 FOREIGN KEY (user_id) REFERENCES users (user_id);
 
-*****//no podemos insertar estos documentos porque aun no se ha dado ningún favorito desde un registro de usuario
 
 Insertamos documentos en 'favorites'
 INSERT INTO favorites(user_id, reference_offer)
