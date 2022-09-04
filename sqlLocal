@@ -15,27 +15,21 @@ Indica el nombre, en mi caso "jobapp" y cambia a la pestaña "Connection". Compl
 
 Dale a "Save" y se creará la bbdd en LOCAL.
 
-Haz click en "jobApp" y, dentro, en "jobapp", haz click en "Schemas" y abajo verás la opción de "Tables".
+Haz click en el símbolo superior de la derecha ('query tool') y te aparecerá la ventana para poder introducir las queries que necesitamos para crear las tablas 'users' y 'favorites'
 
-Haz click con el botón derecho del ratón en 'Tables', 'Create' , 'Table'.
-
+PRIMETA TABLA:
 Nombre de la tabla: users
 
-Ve a la pestaña de "Columns" y haz click en el '+' que aparece a la izquierda; así iremos añadiendo las columnas de la Tabla.
+CREATE TABLE users (
+	user_id   SERIAL    PRIMARY KEY     NOT NULL    UNIQUE,
+	name    character varying   (40)    NOT NULL,
+	surname     character varying   (40)    NOT NULL,
+	email    TEXT   NOT NULL,
+	password    character varying   (40)    NOT NULL,
+	role    TEXT     NOT NULL,
+	logged  boolean NOT NULL
+)
 
-Nombres de las columnas, tipo de dato, longitud...
-
-user_id   SERIAL    PRIMARY KEY     NOT NULL,
-name    character varying   (40)    NOT NULL,
-surname     character varying   (40)    NOT NULL,
-email    TEXT   NOT NULL,
-password    character varying   (40)    NOT NULL,
-role    TEXT     NOT NULL
-logged  boolean NOT NULL
-
-Después, dale a 'Save' y se creará la tabla.Aparecerá en la columna de la derecha la tabla creada, pero estará vacía.
-
-Haz click con el botón derecho del ratón en la tabla "users", 'script', 'insert script'
 
 Para añadir un par de documentos a la tabla utiliza la siguiente query:
 
@@ -73,13 +67,29 @@ WHERE logged = true
 Para crear la tabla 'favorites':
 
 CREATE TABLE favorites (
-  offer_id serial not null,
-  url_offer varchar not null,
-	job_title varchar (50) not null,
-	job_company varchar (40) not null,
-	job_date  date,
-	job_location varchar (30) not null,
-	job_desc varchar not null,
-	id_offer_admin  varchar
- );
+  offer_id SERIAL UNIQUE NOT NULL  
+  user_id INTEGER NOT NULL,
+  reference_offer  varchar NOT NULL
+)
 
+
+Añadir como foreign key "user_id" en la tabla 'favorites':
+
+ALTER TABLE favorites
+ADD CONSTRAINT fk_favorites_users 
+FOREIGN KEY (user_id) REFERENCES users (user_id);
+
+*****//no podemos insertar estos documentos porque aun no se ha dado ningún favorito desde un registro de usuario//
+
+Insertamos documentos en 'favorites'
+INSERT INTO favorites(reference_offer)
+VALUES('https://ticjob.es/esp/busqueda/trabajo/fullstack-developer-junior/55403');
+
+(urls:
+https://ticjob.es/esp/busqueda/trabajo/backend-developer/55037
+https://ticjob.es/esp/busqueda/trabajo/backend-developer/55037
+https://ticjob.es/esp/busqueda/trabajo/fullstack-developer-junior/55403)
+
+relacionamos tabla de 'users' + tabla 'favorites':
+SELECT reference_offer FROM favorites
+WHERE user_id = 3
