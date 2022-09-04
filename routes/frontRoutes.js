@@ -10,6 +10,7 @@ frontRouter.get('/favorites', frontController.getFavorites);
 frontRouter.get('/profile', frontController.getProfile);
 //Prueba scraping
 frontRouter.get('/scrap', offerController.getOffers);
+// frontRouter.get('/scrap', offerController.getOffers2);
 //Vistas solo de admin
 frontRouter.get('/users', frontController.getUsers);
 frontRouter.get('/dashboard', frontController.getDashboard);
