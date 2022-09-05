@@ -1,4 +1,4 @@
-// const Front = require('../models/frontModels')
+
 
 //Traer el scraper
 const scraper = require('../utils/scraper')
@@ -13,7 +13,25 @@ const getHome = async (req, res) => {
     }
 };
 
-// "/singup"
+const getSearch = async (req, res) => {
+    try {
+        let {search} = req.body
+        console.log(search);
+        let url = ["https://www.workana.com/jobs?language=en%2Ces", "https://www.freelancer.com/jobs/web-development/"]
+        const offers = []
+        for (let i = 0; i < url.length; i++) {
+            let dataOffers = await scraper.arrScrapers[i](url[i], search)
+            offers.push(dataOffers)
+        }
+        console.log(offers);
+        res.redirect("/")
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+// "/signup"
 const getSingup = async (req, res) => {
     try {
         res.render("singup", { section: "singup" });
@@ -93,5 +111,6 @@ module.exports = {
     getProfile,
     getUsers,
     getDashboard,
-    getScrap
+    getScrap,
+    getSearch
 };

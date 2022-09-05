@@ -1,9 +1,16 @@
 //Importamos la función scraper de la carpeta utils
 const scraper = require('../utils/scraper')
 
+
+
 async function getOffers (req, res) {
     try {
-        const offers = await scraper.scrap("https://ticjob.es/esp/freelances-it")
+       let url = ["https://www.workana.com/jobs?language=en%2Ces", "https://www.freelancer.com/jobs/web-development/"]
+        const offers = []
+        for (let i = 0; i < url.length; i++) {
+            let dataOffers = await scraper.arrScrapers[i](url[i])
+            offers.push(dataOffers)
+        }
         res.status(200).json(offers)
     }
     catch (err) {
@@ -11,4 +18,20 @@ async function getOffers (req, res) {
     }
 }
 
-module.exports = {getOffers} 
+// async function getOffers2 (req, res) {
+//     try {
+//         const offers1 = await scraper.scrap("https://www.workana.com/jobs?language=en%2Ces")
+
+//         res.status(200).json(offers1)
+//     }
+//     catch (err) {
+//         res.status(404).json({})
+//     }
+// }
+
+module.exports = {
+    getOffers,
+    // getOffers2
+} 
+
+///ITERAR LAS URLS EN EL SCRAPER PARA COGER AMBAS WEBS --> https://stackoverflow.com/questions/63580250/scrape-multiple-websites-using-puppeteer

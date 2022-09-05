@@ -8,6 +8,14 @@ const owl = require('cowsay2/cows/owl');
 
 //routes
 const frontRoutes = require('./routes/frontRoutes')
+const userRoutes = require("./routes/usersApiRoutes")
+const loginRoutes = require("./routes/loginApiRoutes")
+const logoutRoutes = require("./routes/logoutApiRoutes")
+const searchRoutes = require("./routes/searchApiRoutes")
+const adsRoutes = require("./routes/adsApiRoutes")
+const favoritesRoutes = require("./routes/favoritesApiRoutes")
+const recoverPasswordRoutes = require("./routes/recoverPasswordApiRoutes")
+const restorePasswordRoutes = require("./routes/restorePasswordApiRoutes")
 
 //Middlewares
 const manage404 = require('./middlewares/error404')
@@ -34,7 +42,17 @@ app.use(express.urlencoded({ extended: true }));
 
 //WEB
 app.use('/', frontRoutes);
-// app.use('/users', userRoutes);
+
+//Endpoints Api
+app.use('/users', userRoutes);
+app.use('/login', loginRoutes);
+app.use('/logout', logoutRoutes);
+app.use('/search', searchRoutes);
+app.use('/ads', adsRoutes);
+app.use('/favorites',favoritesRoutes);
+app.use('/recoverpassword', recoverPasswordRoutes);
+app.use('/restorepassword', restorePasswordRoutes);
+
 
 //If routes fail, show error 404
 app.use(manage404);
