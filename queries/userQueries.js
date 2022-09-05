@@ -10,12 +10,9 @@ const queries = {
     "logoutUser": `UPDATE users SET logged = false WHERE email = $1 AND logged = true`,
     "saveFav": ``,
     "deleteFav": `DELETE FROM favorites WHERE reference_offer = $1`,
-    "recoverPassword":``,
-    "changePasword": ``
+    "recoverPassword":`SELECT password FROM users WHERE users.email = $1`,
+    "changePasword": `UPDATE users SET password = $1 WHERE users.email = '$2`
 }
-
-
-
 
 
 module.exports = queries;
