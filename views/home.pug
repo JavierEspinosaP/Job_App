@@ -1,14 +1,10 @@
 doctype html
 html(lang='en')
-  head
-    meta(charset='UTF-8')
-    meta(http-equiv='X-UA-Compatible' content='IE=edge')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    title Job Finder
-    link(rel='stylesheet' href='../styles/styles.css')
+  include ./head.pug
   body
     header
-      h1 Job Finder
+      h1 
+        a(href='/') Job Finder
       #logContainer
         h4#signUpAccess Registro
         h4#loginAccess Log In
@@ -45,13 +41,20 @@ html(lang='en')
             label Contraseña
             input(type="password" placeholder="Omelette123")
             input(type="submit")
+            h4 
+              a(href='/login') LOGIN
       div#mainContainer
         h1#h1Slogan Tu proyecto, nuestro objetivo
         h3#h3Slogan
           | Con más de 300000 usuarios, nuestra app ha demostrado por tercer año consecutivo ser la web preferente en búsqueda de proyectos freelance de España
         div#searchFormContainer
-          form(id="searchForm" action="/search" method="post")
-            input(name="search" type="text" placeholder="Buscar Proyecto")
-            input(type="submit")
-  script(type='text/javascript', src='/scripts/homeNavigation.js')
-  //- script(type='text/javascript', src='/scripts/')
+          form#searchForm
+          input(type="text" placeholder="Buscar Proyecto")
+          select
+            option(value="FrontEnd") FrontEnd 
+            option(value="Backend") Backend
+            option(value="DevOps") DevOps
+            option(value="Diseño") Diseño
+          input(type="submit")
+    script(type='text/javascript', src='../scripts/homeNavigation.js')
+include ./footer.pug
