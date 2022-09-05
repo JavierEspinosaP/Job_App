@@ -74,6 +74,7 @@ const getProfile = async (req, res) => {
 // "/users"
 const getUsers = async (req, res) => {
     try {
+        
         res.render("users", { section: "users" });
 
     } catch (error) {
