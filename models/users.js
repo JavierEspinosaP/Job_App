@@ -3,50 +3,15 @@ require('dotenv').config();
 const userQueries = require('../queries/userQueries')
 const pool = require('../utils/db_sql')
 
-
-
-
-// GETS
-const getAllUsers = async () => {
-    let client,result;
-    try{
-        client = await pool.connect();
-        const data = await client.query(userQueries.getAllUsers)
-        result = data.rows
-    }catch(err){
-        console.log(err);
-        throw err;
-    }finally{
-        client.release();    
-    }
-    return result
-}
-
-
-const getUsersByEmail = async () => {
-    let client,result;
-    try{
-        client = await pool.connect();
-        const data = await client.query(userQueries.getAllUsers)
-        result = data.rows
-    }catch(err){
-        console.log(err);
-        throw err;
-    }finally{
-        client.release();    
-    }
-    return result
-}
-
-
-const getFavorites = async () => {
+//queries para los Endpoints web
+//REGISTRO DE USUARIO
+const registeredUser = async() => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.favOffer)
+        const data = await client.query(userQueries.registerUser)
         result = data.rows
-        
-    } catch (error) {
+    } catch (err) {
         console.log(err);
         throw err;
     }finally{
@@ -56,13 +21,14 @@ const getFavorites = async () => {
     
 }
 
+//LOGIN DE USUARIO (ya registrado)
 const logInUser = async() => {
     let client, result;
     try {
         client = await pool.connect();
         const data = await client.query(userQueries.loginUser)
         result = data.rows
-    } catch (error) {
+    } catch (err) {
         console.log(err);
         throw err;
     }finally{
@@ -71,9 +37,157 @@ const logInUser = async() => {
     return result
 }
 
+
+        //update status logged colum
+const loggedStatus= async () => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(userQueries.updateStatus)
+        result = data.rows
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }finally{
+        client.release();    
+    }
+    return result
+}
+
+
+
+//VISTA DE USUARIO: favoritos
+const getFavorites = async () => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(userQueries.favOffers)
+        result = data.rows
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }finally{
+        client.release();    
+    }
+    return result
+    
+}
+
+//Guardar favorito - usuario
+
+
+//editar perfil
+const editProfile = async () => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(userQueries.editDataProfile)
+        result = data.rows
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }finally{
+        client.release();    
+    }
+    return result
+    
+}
+
+
+//Borrar favorito - usuario
+const deleteFavorites = async () => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(userQueries.deleteFav)
+        result = data.rows
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }finally{
+        client.release();    
+    }
+    return result
+    
+}
+
+
+//Datos de perfil del usuario/admin
+const userProfile = async () => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(userQueries.profile)
+        result = data.rows
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }finally{
+        client.release();    
+    }
+    return result
+}
+
+// Salir de la app: logout
+const logoutUser = async () => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(userQueries.logoutUser)
+        result = data.rows
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }finally{
+        client.release();    
+    }
+    return result
+}
+
+
+//recuperar contraseña
+const recoveredPassword = async () => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(userQueries.recoverPassword)
+        result = data.rows
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }finally{
+        client.release();    
+    }
+    return result
+}
+
+
+//cambiar contraseña
+const changedPassword = async () => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(userQueries.changePassword)
+        result = data.rows
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }finally{
+        client.release();    
+    }
+    return result
+}
+
+
 module.exports = {
-    getAllUsers,
-    getUsersByEmail,
+    registeredUser,
+    logInUser,
+    loggedStatus,
     getFavorites,
-    logInUser
+    editProfile,
+    deleteFavorites,
+    userProfile,
+    logoutUser,
+    recoveredPassword,
+    changedPassword
 }
