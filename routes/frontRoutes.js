@@ -9,11 +9,14 @@ frontRouter.get('/login', frontController.getLogin);
 frontRouter.get('/favorites', frontController.getFavorites);
 frontRouter.get('/profile', frontController.getProfile);
 //Prueba scraping
-frontRouter.get('/scrap', offerController.getOffers);
+// frontRouter.get('/scrap', offerController.getOffers);
 // frontRouter.get('/scrap', offerController.getOffers2);
+frontRouter.post('/search', frontController.getSearch)
+frontRouter.get('/search', frontController.getSearch)
 //Vistas solo de admin
 frontRouter.get('/users', frontController.getUsers);
 frontRouter.get('/dashboard', frontController.getDashboard);
-frontRouter.post('/search', frontController.getSearch)
+
+
 
 module.exports = frontRouter;

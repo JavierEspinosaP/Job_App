@@ -1,13 +1,8 @@
 const express = require("express")
 const router = express.Router()
+const passwordController = require("../controllers/passwordControllers")
 
 // [GET] /restorepassword Cambiar password
-router.get("/",(req,res,next)=>{
-    try {
-        return res.status(200).json("/restorepassword Cambiar password")
-    } catch (error) {
-     return next(error)   
-    }
-}) 
+router.get("/",passwordController.restorePassword) 
 
 module.exports = router

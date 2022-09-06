@@ -1,12 +1,16 @@
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 =======
 const users = require('../models/frontModels');
 const admin = require('../models/admin')
 >>>>>>> sql
 
+=======
+>>>>>>> cc3e65b724240911920fe28f92eb18bdf2829dde
 //Traer el scraper
 const scraper = require('../utils/scraper')
+const fetch = require('node-fetch')
 
 // "/"
 const getHome = async (req, res) => {
@@ -28,13 +32,14 @@ const getSearch = async (req, res) => {
             let dataOffers = await scraper.arrScrapers[i](url[i], search)
             offers.push(dataOffers)
         }
-        console.log(offers);
-        res.redirect("/")
+        res.status(200).json(offers)    
+        
     }
     catch (error) {
         console.log(error);
     }
 }
+
 
 // "/signup"
 const getSingup = async (req, res) => {
@@ -118,5 +123,6 @@ module.exports = {
     getUsers,
     getDashboard,
     getScrap,
-    getSearch
+    getSearch,
+
 };

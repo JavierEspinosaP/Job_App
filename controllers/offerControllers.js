@@ -5,10 +5,11 @@ const scraper = require('../utils/scraper')
 
 async function getOffers (req, res) {
     try {
+        
        let url = ["https://www.workana.com/jobs?language=en%2Ces", "https://www.freelancer.com/jobs/web-development/"]
         const offers = []
         for (let i = 0; i < url.length; i++) {
-            let dataOffers = await scraper.arrScrapers[i](url[i])
+            let dataOffers = await scraper.arrScrapers[i](url[i], inputQuery)
             offers.push(dataOffers)
         }
         res.status(200).json(offers)
