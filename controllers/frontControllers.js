@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 
+=======
+const users = require('../models/frontModels');
+const admin = require('../models/admin')
+>>>>>>> sql
 
 //Traer el scraper
 const scraper = require('../utils/scraper')

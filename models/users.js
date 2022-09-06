@@ -74,7 +74,21 @@ const getFavorites = async () => {
 }
 
 //Guardar favorito - usuario
-
+const saveFavorite = async () => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data =  await client.query(userQueries.saveFav)
+        result = data.rows
+        
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }finally{
+        client.release();    
+    }
+    return result
+}
 
 //editar perfil
 const editProfile = async () => {
@@ -184,6 +198,7 @@ module.exports = {
     logInUser,
     loggedStatus,
     getFavorites,
+    saveFavorite,
     editProfile,
     deleteFavorites,
     userProfile,
