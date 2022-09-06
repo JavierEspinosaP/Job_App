@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 
-<<<<<<< HEAD
-=======
 const users = require('../models/frontModels');
 const admin = require('../models/admin')
->>>>>>> sql
 
-=======
->>>>>>> cc3e65b724240911920fe28f92eb18bdf2829dde
 //Traer el scraper
 const scraper = require('../utils/scraper')
 const fetch = require('node-fetch')
