@@ -130,7 +130,7 @@ scrap2 = async (url2, inputQuery) => {
             scrapedData.push(offerData)
         }
         
-
+        browser2.close()
         return scrapedData
     }
     catch (err) {
