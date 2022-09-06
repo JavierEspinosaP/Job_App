@@ -1,4 +1,5 @@
-// const Front = require('../models/frontModels')
+const users = require('../models/frontModels');
+const admin = require('../models/admin')
 
 //Traer el scraper
 const scraper = require('../utils/scraper')
