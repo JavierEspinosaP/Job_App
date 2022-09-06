@@ -7,7 +7,7 @@ const comeBackButton = document.getElementById('comeBackButton')
 const loginAccess = document.getElementById('loginAccess')
 const loginContainer = document.getElementById('loginContainer')
 const comeBackButton2 = document.getElementById('comeBackButton2')
-const searchFormContainer = document.getElementById('searchFormContainer')
+const searchForm = document.getElementById('searchForm')
 
 
 //Navegacion
@@ -32,12 +32,13 @@ comeBackButton2.addEventListener('click', ()=>{
     loginContainer.style.display = 'none'
 })
 
-searchFormContainer.addEventListener('submit', ()=>{
 
-    async function search () {
+searchForm.addEventListener('submit', ()=>{
+   const searchData = async ()=>{
         let responseOffers = await fetch('http://localhost:3005/search')
-        let offersData = await responseOffers.json()
-        console.log(offersData);
+        let offersData = await  responseOffers.json()
+        console.log(offersData);  
     }
-    search ()
+    searchData()
+
 })
