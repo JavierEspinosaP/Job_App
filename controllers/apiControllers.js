@@ -50,6 +50,7 @@ const deleteOffer = async (req, res) => {
     try {
         await apiModel.deleteOffer(req.body);
         console.log("Offer deleted: ", req.body);
+        res.redirect('/dashboard');
         // res.send("Offer deleted");
     } catch (error) {
         console.log(`ERROR: ${error.stack}`);

@@ -124,7 +124,6 @@ const updateOffer = async (offer) => {
         console.log("Edited");
         return {
             answer: "edited",
-
         }
     }
     catch (error) {
@@ -136,8 +135,12 @@ const updateOffer = async (offer) => {
 //[DELETE] /api/ads Borrar una oferta de trabajo o curso de la base de datos (admin)
 const deleteOffer = async (offer) => {
     try {
-        let answer = await apiSchema.deleteOne({ id: offer.id });
-        console.log(answer);
+
+        await apiSchema.findByIdAndDelete(offer.id);
+        console.log("Deleted");
+        return {
+            answer: "Deleted",
+        }
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`)
