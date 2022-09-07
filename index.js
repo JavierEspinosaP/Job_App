@@ -27,6 +27,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', frontRoutes);
 app.use('/api', apiRoutes);
 
+
+
+//If routes fail, show error 404
 app.use(manage404);
 app.use(helmet);
 
