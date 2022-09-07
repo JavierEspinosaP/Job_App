@@ -25,7 +25,7 @@ const getSearch = async (req, res) => {
         }
         const merged = [].concat.apply([], offers);
 
-        res.render('scraping', {merged})
+        res.status(200).json(merged)
         
     }
     catch (error) {

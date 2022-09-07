@@ -35,7 +35,7 @@ comeBackButton2.addEventListener('click', ()=>{
 
 searchForm.addEventListener('submit', ()=>{
    const searchData = async ()=>{
-        let responseOffers = await fetch('http://localhost:3005/api/search')
+        let responseOffers = await fetch('/api/search')
         let offersData = await responseOffers.json()
         console.log(offersData);  
     }

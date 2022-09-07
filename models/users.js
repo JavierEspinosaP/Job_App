@@ -17,7 +17,7 @@ const getAllUsers = async () => {
         console.log(err);
         throw err;
     }finally{
-        client.release();    
+        client.release();
     }
     return result
 }
