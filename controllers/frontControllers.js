@@ -15,7 +15,7 @@ const getHome = async (req, res) => {
 
 const getSearch = async (req, res) => {
     try {
-        let {search} = req.body
+        let search = req.query.search
         console.log(search);
         let url = ["https://www.workana.com/jobs?language=en%2Ces", "https://www.freelancer.com/jobs/web-development/"]
         const offers = []
