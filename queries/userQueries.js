@@ -1,5 +1,4 @@
 const queries = {
-    //endpoints web
     "getAllUsers" : "SELECT * FROM users",
     "getUsersByEmail": "SELECT email FROM users",
     "loginUser": "SELECT email, password FROM users",

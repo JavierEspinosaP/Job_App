@@ -2,9 +2,6 @@ require('dotenv').config();
 const userQueries = require('../queries/userQueries')
 const pool = require('../utils/db_sql')
 
-
-//queries para los Endpoints Api
-
 //ADMIN: VISTA USUARIOS REGISTRADOS 
 const getAllUsers = async () => {
     let client,result;
