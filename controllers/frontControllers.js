@@ -114,5 +114,10 @@ module.exports = {
     getProfile,
     getUsers,
     getDashboard,
-    getScrap
+    getScrap,
+    getSearch,
+    restorePassword,
+    recoverPassword,
+    saveFavorite,
+    deleteFavorite
 };
