@@ -41,6 +41,8 @@ html(lang='en')
           button#createBtn(type="submit" value="Search") Crear oferta
         
         form#offerUpdate(action="api/ads/update/" method="POST")
+          label(for="") id a editar: 
+          input#id0(type="text" name="id0")
           label(for="") id: 
           input#id(type="number" name="id")
           label(for="") Título de oferta:  

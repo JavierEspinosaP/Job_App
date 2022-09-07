@@ -13,7 +13,7 @@ apiRouter.post('/ads/create', apiController.createOffer);
 // apiRouter.post("/favorites", apiController.addFavorite);
 
 // apiRouter.put("/user", apiController.updateUser);
-apiRouter.post('/ads/update/:id?', apiController.updateOffer);
+apiRouter.post('/ads/update/', apiController.updateOffer);
 
 // // apiRouter.delete("/user", apiController.deleteUser);
 apiRouter.post('/ads/delete/', apiController.deleteOffer);

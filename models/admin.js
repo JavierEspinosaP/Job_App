@@ -100,15 +100,31 @@ const createOffer = async (offer) => {
 //         res.status(404).json({ "message": "offer not found" });
 //     }
 // }
+// const updateOffer = async (offer) => {
+//     try {
+//         const genuineOffer = await apiSchema.updateOne({ id: offer.id }, offer);
+//         genuineOffer.overwrite(offer);
+//         console.log("Edited", genuineOffer);
+//         await genuineOffer.save();
+//         return {
+//             answer: "edited",
+//             apiSchema: genuineOffer
+//         }
+//     }
+//     catch (error) {
+//         console.log(`ERROR: ${error.stack}`)
+//         res.status(404).json({ "message": "offer not found" });
+//     }
+// }
+
 const updateOffer = async (offer) => {
     try {
-        const genuineOffer = await apiSchema.edit({ id: offer.id }, offer);
-        genuineOffer.overwrite(offer);
-        console.log("Edited", genuineOffer);
-        await genuineOffer.save();
+        const { id, title, company, date, location, description } = offer;
+        await apiSchema.findByIdAndUpdate(offer.id0, { id, title, company, date, location, description });
+        console.log("Edited");
         return {
             answer: "edited",
-            apiSchema: genuineOffer
+
         }
     }
     catch (error) {
@@ -116,7 +132,6 @@ const updateOffer = async (offer) => {
         res.status(404).json({ "message": "offer not found" });
     }
 }
-
 
 //[DELETE] /api/ads Borrar una oferta de trabajo o curso de la base de datos (admin)
 const deleteOffer = async (offer) => {
