@@ -25,7 +25,7 @@ const getHome = async (req, res) => {
 
 const getSearch = async (req, res) => {
     try {
-        let {search} = req.body
+        let search = req.query.search
         console.log(search);
         let url = ["https://www.workana.com/jobs?language=en%2Ces", "https://www.freelancer.com/jobs/web-development/"]
         const offers = []
@@ -33,7 +33,9 @@ const getSearch = async (req, res) => {
             let dataOffers = await scraper.arrScrapers[i](url[i], search)
             offers.push(dataOffers)
         }
-        res.status(200).json(offers)    
+        const merged = [].concat.apply([], offers);
+
+        res.status(200).json(merged)
         
     }
     catch (error) {
