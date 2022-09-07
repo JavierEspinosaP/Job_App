@@ -1,0 +1,64 @@
+doctype html
+html(lang='en')
+  include ./head.pug
+  body
+    header
+      h1 
+        a(href='/') Job Finder
+      #logContainer
+        h4#signUpAccess Registro
+        h4#loginAccess Log In
+    main
+      div#signUpContainer
+        div#comeBackButtonContainer
+          button(id="comeBackButton") Volver
+        div#h2SignUpContainer
+          h2#h2SignUp Registro
+        div#signUpFormContainer
+          form(action="post" id="signUpForm")
+            label Nombre
+            input(type="text" placeholder="John")
+            label Apellidos
+            input(type="text" placeholder="Wick")
+            label Email 
+            input(type="text" placeholder="John_Wick@terra.es")
+            label Nickname 
+            input(type="text" placeholder="Johnny_Wicky")
+            label Contraseña
+            input(type="password" placeholder="Omelette123")
+            label Repite Contraseña
+            input(type="password" placeholder="Omelette123")
+            input(type="submit")
+      div#loginContainer
+        div#comeBackButtonContainer2
+          button(id="comeBackButton2") Volver
+        div#h3LoginContainer
+          h2#h2Login Login
+        div#LoginFormContainer
+          form(action="post" id="loginForm")
+            label Email 
+            input(type="text" placeholder="John_Wick@terra.es")
+            label Contraseña
+            input(type="password" placeholder="Omelette123")
+            input(type="submit")
+            h4 
+              a(href='/login') LOGIN
+      div#mainContainer
+        h1#h1Slogan Tu proyecto, nuestro objetivo
+        h3#h3Slogan
+          | Con más de 300000 usuarios, nuestra app ha demostrado por tercer año consecutivo ser la web preferente en búsqueda de proyectos freelance de España
+        div#searchFormContainer
+          form#searchForm
+          input(type="text" action="/search" method="post" placeholder="Buscar Proyecto")
+          input(type="submit")
+        ul#cardsContainer
+          each element in merged ? merged : []
+            div#offerCard
+                h3 #{element.proyect_name}
+                p Publicado: #{element.published}
+                p Presupuesto: #{element.budget}
+                p Descripción: #{element.description}
+            
+            
+    script(type='text/javascript', src='../scripts/homeNavigation.js')
+
