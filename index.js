@@ -6,7 +6,7 @@ const owl = require('cowsay2/cows/owl');
 const helmet = require('helmet');
 
 const frontRoutes = require('./routes/frontRoutes')
-const apiRoutes = require("./routes/apiRoutes")
+const apiRoutes = require('./routes/apiRoutes')
 
 const manage404 = require('./middlewares/error404')
 const app = express()
