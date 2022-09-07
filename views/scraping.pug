@@ -1,14 +1,10 @@
 doctype html
 html(lang='en')
-  head
-    meta(charset='UTF-8')
-    meta(http-equiv='X-UA-Compatible' content='IE=edge')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    title Job Finder
-    link(rel='stylesheet' href='../styles/styles.css')
+  include ./head.pug
   body
     header
-      h1 Job Finder
+      h1 
+        a(href='/') Job Finder
       #logContainer
         h4#signUpAccess Registro
         h4#loginAccess Log In
@@ -45,15 +41,24 @@ html(lang='en')
             label Contraseña
             input(type="password" placeholder="Omelette123")
             input(type="submit")
+            h4 
+              a(href='/login') LOGIN
       div#mainContainer
         h1#h1Slogan Tu proyecto, nuestro objetivo
         h3#h3Slogan
           | Con más de 300000 usuarios, nuestra app ha demostrado por tercer año consecutivo ser la web preferente en búsqueda de proyectos freelance de España
         div#searchFormContainer
-          form(id="searchForm" action="/api/search" method="post")
-            input(name="search" type="text" placeholder="Buscar Proyecto")
-            input(type="submit")
-        ul#cardsContainer 
+          form#searchForm
+          input(type="text" action="/search" method="post" placeholder="Buscar Proyecto")
+          input(type="submit")
+        ul#cardsContainer
           each element in merged ? merged : []
-            h2 Titulo: #{element.proyect_name} 
-  //- script(type='text/javascript', src='/scripts/')
+            div#offerCard
+                h3 #{element.proyect_name}
+                p Publicado: #{element.published}
+                p Presupuesto: #{element.budget}
+                p Descripción: #{element.description}
+            
+            
+    script(type='text/javascript', src='../scripts/homeNavigation.js')
+

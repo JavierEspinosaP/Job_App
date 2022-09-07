@@ -23,7 +23,9 @@ const getSearch = async (req, res) => {
             let dataOffers = await scraper.arrScrapers[i](url[i], search)
             offers.push(dataOffers)
         }
-        res.status(200).json(offers)    
+        const merged = [].concat.apply([], offers);
+
+        res.render('scraping', {merged})
         
     }
     catch (error) {
@@ -113,6 +115,5 @@ module.exports = {
     getUsers,
     getDashboard,
     getScrap,
-    getSearch,
-
+    getSearch
 };
