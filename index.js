@@ -5,17 +5,12 @@ require('./utils/db_sql');
 const express = require('express')
 const cowsay = require('cowsay2');
 const owl = require('cowsay2/cows/owl');
+const helmet = require('helmet');
 
 //routes
 const frontRoutes = require('./routes/frontRoutes')
-const userRoutes = require("./routes/usersApiRoutes")
-const loginRoutes = require("./routes/loginApiRoutes")
-const logoutRoutes = require("./routes/logoutApiRoutes")
-const searchRoutes = require("./routes/searchApiRoutes")
-const adsRoutes = require("./routes/adsApiRoutes")
-const favoritesRoutes = require("./routes/favoritesApiRoutes")
-const recoverPasswordRoutes = require("./routes/recoverPasswordApiRoutes")
-const restorePasswordRoutes = require("./routes/restorePasswordApiRoutes")
+const apiRoutes = require("./routes/apiRoutes")
+
 
 //Middlewares
 const manage404 = require('./middlewares/error404')
@@ -42,20 +37,11 @@ app.use(express.urlencoded({ extended: true }));
 
 //WEB
 app.use('/', frontRoutes);
-
-//Endpoints Api
-app.use('/users', userRoutes);
-app.use('/login', loginRoutes);
-app.use('/logout', logoutRoutes);
-app.use('/search', searchRoutes);
-app.use('/ads', adsRoutes);
-app.use('/favorites',favoritesRoutes);
-app.use('/recoverpassword', recoverPasswordRoutes);
-app.use('/restorepassword', restorePasswordRoutes);
-
+app.use('/api', apiRoutes);
 
 //If routes fail, show error 404
 app.use(manage404);
+app.use(helmet);
 //Owl say you if server works
 app.listen(port, () => {
   console.log(cowsay.say(`Server working on http://localhost:${port}`, { cow: owl }))

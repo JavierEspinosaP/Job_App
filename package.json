@@ -22,6 +22,7 @@
     "cowsay2": "^2.0.4",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "helmet": "^6.0.0",
     "mongodb": "^4.9.0",
     "mongoose": "^6.5.3",
     "node-fetch": "^2.6.7",
@@ -29,7 +30,7 @@
     "pg": "^8.8.0",
     "postgre": "^0.1.8",
     "pug": "^3.0.2",
-    "puppeteer": "^17.1.0",
+    "puppeteer": "^17.1.2",
     "stack": "^0.1.0"
   }
 }

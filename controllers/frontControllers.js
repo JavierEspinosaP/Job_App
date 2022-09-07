@@ -1,4 +1,7 @@
 
+const users = require('../models/users');
+const admin = require('../models/admin')
+
 //Traer el scraper
 const scraper = require('../utils/scraper')
 const fetch = require('node-fetch')
@@ -12,6 +15,8 @@ const getHome = async (req, res) => {
         return res.status(400).json(error);
     }
 };
+
+
 
 const getSearch = async (req, res) => {
     try {
@@ -35,10 +40,14 @@ const getSearch = async (req, res) => {
 // "/signup"
 const getSingup = async (req, res) => {
     try {
-        res.render("singup", { section: "singup" });
+        const newUser = req.body;
+        const response = await users.registeredUser(newUser, res);
+        res.status(201).redirect(`/login`) //hay que redireccionarlo???
+        //res.render("singup", { section: "singup" });
 
     } catch (error) {
-        return res.status(400).json(error);
+        //return res.status(400).json(error);
+        console.log("Error:", error)
     }
 };
 
