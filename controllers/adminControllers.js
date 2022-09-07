@@ -4,7 +4,7 @@ require('../utils/db_sql')
 
 const getUsersRegistered= async (req,res)=>{
     let usersRegistered;
-    if(req.query.id){
+    if(req.query.email){
         usersRegistered = await users.getUsersByEmail(req.query.email)
       console.log("Estos son los mails de usuarios registrados: ", usersRegistered);
     }else{
@@ -13,7 +13,6 @@ const getUsersRegistered= async (req,res)=>{
     }
 }
 
-//revisar ruta
 
 
 module.exports = {
