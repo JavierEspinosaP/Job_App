@@ -12,6 +12,71 @@ const createOffer = async (req, res) => {
         res.status(404).json({ "message": "error creating an offer" });
     }
 }
+
+// // [PUT] /api/ads Editar datos de una oferta de trabajo o curso (admin)
+const updateOffer = async (req, res) => {
+    try {
+        await apiModel.updateOffer(req.body);
+        console.log("Oferta edited: ", req.body);
+        // res.send("User edited");
+    } catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(404).json({ "message": "Offer not found" });
+    }
+}
+
+
+// const updateOffer = async (req, res) => {
+//     try {
+//         let id = req.param.id;
+//         let { title, company, date, location, description } = req.body;
+//         await apiModel.updateOffer(
+//             { title, company, date, location, description },
+//             {
+//                 where: {
+//                     id,
+//                 }
+//             });
+//         console.log("Oferta edited: ", req.body);
+//         // res.send("User edited");
+//     } catch (error) {
+//         console.log(`ERROR: ${error.stack}`);
+//         res.status(404).json({ "message": "Offer not found" });
+//     }
+// }
+
+//[DELETE] /api/ads Borrar una oferta de trabajo o curso de la base de datos (admin)
+const deleteOffer = async (req, res) => {
+    try {
+        await apiModel.deleteOffer(req.body);
+        console.log("Offer deleted: ", req.body);
+        // res.send("Offer deleted");
+    } catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(404).json({ "message": "offer not found" });
+    }
+}
+
+// const updateOffer = async (req, res) => {
+//     try {
+//         await apiModel.updateOffer(req.body);
+//         console.log("Oferta edited: ", req.body);
+//         // res.send("User edited");
+//     } catch (error) {
+//         console.log(`ERROR: ${error.stack}`);
+//         res.status(404).json({ "message": "Offer not found" });
+//     }
+// }
+
+// router.put("/", (req, res, next) => {
+//     try {
+//         return res.status(200).json("/api/ads Editar datos de una oferta")
+//     } catch (error) {
+//         return next(error)
+//     }
+// })
+
+
 // router.post("/", (req, res, next) => {
 //     try {
 //         return res.status(200).json("/api/ads Crear una oferta")
@@ -22,7 +87,6 @@ const createOffer = async (req, res) => {
 
 //[PUT] /api/ads Editar datos de una oferta de trabajo o curso (admin)
 
-//[DELETE] /api/ads Borrar una oferta de trabajo o curso de la base de datos (admin)
 
 
 
@@ -37,14 +101,7 @@ const createOffer = async (req, res) => {
 //     }
 // })
 
-// // [PUT] /api/ads Editar datos de una oferta de trabajo o curso (admin)
-// router.put("/", (req, res, next) => {
-//     try {
-//         return res.status(200).json("/api/ads Editar datos de una oferta")
-//     } catch (error) {
-//         return next(error)
-//     }
-// })
+
 
 // // [DELETE] /api/ads Borrar una oferta de trabajo o curso de
 // //la base de datos (admin)
@@ -114,14 +171,10 @@ const createOffer = async (req, res) => {
 // })
 
 module.exports = {
-    createOffer
+    createOffer,
+    updateOffer,
+    deleteOffer
 };
-
-// module.exports = {
-//     createOffer,
-//     updateOffer,
-//     deleteOffer
-// };
 
 // module.exports = {
 //     search,

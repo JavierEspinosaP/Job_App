@@ -65,7 +65,7 @@ const createOffer = async (offer) => {
         console.log(answer);
         return {
             answer: "Offer created",
-            userSchema: answer
+            apiSchema: answer
         };
     }
     catch (error) {
@@ -75,24 +75,40 @@ const createOffer = async (offer) => {
 }
 
 //[PUT] /api/ads Editar datos de una oferta de trabajo o curso (admin)
+// const updateOffer = async (offer) => {
+//     try {
+//         const editOffer = {
+//             "id": offer.id,
+//             "title": offer.title,
+//             "company": offer.company,
+//             "date": offer.date,
+//             "location": offer.location,
+//             "description": offer.description
+//         }
+//         console.log(editOffer);
+//         const genuineOffer = await offerSchema.edit({ id: offer.id }, editOffer);
+//         genuineOffer.overwrite(editOffer);
+//         console.log("Edited", genuineOffer);
+//         await genuineOffer.save();
+//         return {
+//             answer: "edited",
+//             offerSchema: genuineOffer
+//         }
+//     }
+//     catch (error) {
+//         console.log(`ERROR: ${error.stack}`)
+//         res.status(404).json({ "message": "offer not found" });
+//     }
+// }
 const updateOffer = async (offer) => {
     try {
-        const editOffer = {
-            "id": offer.id,
-            "title": offer.title,
-            "company": offer.company,
-            "date": offer.date,
-            "location": offer.location,
-            "description": offer.description
-        }
-        console.log(editOffer);
-        const genuineOffer = await offerSchema.edit({ id: offer.id }, editOffer);
-        genuineOffer.overwrite(editOffer);
+        const genuineOffer = await apiSchema.edit({ id: offer.id }, offer);
+        genuineOffer.overwrite(offer);
         console.log("Edited", genuineOffer);
         await genuineOffer.save();
         return {
             answer: "edited",
-            offerSchema: genuineOffer
+            apiSchema: genuineOffer
         }
     }
     catch (error) {
@@ -101,10 +117,11 @@ const updateOffer = async (offer) => {
     }
 }
 
+
 //[DELETE] /api/ads Borrar una oferta de trabajo o curso de la base de datos (admin)
 const deleteOffer = async (offer) => {
     try {
-        let answer = await offerSchema.delete({ id: offer.id });
+        let answer = await apiSchema.deleteOne({ id: offer.id });
         console.log(answer);
     }
     catch (error) {

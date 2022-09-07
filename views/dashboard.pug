@@ -25,7 +25,7 @@ html(lang='en')
         h1#h1Slogan DASHBOARD (ADMIN)
         h3#h3Slogan
           | Publicar una oferta
-        form#adCreate(action="api/ads" method="POST") 
+        form#offerCreate(action="api/ads/create" method="POST") 
           label(for="") id: 
           input#id(type="number" name="id")
           label(for="") Título de oferta:  
@@ -40,7 +40,7 @@ html(lang='en')
           input#description(type="text" name="description") 
           button#createBtn(type="submit" value="Search") Crear oferta
         
-        form#adUpdate(action="/api/ads" method="PUT")
+        form#offerUpdate(action="api/ads/update/" method="POST")
           label(for="") id: 
           input#id(type="number" name="id")
           label(for="") Título de oferta:  
@@ -54,6 +54,11 @@ html(lang='en')
           label(for="") Descripción:  
           input#description(type="text" name="description") 
           button#updateBtn(type="submit" value="Search") Actualizar oferta
+
+        form#offerDelete(action="api/ads/delete/" method="POST")
+          label(for="") id: 
+          input#id(type="number" name="id")
+          button#updateBtn(type="submit" value="Search") Borrar oferta
         h3#h3Slogan
           | Estos son las ofertas que ya has publicado
     script(type='text/javascript', src='../scripts/homeNavigation.js')
