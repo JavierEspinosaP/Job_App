@@ -1,6 +1,6 @@
 const express = require('express')
 const frontController = require("../controllers/frontControllers");
-const offerController = require("../controllers/offerControllers");
+// const offerController = require("../controllers/offerControllers");
 const frontRouter = express.Router();
 
 frontRouter.get('/', frontController.getHome);

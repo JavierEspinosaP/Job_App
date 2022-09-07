@@ -1,97 +1,22 @@
 const express = require("express")
-const router = express.Router()
-const passwordController = require("../controllers/passwordControllers")
+const apiController = require("../controllers/apiControllers")
+const apiRouter = express.Router()
 
-// [GET] /restorepassword Cambiar password
+// apiRouter.get("/search", apiController.search);
+// apiRouter.get("/recoverpassword", apiController.recoverpassword);
+// apiRouter.get("/restorepassword", apiController.restorepassword);
 
-// [POST] /api/ads Crear una oferta de trabajo o curso (admin)
-router.post("/", (req, res, next) => {
-    try {
-        return res.status(200).json("/api/ads Crear una oferta")
-    } catch (error) {
-        return next(error)
-    }
-})
+// apiRouter.post("/user", apiController.singup);
+// apiRouter.post("/login", apiController.login);
+// apiRouter.post("/logout", apiController.logout);
+apiRouter.post("/ads", apiController.createOffer);
+// apiRouter.post("/favorites", apiController.addFavorite);
 
-// [PUT] /api/ads Editar datos de una oferta de trabajo o curso (admin)
-router.put("/", (req, res, next) => {
-    try {
-        return res.status(200).json("/api/ads Editar datos de una oferta")
-    } catch (error) {
-        return next(error)
-    }
-})
+// apiRouter.put("/user", apiController.updateUser);
+// apiRouter.put("/ads", apiController.updateOffer);
 
-// [DELETE] /api/ads Borrar una oferta de trabajo o curso de 
-//la base de datos (admin)
-router.delete("/", (req, res, next) => {
-    try {
-        return res.status(200).json("/api/ads Borrar una oferta")
-    } catch (error) {
-        return next(error)
-    }
-})
+// apiRouter.delete("/user", apiController.deleteUser);
+// apiRouter.delete("/ads", apiController.deleteOffer);
+// apiRouter.delete("/favorites", apiController.deleteFavorite);
 
-//[GET] /api/search Listado de resultados de la búsqueda
-router.get("/",(req,res,next)=>{
-    try {
-        return res.status(200).json("/api/search Listado de resultados")
-    } catch (error) {
-     return next(error)   
-    }
-}) 
-
-// [POST] /api/logout Salir
-router.post("/",(req,res,next)=>{
-    try {
-        return res.status(200).json("/api/logout Logout en la aplicación")
-    } catch (error) {
-     return next(error)   
-    }
-}) 
-
-// [POST] /api/login Hacer login en la aplicación
-router.post("/",(req,res,next)=>{
-    try {
-        return res.status(200).json("/api/login Login en la aplicación")
-    } catch (error) {
-     return next(error)   
-    }
-}) 
-
-
-// [POST] /api/user Registrarse en la aplicación
-usersApiRouter.post("/",(req,res,next)=>{
-    try {
-        return res.status(200).json("/api/user Registrarse en la aplicación")
-    } catch (error) {
-     return next(error)   
-    }
-}) 
-
-// [PUT] /api/user Editar datos del perfil del usuario o 
-//administrador
-usersApiRouter.put("/",(req,res,next)=>{
-    try {
-        return res.status(200).json("/api/user Editar datos del perfil")
-    } catch (error) {
-     return next(error)   
-    }
-}) 
-
-//[DELETE] /api/user Borrar un usuario de 
-//la base de datos (admin)
-usersApiRouter.delete("/",(req,res,next)=>{
-    try {
-        return res.status(200).json("/api/user Borrar un usuario")
-    } catch (error) {
-     return next(error)   
-    }
-}) 
-
-
-router.delete("/:reference_offer",favoritesController.deleteFavorite)
-router.get("/api",passwordController.recoverPassword)
-router.get("/api",passwordController.restorePassword) 
-
-module.exports = router
+module.exports = apiRouter;
