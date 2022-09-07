@@ -14,7 +14,7 @@ const manage404 = require('./middlewares/error404')
 const app = express()
 const cors = require("cors");
 const port = 3005
-
+app.use(express.static('public'));
 
 // View engine
 app.set('view engine', 'pug');
@@ -37,7 +37,7 @@ app.use('/', frontRoutes);
 // app.use('/users', userRoutes);
 
 
-app.use(express.static('public'));
+
 //If routes fail, show error 404
 app.use(manage404);
 //Owl say you if server works

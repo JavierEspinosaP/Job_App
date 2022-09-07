@@ -114,6 +114,5 @@ module.exports = {
     getProfile,
     getUsers,
     getDashboard,
-    getScrap,
-    getSearch
+    getScrap
 };
