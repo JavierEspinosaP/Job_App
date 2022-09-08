@@ -1,16 +1,40 @@
 const users = require('../models/users')
 const adminModel = require('../models/admin');
+const apiSchema = require('../schemas/offers_admin');
 require('../utils/db_sql')
 
-const getUsersRegistered= async (req,res)=>{
-    let usersRegistered;
-    if(req.query.email){
-        usersRegistered = await users.getUsersByEmail(req.query.email)
-      console.log("Estos son los mails de usuarios registrados: ", usersRegistered);
-    }else{
-        usersRegistered = await admin.getAllUsers()
-      console.log("Estos son todos los usuarios registrados");
-    }
+const getUsersRegistered = async (req, res) => {
+  let usersRegistered;
+  if (req.query.email) {
+    usersRegistered = await users.getUsersByEmail(req.query.email)
+    console.log("Estos son los mails de usuarios registrados: ", usersRegistered);
+  } else {
+    usersRegistered = await admin.getAllUsers()
+    console.log("Estos son todos los usuarios registrados");
+  }
+}
+
+//[GET] Obtener un listado de todas las ofertas de mongo
+// const getOffers = async (req, res) => {
+//   try {
+//     let offers = await adminModel.getOffers;
+//     res.status(200).json(offers);
+//     console.log("Holiii");
+//   } catch (error) {
+//     console.log(`ERROR: ${error.stack}`);
+//     res.status(404).json({ "message": "Offer not found" });
+//   }
+// }
+const getOffers = async (req, res) => {
+  try {
+    const offers = await apiSchema.find();
+    console.log("Holiii");
+    console.log(offers);
+    res.render("ads", { offers });
+  } catch (error) {
+    console.log(`ERROR: ${error.stack}`);
+    res.status(404).json({ "message": "Offer not found" });
+  }
 }
 
 //[POST] /api/ads Crear una oferta (admin)
@@ -51,6 +75,7 @@ const deleteOffer = async (req, res) => {
 }
 
 module.exports = {
+  getOffers,
   getUsersRegistered,
   createOffer,
   updateOffer,

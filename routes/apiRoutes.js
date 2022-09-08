@@ -14,6 +14,7 @@ const userController = require('../controllers/frontControllers');
 // router.delete('/favorites', userController.deleteFavorite);
 
 //funciones MONGO (admin)
+router.get('/ads/', adminController.getOffers);
 router.post('/ads/create', adminController.createOffer);
 router.post('/ads/update/', adminController.updateOffer);
 router.post('/ads/delete/', adminController.deleteOffer);

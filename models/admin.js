@@ -53,6 +53,29 @@ const deleteUser = async () => {
 }
 
 //Ofertas en MONGODB
+//[GET] Obtener todas las ofertas en mongo
+const getOffers = async (req, res) => {
+    try {
+        const offers = await apiSchema.find({});
+        console.log('ofertas ', offers);
+        res.render('/dashboard');
+    }
+    catch (error) {
+        console.log(`ERROR: ${error.stack}`)
+        res.status(404).json({ "message": "Offer not found" });
+    }
+}
+// const getOffers = async () => {
+//     try {
+//         const getOffers = await apiSchema.find({}, "-_id");
+//         return getOffers;
+//     }
+//     catch (error) {
+//         console.log(`ERROR: ${error.stack}`)
+//         res.status(404).json({ "message": "Offer not found" });
+//     }
+// }
+
 //[POST] /api/ads Crear una oferta de trabajo o curso (admin)
 const createOffer = async (offer) => {
     try {
@@ -149,6 +172,7 @@ module.exports = {
     getAllUsers,
     getUsersByEmail,
     deleteUser,
+    getOffers,
     createOffer,
     updateOffer,
     deleteOffer
