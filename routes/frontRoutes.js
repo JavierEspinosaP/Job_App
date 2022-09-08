@@ -18,5 +18,4 @@ frontRouter.get('/dashboard', frontController.getDashboard);
 router.get('/recoverpassword', frontController.recoverPassword);
 router.get('/restorepassword', frontController.restorePassword);
 
-
 module.exports = frontRouter;
