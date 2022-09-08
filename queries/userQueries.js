@@ -1,3 +1,5 @@
+
+
 const queries = {
     "getAllUsers" : "SELECT * FROM users",
     "getUsersByEmail": "SELECT email FROM users",

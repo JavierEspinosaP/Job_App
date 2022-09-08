@@ -1,15 +1,18 @@
 //REQUIRES
+
 require('dotenv').config();
 const userQueries = require('../queries/userQueries')
 const pool = require('../utils/db_sql')
 
 //queries para los Endpoints web
 //REGISTRO DE USUARIO
-const registeredUser = async() => {
+
+const registeredUser = async(user) => {
     let client, result;
+    
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.registerUser)
+        const data = await client.query(userQueries.registerUser,[user.name,user.surname, user.email, user.password]);
         result = data.rows
     } catch (err) {
         console.log(err);

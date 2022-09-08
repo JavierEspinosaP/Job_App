@@ -1,10 +1,13 @@
 const express = require("express")
 const router = express.Router()
 const adminController = require("../controllers/adminControllers");
-const userController = require('../controllers/frontControllers');
+const frontController = require('../controllers/frontControllers');
+const userController = require('../controllers/userControllers');
+
 
 // //endpoinds /API/
-// router.post('/login', userController.loginUser);
+router.post('/login', userController.loginUser);
+router.post('/user', userController.signUpUser);
 // router.post('/logout', userController.logoutUser);
 // router.post('/user', userController.signinUser);
 // router.put('/user', userController.editProfile);
