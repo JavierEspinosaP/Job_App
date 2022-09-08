@@ -25,6 +25,42 @@ html(lang='en')
         h1#h1Slogan DASHBOARD (ADMIN)
         h3#h3Slogan
           | Publicar una oferta
+        form#offerCreate(action="api/ads/create" method="POST") 
+          label(for="") id: 
+          input#id(type="number" name="id")
+          label(for="") Título de oferta:  
+          input#title(type="text" name="title")
+          label(for="") Compañia: 
+          input#company(type="text" name="company")
+          label(for="") Fecha:  
+          input#date(type="text" name="date")
+          label(for="") Localizacion:  
+          input#location(type="text" name="location")
+          label(for="") Descripción:  
+          input#description(type="text" name="description") 
+          button#createBtn(type="submit" value="Search") Crear oferta
+        
+        form#offerUpdate(action="api/ads/update/" method="POST")
+          label(for="") id a editar: 
+          input#id0(type="text" name="id0")
+          label(for="") id: 
+          input#id(type="number" name="id")
+          label(for="") Título de oferta:  
+          input#title(type="text" name="title")
+          label(for="") Compañia: 
+          input#company(type="text" name="company")
+          label(for="") Fecha:  
+          input#date(type="text" name="date")
+          label(for="") Localizacion:  
+          input#location(type="text" name="location")
+          label(for="") Descripción:  
+          input#description(type="text" name="description") 
+          button#updateBtn(type="submit" value="Search") Actualizar oferta
+
+        form#offerDelete(action="api/ads/delete/" method="POST")
+          label(for="") id: 
+          input#id(type="text" name="id")
+          button#updateBtn(type="submit" value="Search") Borrar oferta
         h3#h3Slogan
           | Estos son las ofertas que ya has publicado
     script(type='text/javascript', src='../scripts/homeNavigation.js')
