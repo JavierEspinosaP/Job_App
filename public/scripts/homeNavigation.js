@@ -42,3 +42,10 @@ searchForm.addEventListener('submit', ()=>{
     searchData()
 
 })
+
+
+//botón Admin, buscar users por mail
+const searchUserByMail = document.getElementById('searchMail')
+searchUserByMail.addEventListener('submit', () => {
+    
+})

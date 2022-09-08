@@ -1,5 +1,5 @@
-const users = require ('../models/users')
-const admin = require('../models/admin')
+// const users = require ('../models/users')
+const admin = require('../models/admin');
 
 require('../utils/db_sql')
 
@@ -13,7 +13,6 @@ const getUsersRegistered = async (req,res)=>{
         res.status(200).json(usersRegistered)
       }else{
           usersRegistered = await admin.getAllUsers()
-          console.log(usersRegistered)
         console.log("Estos son todos los usuarios registrados");
         res.status(200).render('users', {results: usersRegistered})
       }

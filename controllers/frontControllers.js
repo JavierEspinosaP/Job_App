@@ -1,6 +1,6 @@
 
 const users = require('../models/users');
-const admin = require('../models/admin')
+// const admin = require('../models/admin')
 
 //Traer el scraper
 const scraper = require('../utils/scraper')

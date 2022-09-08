@@ -25,6 +25,7 @@ CREATE TABLE users (
 	name    character varying   (40)    NOT NULL,
 	surname     character varying   (40)    NOT NULL,
 	email    TEXT   NOT NULL,
+  img  character varying,
 	password    character varying   (40)    NOT NULL,
 	role    TEXT     NOT NULL,
 	logged  boolean NOT NULL
