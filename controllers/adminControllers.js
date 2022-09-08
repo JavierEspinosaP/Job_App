@@ -32,7 +32,7 @@ const updateOffer = async (req, res) => {
   try {
     await adminModel.updateOffer(req.body);
     console.log("Oferta edited: ", req.body);
-    // res.send("User edited");
+    res.redirect('/dashboard');
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
     res.status(404).json({ "message": "Offer not found" });
@@ -45,7 +45,6 @@ const deleteOffer = async (req, res) => {
     await adminModel.deleteOffer(req.body);
     console.log("Offer deleted: ", req.body);
     res.redirect('/dashboard');
-    // res.send("Offer deleted");
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
     res.status(404).json({ "message": "offer not found" });
