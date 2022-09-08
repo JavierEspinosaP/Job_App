@@ -1,28 +1,21 @@
 const express = require("express")
-const apiController = require("../controllers/apiControllers")
-const apiRouter = express.Router()
+const router = express.Router()
+const adminController = require("../controllers/adminControllers");
+const userController = require('../controllers/frontControllers');
 
-// apiRouter.get("/search", apiController.search);
-// apiRouter.get("/recoverpassword", apiController.recoverpassword);
-// apiRouter.get("/restorepassword", apiController.restorepassword);
+//endpoinds /API/
+router.post('/login', userController.loginUser);
+router.post('/logout', userController.logoutUser);
+router.post('/user', userController.signinUser);
+router.put('/user', userController.editProfile);
 
-// apiRouter.post("/user", apiController.singup);
-// apiRouter.post("/login", apiController.login);
-// apiRouter.post("/logout", apiController.logout);
-apiRouter.post('/ads/create', apiController.createOffer);
-// apiRouter.post("/favorites", apiController.addFavorite);
+router.delete('/user', adminController.deleteUser); //Borrar un usuario de la base de datos (admin)
+router.post('/favorites', userController.saveFavorite);
+router.delete('/favorites', userController.deleteFavorite);
 
-// apiRouter.put("/user", apiController.updateUser);
-apiRouter.post('/ads/update/', apiController.updateOffer);
+//funciones MONGO (admin)
+router.post('/ads/create', adminController.createOffer);
+router.post('/ads/update/', adminController.updateOffer);
+router.post('/ads/delete/', adminController.deleteOffer);
 
-// // apiRouter.delete("/user", apiController.deleteUser);
-apiRouter.post('/ads/delete/', apiController.deleteOffer);
-
-// apiRouter.post('/ads/deletee/:id?', (req, res) => {
-//     let message = req.params.id;
-//     res.send('holi');
-// });
-
-// apiRouter.delete("/favorites", apiController.deleteFavorite);
-
-module.exports = apiRouter;
+module.exports = router
