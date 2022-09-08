@@ -7,21 +7,31 @@ require('../utils/db_sql')
 const getUsersRegistered = async (req,res)=>{
     let usersRegistered;
     try {
-      if(req.query.email){
-          usersRegistered = await admin.getUsersByEmail(req.query.email)
-        console.log("Este es el usuario registrado con el mail introducido: ", usersRegistered);
-        res.status(200).json(usersRegistered)
-      }else{
           usersRegistered = await admin.getAllUsers()
         console.log("Estos son todos los usuarios registrados");
         res.status(200).render('users', {results: usersRegistered})
-      }
+      
     } catch (error) {
       console.log(error.message);
     }
 }
 
 
+
+const deleteUser = async (req, res) => {
+  const userMail = req.body.email;
+   try {
+    const response = await admin.deleteUser(userMail);
+    res.send("User deleted")
+
+   } catch (error) {
+    console.log(error.message)
+    res.status(404).json({ "message": "user not deleted" });
+   }
+}
+
+
 module.exports = {
-    getUsersRegistered
+    getUsersRegistered,
+    deleteUser
 }

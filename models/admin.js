@@ -22,30 +22,14 @@ const getAllUsers = async()=>{
 }
 
 
- //por mail
-const getUsersByEmail = async () => {
-    let client,result;
-    try{
-        client = await pool.connect();
-        const data = await client.query(queries.getUsersByEmail)
-        result = data.rows
-    }catch(err){
-        console.log(err);
-        throw err;
-    }finally{
-        client.release();    
-    }
-    return result
-}
-
-// //Borrar usuario de la bd
-// const deleteUser = async () => {
-//     let client, result;
-//     try {
+ //por mail - EXTRA!!
+// const getUsersByEmail = async () => {
+//     let client,result;
+//     try{
 //         client = await pool.connect();
-//         const data = await client.query(userQueries.deleteUser)
+//         const data = await client.query(queries.getUsersByEmail)
 //         result = data.rows
-//     } catch (err) {
+//     }catch(err){
 //         console.log(err);
 //         throw err;
 //     }finally{
@@ -54,7 +38,23 @@ const getUsersByEmail = async () => {
 //     return result
 // }
 
+//Borrar usuario de la bd
+const deleteUser = async (email) => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(queries.deleteUser, [email])
+        result = data.rowCount
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }finally{
+        client.release();    
+    }
+    return result
+}
+
 module.exports = {
     getAllUsers,
-    getUsersByEmail
+    deleteUser
 }
