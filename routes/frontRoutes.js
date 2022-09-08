@@ -1,5 +1,6 @@
 const express = require('express')
 const frontController = require("../controllers/frontControllers");
+const adminController = require("../controllers/adminControllers");
 const frontRouter = express.Router();
 
 frontRouter.get('/', frontController.getHome);
@@ -13,7 +14,7 @@ frontRouter.post('/search', frontController.getSearch)
 frontRouter.get('/search', frontController.getSearch)
 
 //Vistas solo de admin
-frontRouter.get('/users', frontController.getUsers);
+frontRouter.get('/users', adminController.getUsersRegistered);
 frontRouter.get('/dashboard', frontController.getDashboard);
 
 //estas dos no llevan "/api" delante

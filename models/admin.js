@@ -1,22 +1,22 @@
 require('dotenv').config();
 const userQueries = require('../queries/userQueries')
-const pool = require('../utils/db_sql')
+const client = require('../utils/db_sql')
+
 
 //ADMIN: VISTA USUARIOS REGISTRADOS 
 const getAllUsers = async () => {
-    let client,result;
+    let db,result;
     try{
-        client = await pool.connect();
-        const data = await client.query(userQueries.getAllUsers)
-        result = data.rows
+        const data = await client.getAllUsers();
+        return data
     }catch(err){
         console.log(err);
         throw err;
     }finally{
-        client.release();    
+        // user.release();    
     }
-    return result
 }
+
 
 
         //por mail
