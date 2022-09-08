@@ -8,17 +8,14 @@ frontRouter.get('/login', frontController.getLogin);
 frontRouter.get('/favorites', frontController.getFavorites);
 frontRouter.get('/profile', frontController.getProfile);
 
-//Prueba scraping
-frontRouter.post('/search', frontController.getSearch)
-frontRouter.get('/search', frontController.getSearch)
-
+//Scraping
+frontRouter.get('/api/search', frontController.getSearch)
 //Vistas solo de admin
 frontRouter.get('/users', frontController.getUsers);
 frontRouter.get('/dashboard', frontController.getDashboard);
 
 //estas dos no llevan "/api" delante
-router.get('/recoverpassword', frontController.recoverPassword);
-router.get('/restorepassword', frontController.restorePassword);
-
+frontRouter.get('/recoverpassword', frontController.recoverPassword);
+frontRouter.get('/restorepassword', frontController.restorePassword);
 
 module.exports = frontRouter;

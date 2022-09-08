@@ -27,9 +27,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', frontRoutes);
 app.use('/api', apiRoutes);
 
+//If routes fail, show error 404
 app.use(manage404);
 app.use(helmet);
 
+//Owl say you if server works
 app.listen(port, () => {
   console.log(cowsay.say(`Server working on http://localhost:${port}`, { cow: owl }))
 });

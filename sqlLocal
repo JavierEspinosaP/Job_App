@@ -65,7 +65,7 @@ WHERE logged = true
 Para crear la tabla 'favorites':
 
 CREATE TABLE favorites (
-  offer_id SERIAL UNIQUE NOT NULL  
+  offer_id SERIAL UNIQUE NOT NULL,  
   user_id INTEGER NOT NULL,
   reference_offer  varchar NOT NULL
 )
