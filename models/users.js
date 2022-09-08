@@ -7,13 +7,14 @@ const pool = require('../utils/db_sql')
 //queries para los Endpoints web
 //REGISTRO DE USUARIO
 
-const registeredUser = async(user) => {
+const registerUser = async(user) => {
     let client, result;
     
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.registerUser,[user.name,user.surname, user.email, user.password]);
+        const data = await client.query(userQueries.registerUser,[user.name,user.surname, user.email, user.hash]);
         result = data.rows
+        console.log(result);
     } catch (err) {
         console.log(err);
         throw err;
@@ -197,7 +198,7 @@ const changedPassword = async () => {
 
 
 module.exports = {
-    registeredUser,
+    registerUser,
     logInUser,
     loggedStatus,
     getFavorites,

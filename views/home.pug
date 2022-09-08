@@ -35,14 +35,12 @@ html(lang='en')
         div#h3LoginContainer
           h2#h2Login Login
         div#LoginFormContainer
-          form(action="post" id="loginForm")
+          form(action="/api/login" method="post" id="loginForm")
             label Email 
-            input(type="text" placeholder="John_Wick@terra.es")
+            input(name="email" type="text" placeholder="John_Wick@terra.es")
             label Contraseña
-            input(type="password" placeholder="Omelette123")
+            input(name="password" type="password" placeholder="Omelette123")
             input(type="submit")
-            h4 
-              a(href='/login') LOGIN
       div#mainContainer
         h1#h1Slogan Tu proyecto, nuestro objetivo
         h3#h3Slogan
