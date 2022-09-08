@@ -3,9 +3,6 @@ const userQueries = require('../queries/userQueries')
 const apiSchema = require('../schemas/offers_admin');
 const pool = require('../utils/db_sql')
 
-
-//queries para los Endpoints Api
-
 //ADMIN: VISTA USUARIOS REGISTRADOS 
 const getAllUsers = async () => {
     let client, result;

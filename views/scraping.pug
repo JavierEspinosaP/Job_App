@@ -47,10 +47,18 @@ html(lang='en')
         h1#h1Slogan Tu proyecto, nuestro objetivo
         h3#h3Slogan
           | Con más de 300000 usuarios, nuestra app ha demostrado por tercer año consecutivo ser la web preferente en búsqueda de proyectos freelance de España
-        div#searchContainer
-          input(id="inputValue" placeholder="Introduce tu busqueda")
-          button#searchButton Click
-        div#cardsContainer
-          div(id="spinner" class="loader") Loading...
-  script(type='text/javascript', src='/scripts/homeNavigation.js')
-include ./footer.pug
+        div#searchFormContainer
+          form#searchForm
+          input(type="text" action="/search" method="post" placeholder="Buscar Proyecto")
+          input(type="submit")
+        ul#cardsContainer
+          each element in merged ? merged : []
+            div#offerCard
+                h3 #{element.proyect_name}
+                p Publicado: #{element.published}
+                p Presupuesto: #{element.budget}
+                p Descripción: #{element.description}
+            
+            
+    script(type='text/javascript', src='../scripts/homeNavigation.js')
+

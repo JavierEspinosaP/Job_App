@@ -2,16 +2,15 @@ const users = require('../models/users')
 const adminModel = require('../models/admin');
 require('../utils/db_sql')
 
-
-const getUsersRegistered = async (req, res) => {
-  let usersRegistered;
-  if (req.query.email) {
-    usersRegistered = await users.getUsersByEmail(req.query.email)
-    console.log("Estos son los mails de usuarios registrados: ", usersRegistered);
-  } else {
-    usersRegistered = await admin.getAllUsers()
-    console.log("Estos son todos los usuarios registrados");
-  }
+const getUsersRegistered= async (req,res)=>{
+    let usersRegistered;
+    if(req.query.email){
+        usersRegistered = await users.getUsersByEmail(req.query.email)
+      console.log("Estos son los mails de usuarios registrados: ", usersRegistered);
+    }else{
+        usersRegistered = await admin.getAllUsers()
+      console.log("Estos son todos los usuarios registrados");
+    }
 }
 
 //[POST] /api/ads Crear una oferta (admin)
