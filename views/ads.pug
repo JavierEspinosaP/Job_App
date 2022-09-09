@@ -32,9 +32,13 @@ html(lang='en')
               hr
               h2= offer[i].title
               h3= offer[i].company
-              h3= offer[i].date
+              p= offer[i].date
               h3= offer[i].location
-              h4= offer[i].company
+              p= offer[i].company
+              p oli#{offer[i].id}oli
+              -var url=offer[i]._id;
+              h4
+                a(href='/ads/update/'+url) Editar
           else 
             p no values
     script(type='text/javascript', src='../scripts/homeNavigation.js')
