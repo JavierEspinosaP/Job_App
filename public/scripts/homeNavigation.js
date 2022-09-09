@@ -1,5 +1,3 @@
-require('../controllers/adminControllers')
-
 //Selectores
 const signUpAccess = document.getElementById('signUpAccess')
 const mainContainer = document.getElementById('mainContainer')
@@ -41,33 +39,4 @@ searchForm.addEventListener('submit', ()=>{
     }
     searchData()
 
-})
-
-
-// //botón Admin, buscar users por mail (EXTRA!)
-// const searchUserByMail = document.getElementById('searchMail')
-// searchUserByMail.addEventListener('click', () => {
-//     if (condition) {
-//         submit
-//     } 
-// })
-
-async function deleteUser(emailUser) {
-    try {
-      await fetch('/users', {
-        method: "DELETE",
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          insertUsersList();
-        });
-    } catch {}
-  }
-
-
-//botón para borrar usuario (admin):
-const deleteUserBtn = document.getElementById('deleteUser')
-deleteUserBtn.addEventListener('click', () => {
-    deleteUser();
-    //cuando se hace click en el botón se pasa la func del controlador
 })

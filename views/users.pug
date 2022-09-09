@@ -32,9 +32,9 @@ html(lang='en')
       each user in results 
         h4=user.name 
         p=user.surname 
-        p=user.email
+        p#userMail=user.email 
         p=user.role
         button#deleteUser(type="submit" value="deleteUser") Delete
-        button#modifyUser(type="submit" value="modifyUser") Modify
-    script(type='text/javascript', src='../scripts/homeNavigation.js')
+        button#modifyUser(type="submit" value="modifyUser") Edit
+    script(type='text/javascript', src='../scripts/adminNavigation.js')
 include ./footer.pug
