@@ -29,12 +29,14 @@ html(lang='en')
           form#searchForm
           input(type="text" placeholder="Buscar usuario")
           input(type="submit" id="searchMail")
-      each user in results 
-        h4=user.name 
-        p=user.surname 
-        p#userMail=user.email 
-        p=user.role
-        button#deleteUser(type="submit" value="deleteUser") Delete
-        button#modifyUser(type="submit" value="modifyUser") Edit
+      each user in results
+        section
+          h4=user.name
+          p=user.surname 
+          p#userMail=user.email 
+          p=user.role
+          button#deleteUser(type="submit" value="deleteUser") Delete
+          button#editUser(type="submit" value="editUser") Edit 
+          hr
     script(type='text/javascript', src='../scripts/adminNavigation.js')
 include ./footer.pug
