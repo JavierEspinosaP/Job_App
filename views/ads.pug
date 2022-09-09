@@ -24,7 +24,7 @@ html(lang='en')
       div#mainContainer
         h1#h1Slogan ADS (ADMIN)
         h3#h3Slogan
-          | Listado de todas las ofertas creadas por el Admin 
+          | Listado de todas las ofertas creadas por el Admin
         .offers
           each offer in {offers}
             .offer
@@ -35,10 +35,12 @@ html(lang='en')
               p= offer[i].date
               h3= offer[i].location
               p= offer[i].company
-              p oli#{offer[i].id}oli
-              -var url=offer[i]._id;
+              p= offer[i].id
+              -var url=offer[i].id;
               h4
-                a(href='/ads/update/'+url) Editar
+                a(href='./ads/update/'+url) Editar
+              h4
+                a(href='./ads/delete/'+url) Borrar
           else 
             p no values
     script(type='text/javascript', src='../scripts/homeNavigation.js')

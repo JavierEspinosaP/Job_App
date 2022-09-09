@@ -37,6 +37,19 @@ const getOffers = async (req, res) => {
   }
 }
 
+const getOffer = async (req, res) => {
+  try {
+    const offer = await apiSchema.find({ id: req.params.id });
+    console.log("Holi desde getOffer controller");
+    console.log(offer);
+    // res.render("/dashboard", { offer });
+    res.render("updateOffer", { offer });
+  } catch (error) {
+    console.log(`ERROR: ${error.stack}`);
+    res.status(404).json({ "message": "Offer not found" });
+  }
+}
+
 //[POST] /api/ads Crear una oferta (admin)
 const createOffer = async (req, res) => {
   try {
@@ -54,8 +67,9 @@ const createOffer = async (req, res) => {
 const updateOffer = async (req, res) => {
   try {
     await adminModel.updateOffer(req.body);
+    console.log("Holi desde updateOffer controller");
     console.log("Oferta edited: ", req.body);
-    res.redirect('/dashboard');
+    res.redirect('/api/ads');
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
     res.status(404).json({ "message": "Offer not found" });
@@ -67,7 +81,7 @@ const deleteOffer = async (req, res) => {
   try {
     await adminModel.deleteOffer(req.body);
     console.log("Offer deleted: ", req.body);
-    res.redirect('/dashboard');
+    res.redirect('/api/ads');
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
     res.status(404).json({ "message": "offer not found" });
@@ -76,6 +90,7 @@ const deleteOffer = async (req, res) => {
 
 module.exports = {
   getOffers,
+  getOffer,
   getUsersRegistered,
   createOffer,
   updateOffer,

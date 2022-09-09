@@ -65,6 +65,20 @@ const getOffers = async (req, res) => {
         res.status(404).json({ "message": "Offer not found" });
     }
 }
+
+//Obtener usuario por id (_id NO)
+const getOffer = async (req, res) => {
+    try {
+        const offers = await apiSchema.find({ id: req.params.id });
+        console.log('oferta ', offers);
+        res.render('/dashboard');
+    }
+    catch (error) {
+        console.log(`ERROR: ${error.stack}`)
+        res.status(404).json({ "message": "Offer not found" });
+    }
+}
+
 // const getOffers = async () => {
 //     try {
 //         const getOffers = await apiSchema.find({}, "-_id");
@@ -137,10 +151,11 @@ const createOffer = async (offer) => {
 //     }
 // }
 
+
 const updateOffer = async (offer) => {
     try {
         const { id, title, company, date, location, description } = offer;
-        await apiSchema.findByIdAndUpdate(offer.id0, { id, title, company, date, location, description });
+        await apiSchema.findOneAndUpdate(offer.id, { id, title, company, date, location, description });
         console.log("Edited");
         return {
             answer: "edited",
@@ -156,7 +171,7 @@ const updateOffer = async (offer) => {
 const deleteOffer = async (offer) => {
     try {
 
-        await apiSchema.findByIdAndDelete(offer.id);
+        await apiSchema.findOneAndDelete(offer.id);
         console.log("Deleted");
         return {
             answer: "Deleted",
@@ -173,6 +188,7 @@ module.exports = {
     getUsersByEmail,
     deleteUser,
     getOffers,
+    getOffer,
     createOffer,
     updateOffer,
     deleteOffer
