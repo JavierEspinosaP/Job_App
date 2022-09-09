@@ -3,12 +3,6 @@ const router = express.Router()
 const adminController = require("../controllers/adminControllers");
 const userController = require('../controllers/frontControllers');
 
-// //endpoinds /API/
-// router.post('/login', userController.loginUser);
-// router.post('/logout', userController.logoutUser);
-// router.post('/user', userController.signinUser);
-// router.put('/user', userController.editProfile);
-
 //funciones MONGO (admin)
 router.post('/ads/create', adminController.createOffer);
 router.post('/ads/update/', adminController.updateOffer);
