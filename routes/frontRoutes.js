@@ -14,7 +14,6 @@ frontRouter.post('/search', frontController.getSearch)
 frontRouter.get('/search', frontController.getSearch)
 
 //Vistas solo de admin
-frontRouter.get('/users', adminController.getUsersRegistered);
 frontRouter.get('/dashboard', frontController.getDashboard);
 
 //estas dos no llevan "/api" delante

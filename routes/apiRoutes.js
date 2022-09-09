@@ -11,6 +11,7 @@ const userController = require('../controllers/frontControllers');
 // router.post('/user',userController.signinUser);
 // router.put('/user', userController.editProfile);
 
+router.get('/users', adminController.getUsersRegistered);
 router.delete('/user/delete', adminController.deleteUser); //Borrar un usuario de la base de datos (admin)
 // router.post('/favorites', userController.saveFavorite);
 // router.delete('/favorites', userController.deleteFavorite);
