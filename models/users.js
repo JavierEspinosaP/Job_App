@@ -26,11 +26,12 @@ const registerUser = async(user) => {
 }
 
 //LOGIN DE USUARIO (ya registrado)
-const logInUser = async() => {
+const signInUser = async(user) => {
+    
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.loginUser)
+        let data = await client.query(userQueries.loginUser, [user.email])
         result = data.rows
     } catch (err) {
         console.log(err);
@@ -41,13 +42,12 @@ const logInUser = async() => {
     return result
 }
 
-
         //update status logged colum
-const loggedStatus= async () => {
+const loggedStatus= async (email) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.updateStatus)
+        const data = await client.query(userQueries.updateStatus, [email])
         result = data.rows
     } catch (err) {
         console.log(err);
@@ -199,7 +199,7 @@ const changedPassword = async () => {
 
 module.exports = {
     registerUser,
-    logInUser,
+    signInUser,
     loggedStatus,
     getFavorites,
     saveFavorite,

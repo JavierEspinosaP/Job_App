@@ -21,27 +21,18 @@ const signUpUser = async (req, res) => {
 const loginUser = async (req, res)=>{
     const {email, password} = req.body
     try{
-        const response = await users.logInUser({email, password})
-        for (let i = 0; i < response.length; i++) {
-            if (email == response[i].email) {
-        
-            const validPass = await bcrypt.compare(password, response[i].password)
+        const response = await users.signInUser({email, password})
+        console.log("ESTO ES RESPONSE");
+        console.log(response[0].email);
+        console.log("ESTO ES EMAIL");
+        console.log(email);
+        if (email == response[0].email) {
+        const validPass = await bcrypt.compare(password, response[0].password)
+        console.log(validPass);
             if(validPass){
-                try {
-                    
-                    client = await pool.connect();
-                    const data = await client.query(userQueries.updateStatus, [response[i].email])
-                    result = data.rows
-                    console.log(response[i].email);
-                } catch (err) {
-                    console.log(err);
-                    throw err;
-                }finally{
-                    client.release(); 
-                    res.status(200).json()   
-                }
-                return result
-            }}}
+                users.loggedStatus(email)
+            }
+        }
     }
     catch(err){
         console.log(err);

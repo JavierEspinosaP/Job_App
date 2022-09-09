@@ -14,6 +14,10 @@ const searchButton = document.getElementById('searchButton')
 const cardsContainer = document.getElementById('cardsContainer')
 const spinner = document.getElementById('spinner')
 
+const loginForm = document.getElementById('loginForm')
+const loginEmail = document.getElementById('loginEmail')
+const loginPassword = document.getElementById('loginPassword')
+
 //Navegacion
 
 signUpAccess.addEventListener('click', () => {
@@ -37,15 +41,16 @@ comeBackButton2.addEventListener('click', () => {
 })
 
 
+
 searchButton.addEventListener('click', () => {
-    
+
     const searchData = async () => {
-        spinner.style.display= "block"
+        spinner.style.display = "block"
         let responseOffers = await fetch(`/api/search?search=${inputValue}`)
         let offersData = await responseOffers.json()
-        spinner.style.display = "none" 
+        spinner.style.display = "none"
         for (let i = 0; i < offersData.length; i++) {
-            let offer =`
+            let offer = `
             <section id="offerCard">
             <h3>${offersData[i].proyect_name}</h3>
             <p>Publicado:${offersData[i].published}</p>
@@ -53,10 +58,30 @@ searchButton.addEventListener('click', () => {
             <p>Descripcion:${offersData[i].description}</p>
             <a id="urlLink" href="${offersData[i].url}">Link a la oferta</a>
             </section>`
-            cardsContainer.innerHTML += offer   
+            cardsContainer.innerHTML += offer
         }
-      
+
     }
-searchData() 
+    searchData()
+
+})
+
+loginForm.addEventListener('submit', function (event) {
+    event.preventDefault()
+    async function postData(url = '/api/login', data = {email:loginEmail.value, password:loginPassword.value}) {
+        const response = await fetch(url, {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+              });
+        return response.json(); // parses JSON response into native JavaScript objects
+      }postData()
 
 })
