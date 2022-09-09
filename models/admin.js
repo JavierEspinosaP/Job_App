@@ -19,7 +19,6 @@ const getAllUsers = async () => {
     return result
 }
 
-
 //por mail
 const getUsersByEmail = async () => {
     let client, result;
@@ -52,37 +51,28 @@ const deleteUser = async () => {
     return result
 }
 
-//Ofertas en MONGODB
+//Ofertas en MONGODB----------------------------------------------
 //[GET] Obtener todas las ofertas en mongo
-const getOffers = async (req, res) => {
-    try {
-        const offers = await apiSchema.find({});
-        console.log('ofertas ', offers);
-        res.render('/dashboard');
-    }
-    catch (error) {
-        console.log(`ERROR: ${error.stack}`)
-        res.status(404).json({ "message": "Offer not found" });
-    }
-}
-
-//Obtener usuario por id (_id NO)
-const getOffer = async (req, res) => {
-    try {
-        const offers = await apiSchema.find({ id: req.params.id });
-        console.log('oferta ', offers);
-        res.render('/dashboard');
-    }
-    catch (error) {
-        console.log(`ERROR: ${error.stack}`)
-        res.status(404).json({ "message": "Offer not found" });
-    }
-}
-
-// const getOffers = async () => {
+//No se volver a controllers con los parametros obtenidos
+// const getOffers = async (req, res) => {
 //     try {
-//         const getOffers = await apiSchema.find({}, "-_id");
-//         return getOffers;
+//         const offers = await apiSchema.find({});
+//         console.log('ofertas ', offers);
+//         res.render('/dashboard');
+//     }
+//     catch (error) {
+//         console.log(`ERROR: ${error.stack}`)
+//         res.status(404).json({ "message": "Offer not found" });
+//     }
+// }
+
+//Obtener oferta por id (_id NO)
+//No se volver a controllers con los parametros obtenidos
+// const getOffer = async (req, res) => {
+//     try {
+//         const offer = await apiSchema.find({ id: req.params.id });
+//         console.log("Holi desde getOffer admin.js");
+//         return offer
 //     }
 //     catch (error) {
 //         console.log(`ERROR: ${error.stack}`)
@@ -91,13 +81,13 @@ const getOffer = async (req, res) => {
 // }
 
 //[POST] /api/ads Crear una oferta de trabajo o curso (admin)
-const createOffer = async (req, res) => {
+const createOffer = async (offer) => {
     try {
-        let newOffer = new apiSchema(req.body);
+        let newOffer = new apiSchema(offer);
         console.log(newOffer);
+        console.log("Holi desde admin.js createOffer");
         let answer = await newOffer.save();
         console.log(answer);
-        redirect('/dashboard');
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`)
@@ -110,10 +100,10 @@ const updateOffer = async (offer) => {
     try {
         const { id, title, company, date, location, description } = offer;
         await apiSchema.findOneAndUpdate(offer.id, { id, title, company, date, location, description });
-        console.log("Edited");
-        return {
-            answer: "edited",
-        }
+        console.log("Edited desde admin.js updateOffer");
+        // return {
+        //     answer: "edited",
+        // }
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`)
@@ -124,12 +114,8 @@ const updateOffer = async (offer) => {
 //[DELETE] /api/ads Borrar una oferta de trabajo o curso de la base de datos (admin)
 const deleteOffer = async (offer) => {
     try {
-
-        await apiSchema.findOneAndDelete(offer.id);
-        console.log("Deleted");
-        return {
-            answer: "Deleted",
-        }
+        await apiSchema.findOneAndRemove(offer.id);
+        console.log("Deleted from admin.js");
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`)
@@ -141,8 +127,6 @@ module.exports = {
     getAllUsers,
     getUsersByEmail,
     deleteUser,
-    getOffers,
-    getOffer,
     createOffer,
     updateOffer,
     deleteOffer

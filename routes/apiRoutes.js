@@ -16,8 +16,8 @@ const userController = require('../controllers/frontControllers');
 //funciones MONGO (admin)
 router.get('/dashboard/', adminController.getOffers);
 router.post('/ads/create', adminController.createOffer);
-router.post('/ads/update/:id?', adminController.updateOffer);
-router.get('/ads/update/:id', adminController.getOffer);
-router.get('/ads/delete/:id', adminController.deleteOffer);
+router.post('/ads/update/:id?', adminController.updateOffer);//Modificar form para que envie como PUT
+router.get('/ads/update/:id', adminController.getOffer);//Te lleva a updateOffer
+router.get('/ads/delete/:id', adminController.deleteOffer);//Modificar form para que envie como DELETE
 
 module.exports = router

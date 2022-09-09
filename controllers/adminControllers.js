@@ -15,20 +15,10 @@ const getUsersRegistered = async (req, res) => {
 }
 
 //[GET] Obtener un listado de todas las ofertas de mongo
-// const getOffers = async (req, res) => {
-//   try {
-//     let offers = await adminModel.getOffers;
-//     res.status(200).json(offers);
-//     console.log("Holiii");
-//   } catch (error) {
-//     console.log(`ERROR: ${error.stack}`);
-//     res.status(404).json({ "message": "Offer not found" });
-//   }
-// }
 const getOffers = async (req, res) => {
   try {
     const offers = await apiSchema.find();
-    console.log("Holiii");
+    console.log("Holi desde getOffers");
     console.log(offers);
     res.render("dashboard", { offers });
   } catch (error) {
@@ -37,6 +27,7 @@ const getOffers = async (req, res) => {
   }
 }
 
+// Obtener la oferta a editar
 const getOffer = async (req, res) => {
   try {
     const offer = await apiSchema.find({ id: req.params.id });
@@ -52,14 +43,13 @@ const getOffer = async (req, res) => {
 //[POST] /api/ads Crear una oferta (admin)
 const createOffer = async (req, res) => {
   try {
-    let newOffer = await apiSchema(req.body);
-    console.log(newOffer);
-    let answer = await newOffer.save();
-    console.log("Offer created: ", answer);
+    await adminModel.createOffer(req.body);
+    console.log("Holi desde createOffer controller");
+    console.log("Oferta creada: ", req.body);
     res.redirect('/api/dashboard');
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
-    res.status(404).json({ "message": "error creating an offer" });
+    res.status(404).json({ "message": "Offer not found" });
   }
 }
 
