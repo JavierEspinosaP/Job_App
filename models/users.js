@@ -4,7 +4,7 @@ const userQueries = require('../queries/userQueries')
 const pool = require('../utils/db_sql')
 
 //queries para los Endpoints web
-//REGISTRO DE USUARIO
+//REGISTRO DE USUARIO - se añade a la bbdd
 const registeredUser = async() => {
     let client, result;
     try {

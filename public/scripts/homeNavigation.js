@@ -1,5 +1,4 @@
 //Selectores
-
 const signUpAccess = document.getElementById('signUpAccess')
 const mainContainer = document.getElementById('mainContainer')
 const signUpContainer = document.getElementById('signUpContainer')
@@ -15,8 +14,7 @@ const cardsContainer = document.getElementById('cardsContainer')
 const spinner = document.getElementById('spinner')
 
 //Navegacion
-
-signUpAccess.addEventListener('click', () => {
+signUpAccess.addEventListener('click', ()=>{
     mainContainer.style.display = 'none'
     signUpContainer.style.display = 'block'
 })

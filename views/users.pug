@@ -24,10 +24,17 @@ html(lang='en')
       div#mainContainer
         h1#h1Slogan USERS (ADMIN)
         h3#h3Slogan
-          | Introduce el nombre del usuario a buscar
+          | Introduce el mail del usuario a buscar
         div#searchFormContainer
           form#searchForm
-          input(type="text" placeholder="Buscar Usuario")
-          input(type="submit")
-    script(type='text/javascript', src='../scripts/homeNavigation.js')
+          input(type="text" placeholder="Buscar usuario")
+          input(type="submit" id="searchMail")
+      each user in results 
+        h4=user.name 
+        p=user.surname 
+        p#userMail=user.email 
+        p=user.role
+        button#deleteUser(type="submit" value="deleteUser") Delete
+        button#modifyUser(type="submit" value="modifyUser") Edit
+    script(type='text/javascript', src='../scripts/adminNavigation.js')
 include ./footer.pug

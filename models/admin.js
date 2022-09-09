@@ -1,14 +1,16 @@
 require('dotenv').config();
-const userQueries = require('../queries/userQueries')
 const apiSchema = require('../schemas/offers_admin');
+const db = require('pg');
+const queries = require('../queries/userQueries')
 const pool = require('../utils/db_sql')
 
+
 //ADMIN: VISTA USUARIOS REGISTRADOS 
-const getAllUsers = async () => {
-    let client, result;
-    try {
-        client = await pool.connect();
-        const data = await client.query(userQueries.getAllUsers)
+const getAllUsers = async()=>{
+    let client,result;
+    try{
+        client = await pool.connect(); // Espera a abrir conexion
+        const data = await client.query(queries.getAllUsers)
         result = data.rows
     } catch (err) {
         console.log(err);
@@ -20,29 +22,29 @@ const getAllUsers = async () => {
 }
 
 
-//por mail
-const getUsersByEmail = async () => {
-    let client, result;
-    try {
-        client = await pool.connect();
-        const data = await client.query(userQueries.getAllUsers)
-        result = data.rows
-    } catch (err) {
-        console.log(err);
-        throw err;
-    } finally {
-        client.release();
-    }
-    return result
-}
+ //por mail - EXTRA!!
+// const getUsersByEmail = async () => {
+//     let client,result;
+//     try{
+//         client = await pool.connect();
+//         const data = await client.query(queries.getUsersByEmail)
+//         result = data.rows
+//     }catch(err){
+//         console.log(err);
+//         throw err;
+//     }finally{
+//         client.release();    
+//     }
+//     return result
+// }
 
 //Borrar usuario de la bd
-const deleteUser = async () => {
+const deleteUser = async (email) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.deleteUser)
-        result = data.rows
+        const data = await client.query(queries.deleteUser, [email])
+        result = data.rowCount
     } catch (err) {
         console.log(err);
         throw err;
@@ -147,7 +149,6 @@ const deleteOffer = async (offer) => {
 
 module.exports = {
     getAllUsers,
-    getUsersByEmail,
     deleteUser,
     createOffer,
     updateOffer,
