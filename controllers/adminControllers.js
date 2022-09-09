@@ -30,7 +30,7 @@ const getOffers = async (req, res) => {
     const offers = await apiSchema.find();
     console.log("Holiii");
     console.log(offers);
-    res.render("ads", { offers });
+    res.render("dashboard", { offers });
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
     res.status(404).json({ "message": "Offer not found" });
@@ -42,7 +42,6 @@ const getOffer = async (req, res) => {
     const offer = await apiSchema.find({ id: req.params.id });
     console.log("Holi desde getOffer controller");
     console.log(offer);
-    // res.render("/dashboard", { offer });
     res.render("updateOffer", { offer });
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
@@ -53,10 +52,11 @@ const getOffer = async (req, res) => {
 //[POST] /api/ads Crear una oferta (admin)
 const createOffer = async (req, res) => {
   try {
-    let newOffer = await adminModel.createOffer(req.body);
-    res.status(200).json(newOffer);
-    console.log("Offer created: ", req.body);
-    // res.send("Offer created");
+    let newOffer = await apiSchema(req.body);
+    console.log(newOffer);
+    let answer = await newOffer.save();
+    console.log("Offer created: ", answer);
+    res.redirect('/api/dashboard');
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
     res.status(404).json({ "message": "error creating an offer" });
@@ -69,7 +69,7 @@ const updateOffer = async (req, res) => {
     await adminModel.updateOffer(req.body);
     console.log("Holi desde updateOffer controller");
     console.log("Oferta edited: ", req.body);
-    res.redirect('/api/ads');
+    res.redirect('/api/dashboard');
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
     res.status(404).json({ "message": "Offer not found" });
@@ -81,7 +81,7 @@ const deleteOffer = async (req, res) => {
   try {
     await adminModel.deleteOffer(req.body);
     console.log("Offer deleted: ", req.body);
-    res.redirect('/api/ads');
+    res.redirect('/api/dashboard');
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
     res.status(404).json({ "message": "offer not found" });

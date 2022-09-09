@@ -91,16 +91,13 @@ const getOffer = async (req, res) => {
 // }
 
 //[POST] /api/ads Crear una oferta de trabajo o curso (admin)
-const createOffer = async (offer) => {
+const createOffer = async (req, res) => {
     try {
-        let newOffer = new apiSchema(offer);
+        let newOffer = new apiSchema(req.body);
         console.log(newOffer);
         let answer = await newOffer.save();
         console.log(answer);
-        return {
-            answer: "Offer created",
-            apiSchema: answer
-        };
+        redirect('/dashboard');
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`)
@@ -109,49 +106,6 @@ const createOffer = async (offer) => {
 }
 
 //[PUT] /api/ads Editar datos de una oferta de trabajo o curso (admin)
-// const updateOffer = async (offer) => {
-//     try {
-//         const editOffer = {
-//             "id": offer.id,
-//             "title": offer.title,
-//             "company": offer.company,
-//             "date": offer.date,
-//             "location": offer.location,
-//             "description": offer.description
-//         }
-//         console.log(editOffer);
-//         const genuineOffer = await offerSchema.edit({ id: offer.id }, editOffer);
-//         genuineOffer.overwrite(editOffer);
-//         console.log("Edited", genuineOffer);
-//         await genuineOffer.save();
-//         return {
-//             answer: "edited",
-//             offerSchema: genuineOffer
-//         }
-//     }
-//     catch (error) {
-//         console.log(`ERROR: ${error.stack}`)
-//         res.status(404).json({ "message": "offer not found" });
-//     }
-// }
-// const updateOffer = async (offer) => {
-//     try {
-//         const genuineOffer = await apiSchema.updateOne({ id: offer.id }, offer);
-//         genuineOffer.overwrite(offer);
-//         console.log("Edited", genuineOffer);
-//         await genuineOffer.save();
-//         return {
-//             answer: "edited",
-//             apiSchema: genuineOffer
-//         }
-//     }
-//     catch (error) {
-//         console.log(`ERROR: ${error.stack}`)
-//         res.status(404).json({ "message": "offer not found" });
-//     }
-// }
-
-
 const updateOffer = async (offer) => {
     try {
         const { id, title, company, date, location, description } = offer;

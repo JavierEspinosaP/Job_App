@@ -16,7 +16,7 @@ html(lang='en')
         h4
           a(href='/users') users(admin)
         h4
-          a(href='/dashboard') dashboard(admin)
+          a(href='api/dashboard') dashboard(admin)
           //----------------------------------
         h4
           a(href='/api/logout') Logout
@@ -24,44 +24,42 @@ html(lang='en')
       div#mainContainer
         h1#h1Slogan DASHBOARD (ADMIN)
         h3#h3Slogan
-          | Publicar una oferta
-        form#offerCreate(action="api/ads/create" method="POST") 
-          label(for="") id: 
-          input#id(type="number" name="id")
-          label(for="") Título de oferta:  
-          input#title(type="text" name="title")
-          label(for="") Compañia: 
-          input#company(type="text" name="company")
-          label(for="") Fecha:  
-          input#date(type="text" name="date")
-          label(for="") Localizacion:  
-          input#location(type="text" name="location")
-          label(for="") Descripción:  
-          input#description(type="text" name="description") 
-          button#createBtn(type="submit" value="Search") Crear oferta
+          |Publicar una oferta
+        div#signUpFormContainer
+          form#offerCreate(action="/api/ads/create" method="POST") 
+            label(for="") id: 
+            input#id(type="number" name="id")
+            label(for="") Título de oferta:  
+            input#title(type="text" name="title")
+            label(for="") Compañia: 
+            input#company(type="text" name="company")
+            label(for="") Fecha:  
+            input#date(type="text" name="date")
+            label(for="") Localizacion:  
+            input#location(type="text" name="location")
+            label(for="") Descripción:  
+            input#description(type="text" name="description") 
+            button#createBtn(type="submit" value="Search") Crear oferta
         
-        form#offerUpdate(action="api/ads/update/" method="POST")
-          label(for="") id a editar: 
-          input#id0(type="text" name="id0")
-          label(for="") id: 
-          input#id(type="number" name="id")
-          label(for="") Título de oferta:  
-          input#title(type="text" name="title")
-          label(for="") Compañia: 
-          input#company(type="text" name="company")
-          label(for="") Fecha:  
-          input#date(type="text" name="date")
-          label(for="") Localizacion:  
-          input#location(type="text" name="location")
-          label(for="") Descripción:  
-          input#description(type="text" name="description") 
-          button#updateBtn(type="submit" value="Search") Actualizar oferta
-
-        form#offerDelete(action="api/ads/delete/" method="POST")
-          label(for="") id: 
-          input#id(type="text" name="id")
-          button#updateBtn(type="submit" value="Search") Borrar oferta
         h3#h3Slogan
-          | Estos son las ofertas que ya has publicado
+          | Listado de todas las ofertas creadas por el Admin
+        .offers
+          each offer in {offers}
+            .offer
+            -for(let i=0;i<offers.length; i++)
+              hr
+              h2= offer[i].title
+              h3= offer[i].company
+              p= offer[i].date
+              h3= offer[i].location
+              p= offer[i].company
+              p= offer[i].id
+              -var url=offer[i].id;
+              h4
+                a(href='./ads/update/'+url) Editar
+              h4
+                a(href='./ads/delete/'+url) Borrar
+          else 
+            p no values
     script(type='text/javascript', src='../scripts/homeNavigation.js')
 include ./footer.pug
