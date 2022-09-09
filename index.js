@@ -17,7 +17,6 @@ app.use(express.static('public'));
 // View engine
 app.set('view engine', 'pug');
 app.set('views', './views');
-require('./utils/dbmongo');
 
 app.use(cors());
 app.use(express.json())

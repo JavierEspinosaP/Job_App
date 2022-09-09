@@ -7,25 +7,31 @@
 //     } 
 // })
 
-
 async function deleteUserByEmail(userMail) {
-  userMail=document.getElementById('userMail').innerText
-  console.log(userMail);
     try {
-      await fetch('/user?email='+userMail, {
-        method: "DELETE"
+      let response = await fetch('/api/users?email='+userMail,{
+        method: "DELETE",
+        headers:{
+            'Content-Type': 'application/json'  //tenemos que pasarle un obj
+        }
       })
-    //     .then((response) => response.json())
-    //     .then((data) => {
-
-    //     });
-    } catch {}
-    console.log('hemos borrado')
+      let answer = await response.json();
+      return answer;
+    } catch(error) {
+        console.log(error)
+    }
   }
 
 
 //botón para borrar usuario (admin):
-const deleteUserBtn = document.getElementById('deleteUser')
-deleteUserBtn.addEventListener('click', () => {
-    deleteUserByEmail();
-})
+const deleteUserBtn = document.querySelectorAll(".deleteUser");
+for (let i = 0; i < deleteUserBtn.length; i++) {
+    deleteUserBtn[i].addEventListener('click', function (event){
+        console.log('aaaaaaaaaaa')
+        let email = event.target.getAttribute("user_email")
+        console.log(email);
+        deleteUserByEmail(email);
+        location.reload();
+    })
+    
+}

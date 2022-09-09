@@ -45,13 +45,12 @@ const deleteUser = async (email) => {
         client = await pool.connect();
         const data = await client.query(queries.deleteUser, [email])
         result = data.rowCount
+        return result
     } catch (err) {
         console.log(err);
         throw err;
-    }finally{
-        client.release();    
     }
-    return result
+    
 }
 
 module.exports = {
