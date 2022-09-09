@@ -12,16 +12,15 @@ async function deleteUserByEmail(userMail) {
   userMail=document.getElementById('userMail').innerText
   console.log(userMail);
     try {
-      await fetch('api/user', {
-        method: "DELETE",
+      await fetch('/user?email='+userMail, {
+        method: "DELETE"
       })
-      console.log('estamos fuera del method delete')
-        .then((response) => response.json())
-        .then((data) => {
+    //     .then((response) => response.json())
+    //     .then((data) => {
 
-        });
-    console.log('hemos borrado')
+    //     });
     } catch {}
+    console.log('hemos borrado')
   }
 
 
