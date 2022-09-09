@@ -71,7 +71,7 @@ const getLogin = async (req, res) => {
 // "/favorites"
 const getFavorites = async (req, res) => {
     try {
-        res.render("favorites", { section: "favorites" });
+        res.render("favorites", { section: "favorites", list:["patata"] });
 
     } catch (error) {
         return res.status(400).json(error);
@@ -113,10 +113,12 @@ const getDashboard = async (req, res) => {
 
 const getScrap = async (req, res) => {
     try{
-        const offers = await scraper.scrap("https://ticjob.es/esp/freelances-it")
-        res.status(200).json(offers)
+        //const offers = await scraper.arrScrapers[0]("https://ticjob.es/esp/freelances-it")
+        res.render("scraping", { section: "Scraping" , list:["patata"]});
+       // res.status(200).json(offers)
     }
     catch (err){
+        console.log(err)
         res.status(404).json({})
     }
 }

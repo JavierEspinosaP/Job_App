@@ -3,11 +3,13 @@ const frontController = require("../controllers/frontControllers");
 const adminController = require("../controllers/adminControllers");
 const frontRouter = express.Router();
 
+
 frontRouter.get('/', frontController.getHome);
 frontRouter.get('/singup', frontController.getSingup);
 frontRouter.get('/login', frontController.getLogin);
 frontRouter.get('/favorites', frontController.getFavorites);
 frontRouter.get('/profile', frontController.getProfile);
+frontRouter.get('/scrap', frontController.getScrap);
 
 //Scraping
 frontRouter.get('/api/search', frontController.getSearch)
