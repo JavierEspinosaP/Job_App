@@ -7,8 +7,7 @@ require('../utils/db_sql')
 const getUsersRegistered = async (req,res)=>{
     let usersRegistered;
     try {
-          usersRegistered = await admin.getAllUsers()
-        console.log("Estos son todos los usuarios registrados");
+        usersRegistered = await admin.getAllUsers()
         res.status(200).render('users', {results: usersRegistered})
       
     } catch (error) {
@@ -16,16 +15,44 @@ const getUsersRegistered = async (req,res)=>{
     }
 }
 
-const createUser = async (req, res) => {
-  let newUser;
+
+const createUser = async(req,res) =>{
+  const newUser = req.body;
   try {
-    newUser= await admin.createNewUser()
-    res.status(201).json({"User created": newUser})
+      const response = await admin.createNewUser(newUser,
+        { method: "POST",
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newUser)
+    })
+      res.status(201).json({"User created": response})
+
   } catch (error) {
-    console.log(error.message)
+      console.log(error);
     res.status(404).json({ "message": "user not created" });
+    
   }
 }
+
+
+
+// const updateUser = async(req,res)=>{
+//   const updatedUser= req.body
+//   try{
+//           const response = await admin.updateUser(updatedUser,{ method: "PUT",
+//           headers: {
+//               'Accept': 'application/json',
+//               'Content-Type': 'application/json'
+//           },
+//           body: JSON.stringify(updatedUser)})
+//           res.status(200).json({"user updated": response})
+//       }
+//   catch(error){
+//     res.status(400).json({"message":"could not update"});
+//   }
+// }
 
 
 

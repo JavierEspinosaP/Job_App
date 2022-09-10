@@ -12,9 +12,9 @@ const getAllUsers = async()=>{
         client = await pool.connect();
         const data = await client.query(queries.getAllUsers)
         result = data.rows
-    }catch(err){
-        console.log(err);
-        throw err;
+    }catch(error){
+        console.log(error);
+        throw error;
     }finally{
         client.release();    
     }
@@ -23,21 +23,34 @@ const getAllUsers = async()=>{
 
 
 //Crear usuario por Admin
-const createNewUser = async() => {
-    let client, result;
+const createNewUser = async (newUser) => {
+    const{name, surname, email, password} = newUser
+    let result;
     try {
-        client = await pool.connect();
-        const data = await client.query(queries.registerUser, [name, surname, email, password, role])
+        const data = await pool.query(query.createUser,[name, surname, email, password])
         result = data.rows
-    } catch (err) {
-        console.log(err);
-        throw err;
-    }finally{
-        client.release();    
+        return result
+    } catch (error) {
+        console.log(error);
+        throw error;
     }
-    return result
-    
 }
+
+// const updateUser = async (userUpdated) => {
+//     const {full_name,email} = userUpdated;
+//     let client,result;
+//     try{
+//         // client = await pool.connect(); // Espera a abrir conexion
+//         const data = await pool.query(query.updateUser,
+//                                         [full_name,email])
+//         result = data.rowCount
+//         return result
+//     }catch(err){
+//         console.log(err);
+//         throw err;
+//     }
+// }
+
 
 //Borrar usuario de la bd
 const deleteUser = async (email) => {

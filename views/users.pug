@@ -1,52 +1,54 @@
 doctype html
 html(lang='en')
   include ./head.pug
+  
   body
     header
       h1 
         a(href='/') Job Finder
       #logContainer
         h4
-          a(href='/profile') profile
+          a(href='/profile') Profile
         h4
-          a(href='/favorites') favorites 
+          a(href='/favorites') Favorites 
         h4
-          a(href='/') Ofertas aplicadas
+          a(href='/') Offers
           //- Solo visibles par aadministrador
         h4
-          a(href='/users') users(admin)
+          a(href='/users') Users
         h4
-          a(href='/dashboard') dashboard(admin)
+          a(href='/dashboard') Dashboard
           //----------------------------------
         h4
           a(href='/api/logout') Logout
     main
       div#mainContainer
-        h1#h1Slogan USERS (ADMIN)
-        h3#h3Slogan
-          | Introduce el mail del usuario a buscar
+        h1#h1Slogan USERS
         div#searchFormContainer
-          button#createUser(type="submit") Create User
+          button#createNewUser.btnClass(type="submit") Create user
           section#formCreate
             form#searchForm
-              label Name:
-              input(type='text' placeholder='User name')
-              label Surname:
-              input(type='text' placeholder='User surname')
-              label Email:
-              input(type='text' placeholder='Email')
-              label Password:
-              input(type='password' placeholder='Password')
-              button Create user
+              div#newUserForm
+                label Name:
+                input#inputName(type='text' placeholder='User name')
+                label Surname:
+                input#inputSurname(type='text' placeholder='User surname')
+                label Email:
+                input#inputEmail(type='text' placeholder='Email')
+                label Password:
+                input#inputPassword(type='password' placeholder='Password')
+                button#createUser.btnClass(type="submit") Create user
 
+        h3#h3Slogan
+          | Users registered
       each user in results
         article
           h4=user.name
           p=user.surname 
           p # #{user.email}
           p=user.role
-          button.deleteUser(value="delete" user_email=user.email) Delete
-          button#editUser(type="submit") Edit 
+          button.deleteUser.btnClass(value="delete" user_email=user.email) Delete
+          button#editUser.btnClass(type="submit") Edit 
           hr
     script(type='text/javascript', src='../scripts/adminNavigation.js')
 include ./footer.pug
