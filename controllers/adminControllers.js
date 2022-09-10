@@ -1,3 +1,4 @@
+
 const users = require('../models/users')
 const adminModel = require('../models/admin');
 const apiSchema = require('../schemas/offers_admin');
@@ -5,12 +6,25 @@ require('../utils/db_sql')
 
 const getUsersRegistered = async (req, res) => {
   let usersRegistered;
-  if (req.query.email) {
-    usersRegistered = await users.getUsersByEmail(req.query.email)
-    console.log("Estos son los mails de usuarios registrados: ", usersRegistered);
-  } else {
-    usersRegistered = await admin.getAllUsers()
+  try {
+    usersRegistered = await adminModel.getAllUsers()
     console.log("Estos son todos los usuarios registrados");
+    res.status(200).render('users', { results: usersRegistered })
+
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+const deleteUser = async (req, res) => {
+  const userMail = req.query.email;
+  try {
+    const response = await adminModel.deleteUser(userMail);
+    res.send("User deleted")
+
+  } catch (error) {
+    console.log(error.message)
+    res.status(404).json({ "message": "user not deleted" });
   }
 }
 
