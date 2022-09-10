@@ -1,18 +1,10 @@
 
-// //botón Admin, buscar users por mail (EXTRA!)
-// const searchUserByMail = document.getElementById('searchMail')
-// searchUserByMail.addEventListener('click', () => {
-//     if (condition) {
-//         submit
-//     } 
-// })
-
 async function deleteUserByEmail(userMail) {
     try {
       let response = await fetch('/api/users?email='+userMail,{
         method: "DELETE",
         headers:{
-            'Content-Type': 'application/json'  //tenemos que pasarle un obj
+            'Content-Type': 'application/json'
         }
       })
       let answer = await response.json();

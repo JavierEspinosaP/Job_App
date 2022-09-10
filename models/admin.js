@@ -22,22 +22,6 @@ const getAllUsers = async()=>{
 }
 
 
- //por mail - EXTRA!!
-// const getUsersByEmail = async () => {
-//     let client,result;
-//     try{
-//         client = await pool.connect();
-//         const data = await client.query(queries.getUsersByEmail)
-//         result = data.rows
-//     }catch(err){
-//         console.log(err);
-//         throw err;
-//     }finally{
-//         client.release();    
-//     }
-//     return result
-// }
-
 //Borrar usuario de la bd
 const deleteUser = async (email) => {
     let client, result;
