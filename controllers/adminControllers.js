@@ -16,7 +16,7 @@ const getUsersRegistered = async (req,res)=>{
 }
 
 const deleteUser = async (req, res) => {
-  const userMail = req.body.email;
+  const userMail = req.query.email;
    try {
     const response = await adminModel.deleteUser(userMail);
     res.send("User deleted")
