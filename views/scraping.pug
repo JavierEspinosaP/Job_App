@@ -58,6 +58,10 @@ html(lang='en')
                 p Publicado: #{element.published}
                 p Presupuesto: #{element.budget}
                 p Descripción: #{element.description}
+        div#prueba
+          ul
+            each val in list
+              li= val
             
             
     script(type='text/javascript', src='../scripts/homeNavigation.js')

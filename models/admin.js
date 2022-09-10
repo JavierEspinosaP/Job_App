@@ -6,11 +6,11 @@ const pool = require('../utils/db_sql')
 
 
 //ADMIN: VISTA USUARIOS REGISTRADOS 
-const getAllUsers = async () => {
-    let client, result;
-    try {
-        client = await pool.connect();
-        const data = await client.query(userQueries.getAllUsers)
+const getAllUsers = async()=>{
+    let client,result;
+    try{
+        client = await pool.connect(); // Espera a abrir conexion
+        const data = await client.query(queries.getAllUsers)
         result = data.rows
     } catch (err) {
         console.log(err);
@@ -21,8 +21,7 @@ const getAllUsers = async () => {
     return result
 }
 
-
-//por mail - EXTRA!!
+ //por mail - EXTRA!!
 // const getUsersByEmail = async () => {
 //     let client,result;
 //     try{
@@ -39,19 +38,18 @@ const getAllUsers = async () => {
 // }
 
 //Borrar usuario de la bd
-const deleteUser = async () => {
+const deleteUser = async (email) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.deleteUser)
-        result = data.rows
+        const data = await client.query(queries.deleteUser, [email])
+        result = data.rowCount
+        return result
     } catch (err) {
         console.log(err);
         throw err;
-    } finally {
-        client.release();
     }
-    return result
+    
 }
 
 //Ofertas en MONGODB----------------------------------------------

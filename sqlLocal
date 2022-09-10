@@ -24,7 +24,8 @@ CREATE TABLE users (
 	user_id   SERIAL    PRIMARY KEY     NOT NULL    UNIQUE,
 	name    character varying   (40)    NOT NULL,
 	surname     character varying   (40)    NOT NULL,
-	email    TEXT   NOT NULL,
+	email    TEXT   NOT NULL UNIQUE,
+  img  character varying,
 	password    character varying   (40)    NOT NULL,
 	role    TEXT     NOT NULL,
 	logged  boolean NOT NULL
@@ -65,7 +66,7 @@ WHERE logged = true
 Para crear la tabla 'favorites':
 
 CREATE TABLE favorites (
-  offer_id SERIAL UNIQUE NOT NULL  
+  offer_id SERIAL UNIQUE NOT NULL,  
   user_id INTEGER NOT NULL,
   reference_offer  varchar NOT NULL
 )

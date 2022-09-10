@@ -6,7 +6,7 @@ const owl = require('cowsay2/cows/owl');
 const helmet = require('helmet');
 
 const frontRoutes = require('./routes/frontRoutes')
-const apiRoutes = require("./routes/apiRoutes")
+const apiRoutes = require('./routes/apiRoutes')
 
 const manage404 = require('./middlewares/error404')
 const app = express()
@@ -17,7 +17,6 @@ app.use(express.static('public'));
 // View engine
 app.set('view engine', 'pug');
 app.set('views', './views');
-require('./utils/dbmongo');
 
 app.use(cors());
 app.use(express.json())

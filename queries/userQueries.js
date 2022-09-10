@@ -1,5 +1,5 @@
 const queries = {
-    "getAllUsers" : "SELECT * FROM users",
+    "getAllUsers" : "SELECT * FROM users WHERE role = 'member';",
     "getUsersByEmail": "SELECT email FROM users",
     "loginUser": "SELECT email, password FROM users",
     "updateStatus": `UPDATE users SET logged = true WHERE email = $1 AND logged = false`,
