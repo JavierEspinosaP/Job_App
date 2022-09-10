@@ -21,7 +21,7 @@ const createUser = async(req,res) =>{
   try {
       const response = await admin.createNewUser(newUser,
         { method: "POST",
-      headers: {
+          headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
       },
@@ -38,22 +38,22 @@ const createUser = async(req,res) =>{
 
 
 
-// const updateUser = async(req,res)=>{
-//   const updatedUser= req.body
-//   try{
-//           const response = await admin.updateUser(updatedUser,{ method: "PUT",
-//           headers: {
-//               'Accept': 'application/json',
-//               'Content-Type': 'application/json'
-//           },
-//           body: JSON.stringify(updatedUser)})
-//           res.status(200).json({"user updated": response})
-//       }
-//   catch(error){
-//     res.status(400).json({"message":"could not update"});
-//   }
-// }
-
+const editUser = async(req,res)=>{
+  const editedUser= req.body
+  try{
+    const response = await admin.editUser(editedUser,
+      { method: "PUT",
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+    body: JSON.stringify(editedUser)})
+    res.status(200).json({"User edited": response})
+    }
+  catch(error){
+    res.status(400).json({"message":"User can not be edited"});
+  }
+}
 
 
 const deleteUser = async (req, res) => {
@@ -72,5 +72,6 @@ const deleteUser = async (req, res) => {
 module.exports = {
     getUsersRegistered,
     createUser,
+    editUser,
     deleteUser
 }

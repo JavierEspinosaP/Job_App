@@ -38,50 +38,29 @@ btnFormCreateUser.addEventListener('click', function (e) {
 })
 
 
-//función para PUT y POST user
-// async function addAtUsers(){
-    
-//   // usersList.innerHTML = "";
-//   await fetch('/users')
-//   .then(response=>response.json())
-//   .then(data=>{
-     
-//       for(i=0;i<data.length;i++){
-//           let createElement = document.createElement('li');
-//           adsList.appendChild(createElement);
-//           createElement.innerHTML = `
-//           <h2>${data[i].id}</h2>
-//           <p>${data[i].email}</p>
-//           <p>${data[i].password}</p>
-//           <p>${data[i].full_name}</p>
-//           <p>${data[i].role}</p>
-//           <p>${data[i].logged}</p>
-//           <button>Borrar</button>
-//           `
-//       }
-//   })
-// }
-
-
 
 //Crear usuario, dentro del form(admin)
-const btnCreateUser = document.getElementById("createUser");
-const cName = document.getElementById('inputname');
+const formCreateUser = document.getElementById("createUserForm");
+const cName = document.getElementById('inputName');
 const cSurname = document.getElementById('inputSurname');
 const cEmail = document.getElementById('inputEmail');
 const cPassword = document.getElementById('inputPassword');
+const cRole= document.getElementById('inputRole');
+
+const addUsers = document.getElementById('addUsers');
 
 
-btnCreateUser.addEventListener('submit', function (e) {
+formCreateUser.addEventListener('submit', function (e) {
   e.preventDefault();
   let newUser = {
-    name: cName.value ,
+    name: cName.value,
     surname: cSurname.value,
     email: cEmail.value,
     password: cPassword.value,
+    role: cRole.value
   }
-
-
+console.log("este es el newUser", newUser)
+//función para crearlo
   async function createUser(){
     try {
       await fetch('/api/users', {
@@ -93,7 +72,7 @@ btnCreateUser.addEventListener('submit', function (e) {
       })
       .then(response => response.json())
       .then(data => {
-        // addNewUser(); //función para añadir newUser
+        addNewUser();
         location.reload()
       })
     } catch (error) {
@@ -102,3 +81,84 @@ btnCreateUser.addEventListener('submit', function (e) {
   }
   createUser();
 })
+
+
+
+
+
+
+// Editar usuario (admin)
+const btnEditUser = document.querySelectorAll("editUser"); //despliega form edir
+const formEditUser = document.getElementById("editUserForm")
+const sectFormEdit = document.querySelectorAll("#editUserDiv");
+// sectFormEdit.style.display = "none";
+
+const eName = document.getElementById('editName');
+const eSurname = document.getElementById('editSurname');
+const eEmail = document.getElementById('paramEmail');
+
+
+for (let j = 0; j < btnEditUser.length;j++){
+  editUser[j].addEventListener('click', function(e){
+    e.preventDefault();
+    sectFormEdit.style.display = "flex";
+  })
+}
+
+
+
+
+
+formEditUser.addEventListener('submit', function(e) {
+  e.preventDefault();
+  let updateUser = {
+    name: eName.value,
+    surname: eSurname.value,
+    email: eEmail.value,
+  }
+
+  async function updatedUser() {
+    try {
+      await fetch('/api/users',{
+        method:'PUT',
+        body: JSON.stringify(updateUser),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        addNewUser();
+        location.reload()
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  updatedUser();
+})
+
+
+async function addNewUser(){
+    
+  addUsers.innerHTML = "";
+  await fetch('/api/users')
+  .then(response=>response.json())
+  .then(data=>{
+     
+      for(i=0;i<data.length;i++){
+          let createElement = document.createElement('li');
+          adsList.appendChild(createElement);
+          createElement.innerHTML = `
+          <h2>${data[i].name}</h2>
+          <p>${data[i].surname}</p>
+          <p>${data[i].email}</p>
+          <p>${data[i].password}</p>
+          <p>${data[i].role}</p>
+          <button>Borrar</button>
+          `
+      }
+  })
+}
+
+addNewUser();

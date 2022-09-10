@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
   include ./head.pug
-  
+ 
   body
     header
       h1 
@@ -25,9 +25,9 @@ html(lang='en')
       div#mainContainer
         h1#h1Slogan USERS
         div#searchFormContainer
-          button#createNewUser.btnClass(type="submit") Create user
+          button#createNewUser.btnClass(type="click") Create new user
           section#formCreate
-            form#searchForm
+            form#createUserForm
               div#newUserForm
                 label Name:
                 input#inputName(type='text' placeholder='User name')
@@ -37,18 +37,34 @@ html(lang='en')
                 input#inputEmail(type='text' placeholder='Email')
                 label Password:
                 input#inputPassword(type='password' placeholder='Password')
-                button#createUser.btnClass(type="submit") Create user
+                label Role:
+                input#inputRole(type='text' placeholder='Role')
+                button#createUser.btnClass(type="submit") Create use
+            ul#addUsers(action="/api/users" method="POST")
 
         h3#h3Slogan
           | Users registered
-      each user in results
-        article
-          h4=user.name
-          p=user.surname 
-          p # #{user.email}
-          p=user.role
-          button.deleteUser.btnClass(value="delete" user_email=user.email) Delete
-          button#editUser.btnClass(type="submit") Edit 
-          hr
+      div#Users
+        each user in results
+          article.userCard
+            h4=user.name 
+            p=user.surname 
+            p #{user.email}
+            p=user.role
+            div#buttonsCard
+              button.deleteUser.btnClass(value="delete" user_email=user.email) Delete
+              button#editUser.btnClass(type="click") Edit 
+              section#formCreate
+                form#editUserForm
+                  div#editUserDiv
+                    label Name:
+                    input#editName(type='text' placeholder='User name')
+                    label Surname:
+                    input#editSurname(type='text' placeholder='User surname')
+                    label Email:
+                    input#paramEmail(type='text' placeholder='Email')
+                    button.editUser.btnClass(type="submit") Edit user
+                ul#addUsers(action="/api/users" method="POST")
+
     script(type='text/javascript', src='../scripts/adminNavigation.js')
 include ./footer.pug

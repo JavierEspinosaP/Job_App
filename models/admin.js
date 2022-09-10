@@ -24,10 +24,10 @@ const getAllUsers = async()=>{
 
 //Crear usuario por Admin
 const createNewUser = async (newUser) => {
-    const{name, surname, email, password} = newUser
+    const{name, surname, email, password, role} = newUser
     let result;
     try {
-        const data = await pool.query(query.createUser,[name, surname, email, password])
+        const data = await pool.query(queries.createUser,[name, surname, email, password, role])
         result = data.rows
         return result
     } catch (error) {
@@ -36,20 +36,20 @@ const createNewUser = async (newUser) => {
     }
 }
 
-// const updateUser = async (userUpdated) => {
-//     const {full_name,email} = userUpdated;
-//     let client,result;
-//     try{
-//         // client = await pool.connect(); // Espera a abrir conexion
-//         const data = await pool.query(query.updateUser,
-//                                         [full_name,email])
-//         result = data.rowCount
-//         return result
-//     }catch(err){
-//         console.log(err);
-//         throw err;
-//     }
-// }
+
+//edit user
+const editUser = async (editedUser) => {
+    const {name, surname, email} = editedUser;
+    let client,result;
+    try{
+        const data = await pool.query(queries.editDataProfile,[name,surname, email])
+        result = data.rowCount
+        return result
+    }catch(err){
+        console.log(err);
+        throw err;
+    }
+}
 
 
 //Borrar usuario de la bd
@@ -70,5 +70,6 @@ const deleteUser = async (email) => {
 module.exports = {
     getAllUsers,
     createNewUser,
+    editUser,
     deleteUser
 }
