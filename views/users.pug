@@ -26,8 +26,19 @@ html(lang='en')
         h3#h3Slogan
           | Introduce el mail del usuario a buscar
         div#searchFormContainer
-          form#searchForm
           button#createUser(type="submit") Create User
+          section#formCreate
+            form#searchForm
+              label Name:
+              input(type='text' placeholder='User name')
+              label Surname:
+              input(type='text' placeholder='User surname')
+              label Email:
+              input(type='text' placeholder='Email')
+              label Password:
+              input(type='password' placeholder='Password')
+              button Create user
+
       each user in results
         article
           h4=user.name

@@ -16,6 +16,18 @@ const getUsersRegistered = async (req,res)=>{
     }
 }
 
+const createUser = async (req, res) => {
+  let newUser;
+  try {
+    newUser= await admin.createNewUser()
+    res.status(201).json({"User created": newUser})
+  } catch (error) {
+    console.log(error.message)
+    res.status(404).json({ "message": "user not created" });
+  }
+}
+
+
 
 const deleteUser = async (req, res) => {
   const userMail = req.query.email;
@@ -32,5 +44,6 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
     getUsersRegistered,
+    createUser,
     deleteUser
 }

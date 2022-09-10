@@ -9,7 +9,7 @@ const pool = require('../utils/db_sql')
 const getAllUsers = async()=>{
     let client,result;
     try{
-        client = await pool.connect(); // Espera a abrir conexion
+        client = await pool.connect();
         const data = await client.query(queries.getAllUsers)
         result = data.rows
     }catch(err){
@@ -21,6 +21,23 @@ const getAllUsers = async()=>{
     return result
 }
 
+
+//Crear usuario por Admin
+const createNewUser = async() => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(queries.registerUser, [name, surname, email, password, role])
+        result = data.rows
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }finally{
+        client.release();    
+    }
+    return result
+    
+}
 
 //Borrar usuario de la bd
 const deleteUser = async (email) => {
@@ -39,5 +56,6 @@ const deleteUser = async (email) => {
 
 module.exports = {
     getAllUsers,
+    createNewUser,
     deleteUser
 }
