@@ -6,9 +6,9 @@ const pool = require('../utils/db_sql')
 
 
 //ADMIN: VISTA USUARIOS REGISTRADOS 
-const getAllUsers = async()=>{
-    let client,result;
-    try{
+const getAllUsers = async () => {
+    let client, result;
+    try {
         client = await pool.connect(); // Espera a abrir conexion
         const data = await client.query(queries.getAllUsers)
         result = data.rows
@@ -21,7 +21,7 @@ const getAllUsers = async()=>{
     return result
 }
 
- //por mail - EXTRA!!
+//por mail - EXTRA!!
 // const getUsersByEmail = async () => {
 //     let client,result;
 //     try{
@@ -49,7 +49,7 @@ const deleteUser = async (email) => {
         console.log(err);
         throw err;
     }
-    
+
 }
 
 //Ofertas en MONGODB----------------------------------------------
@@ -99,8 +99,8 @@ const createOffer = async (offer) => {
 //[PUT] /api/ads Editar datos de una oferta de trabajo o curso (admin)
 const updateOffer = async (offer) => {
     try {
-        const { id, title, company, date, location, description } = offer;
-        await apiSchema.findOneAndUpdate(offer.id, { id, title, company, date, location, description });
+        const { title, company, date, location, description } = offer;
+        await apiSchema.findOneAndUpdate({ id: offer.id }, { title, company, date, location, description });
         console.log("Edited desde admin.js updateOffer");
         // return {
         //     answer: "edited",
@@ -113,9 +113,10 @@ const updateOffer = async (offer) => {
 }
 
 //[DELETE] /api/ads Borrar una oferta de trabajo o curso de la base de datos (admin)
-const deleteOffer = async (offer) => {
+const deleteOffer = async (id) => {
     try {
-        await apiSchema.findOneAndRemove(offer.id);
+        console.log(id);
+        await apiSchema.findOneAndRemove({ id: id });
         console.log("Deleted from admin.js");
     }
     catch (error) {
