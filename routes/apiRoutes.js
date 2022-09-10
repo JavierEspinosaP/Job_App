@@ -4,9 +4,11 @@ const adminController = require("../controllers/adminControllers");
 const userController = require('../controllers/frontControllers');
 
 //funciones MONGO (admin)
+router.get('/dashboard/', adminController.getOffers);
 router.post('/ads/create', adminController.createOffer);
-router.post('/ads/update/', adminController.updateOffer);
-router.post('/ads/delete/', adminController.deleteOffer);
+router.post('/ads/update/:id?', adminController.updateOffer);//Modificar form para que envie como PUT
+router.get('/ads/update/:id', adminController.getOffer);//Te lleva a updateOffer
+router.get('/ads/delete/:id', adminController.deleteOffer);//Modificar form para que envie como DELETE
 
 //endpoinds /API/
 

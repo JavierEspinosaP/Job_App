@@ -21,7 +21,6 @@ const getAllUsers = async()=>{
     return result
 }
 
-
  //por mail - EXTRA!!
 // const getUsersByEmail = async () => {
 //     let client,result;
@@ -53,18 +52,43 @@ const deleteUser = async (email) => {
     
 }
 
-//Ofertas en MONGODB
+//Ofertas en MONGODB----------------------------------------------
+//[GET] Obtener todas las ofertas en mongo
+//No se volver a controllers con los parametros obtenidos
+// const getOffers = async (req, res) => {
+//     try {
+//         const offers = await apiSchema.find({});
+//         console.log('ofertas ', offers);
+//         res.render('/dashboard');
+//     }
+//     catch (error) {
+//         console.log(`ERROR: ${error.stack}`)
+//         res.status(404).json({ "message": "Offer not found" });
+//     }
+// }
+
+//Obtener oferta por id (_id NO)
+//No se volver a controllers con los parametros obtenidos
+// const getOffer = async (req, res) => {
+//     try {
+//         const offer = await apiSchema.find({ id: req.params.id });
+//         console.log("Holi desde getOffer admin.js");
+//         return offer
+//     }
+//     catch (error) {
+//         console.log(`ERROR: ${error.stack}`)
+//         res.status(404).json({ "message": "Offer not found" });
+//     }
+// }
+
 //[POST] /api/ads Crear una oferta de trabajo o curso (admin)
 const createOffer = async (offer) => {
     try {
         let newOffer = new apiSchema(offer);
         console.log(newOffer);
+        console.log("Holi desde admin.js createOffer");
         let answer = await newOffer.save();
         console.log(answer);
-        return {
-            answer: "Offer created",
-            apiSchema: answer
-        };
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`)
@@ -73,56 +97,14 @@ const createOffer = async (offer) => {
 }
 
 //[PUT] /api/ads Editar datos de una oferta de trabajo o curso (admin)
-// const updateOffer = async (offer) => {
-//     try {
-//         const editOffer = {
-//             "id": offer.id,
-//             "title": offer.title,
-//             "company": offer.company,
-//             "date": offer.date,
-//             "location": offer.location,
-//             "description": offer.description
-//         }
-//         console.log(editOffer);
-//         const genuineOffer = await offerSchema.edit({ id: offer.id }, editOffer);
-//         genuineOffer.overwrite(editOffer);
-//         console.log("Edited", genuineOffer);
-//         await genuineOffer.save();
-//         return {
-//             answer: "edited",
-//             offerSchema: genuineOffer
-//         }
-//     }
-//     catch (error) {
-//         console.log(`ERROR: ${error.stack}`)
-//         res.status(404).json({ "message": "offer not found" });
-//     }
-// }
-// const updateOffer = async (offer) => {
-//     try {
-//         const genuineOffer = await apiSchema.updateOne({ id: offer.id }, offer);
-//         genuineOffer.overwrite(offer);
-//         console.log("Edited", genuineOffer);
-//         await genuineOffer.save();
-//         return {
-//             answer: "edited",
-//             apiSchema: genuineOffer
-//         }
-//     }
-//     catch (error) {
-//         console.log(`ERROR: ${error.stack}`)
-//         res.status(404).json({ "message": "offer not found" });
-//     }
-// }
-
 const updateOffer = async (offer) => {
     try {
         const { id, title, company, date, location, description } = offer;
-        await apiSchema.findByIdAndUpdate(offer.id0, { id, title, company, date, location, description });
-        console.log("Edited");
-        return {
-            answer: "edited",
-        }
+        await apiSchema.findOneAndUpdate(offer.id, { id, title, company, date, location, description });
+        console.log("Edited desde admin.js updateOffer");
+        // return {
+        //     answer: "edited",
+        // }
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`)
@@ -133,12 +115,8 @@ const updateOffer = async (offer) => {
 //[DELETE] /api/ads Borrar una oferta de trabajo o curso de la base de datos (admin)
 const deleteOffer = async (offer) => {
     try {
-
-        await apiSchema.findByIdAndDelete(offer.id);
-        console.log("Deleted");
-        return {
-            answer: "Deleted",
-        }
+        await apiSchema.findOneAndRemove(offer.id);
+        console.log("Deleted from admin.js");
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`)
