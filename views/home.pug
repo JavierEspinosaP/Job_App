@@ -15,7 +15,7 @@ html(lang='en')
         div#h2SignUpContainer
           h2#h2SignUp Registro
         div#signUpFormContainer
-          form(action="post" id="signUpForm")
+          form(action="/api/user" method="post" id="signUpForm")
             label Nombre
             input(type="text" placeholder="John")
             label Apellidos
@@ -35,7 +35,7 @@ html(lang='en')
         div#h3LoginContainer
           h2#h2Login Login
         div#LoginFormContainer
-          form(action="post" id="loginForm")
+          form(action="/api/login" method="post" id="loginForm")
             label Email 
             input(type="text" placeholder="John_Wick@terra.es")
             label Contraseña
