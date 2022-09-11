@@ -111,7 +111,7 @@ for (let i = 0; i < btnEditUser.length; i++) {
   })
 }
 
-
+//botón de todas las tarjetas para editar usuario (se manda ya la info editada)
 const editUserbtn = document.querySelectorAll(".editUser");
 
 for (let x = 0; x < editUserbtn.length; x++) {
@@ -146,21 +146,7 @@ for (let x = 0; x < editUserbtn.length; x++) {
     
     updatedUser(name, surname, email)
     })
-    
-<<<<<<< HEAD
 }
-
-
-formEditUser.addEventListener('submit', function(e) {
-  e.preventDefault();
-  let updateUser = {
-    name: eName.value,
-    surname: eSurname.value,
-    email: eEmail.value,
-=======
->>>>>>> controllers
-  }
-
   
   async function updatedUser(name, surname, email) {
     let updateUser = {
