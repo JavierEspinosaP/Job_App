@@ -30,8 +30,10 @@ const signUpUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
     const { email, password } = req.body
+
     try {
         const response = await users.signInUser({ email, password })
+
         if (email == response[0].email) {
             const validPass = await bcrypt.compare(password, response[0].password)
             if (validPass) {
@@ -74,8 +76,20 @@ const loginUser = async (req, res) => {
 
 }
 
+const logoutUser = async (req, res) => {
+    const cookies = req.headers.cookie;
+    const cookieArray = cookies.split("=");
+    const token = cookieArray[1];
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    console.log(decoded);
+    const email = decoded.email
+    users.logoutUser(email)
+    res.redirect('/')
+}
+
 
 module.exports = {
     loginUser,
-    signUpUser
+    signUpUser,
+    logoutUser
 }

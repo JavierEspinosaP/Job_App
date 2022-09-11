@@ -3,6 +3,7 @@ const frontController = require("../controllers/frontControllers");
 const adminController = require("../controllers/adminControllers");
 const frontRouter = express.Router();
 const authToken = require('../middlewares/authToken');
+const authAdmin = require('../middlewares/authAdmin');
 
 
 frontRouter.get('/', frontController.getHome);
@@ -20,7 +21,7 @@ frontRouter.get('/api/search', frontController.getSearch)
 
 //Vistas solo de admin
 
-frontRouter.get('/users',authToken, frontController.getUsers);
+frontRouter.get('/users',authToken, authAdmin, frontController.getUsers);
 frontRouter.get('/dashboard',authToken, frontController.getDashboardAdmin);
 
 

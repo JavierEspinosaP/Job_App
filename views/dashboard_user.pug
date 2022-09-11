@@ -18,8 +18,8 @@ html(lang='en')
         h4
           a(href='api/dashboard') dashboard(admin)
           //----------------------------------
-        h4
-          a(href='/api/logout') Logout
+        form(action="/api/logout" method="post")
+          input(type="submit")
     main
       div#mainContainer
         h1#h1Slogan NOMBRE DE USUARIO

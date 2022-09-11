@@ -148,11 +148,11 @@ const userProfile = async () => {
 }
 
 // Salir de la app: logout
-const logoutUser = async () => {
+const logoutUser = async (email) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.logoutUser)
+        const data = await client.query(userQueries.logoutUser, [email])
         result = data.rows
     } catch (err) {
         console.log(err);

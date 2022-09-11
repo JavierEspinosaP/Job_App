@@ -44,22 +44,22 @@ html(lang='en')
         h3#h3Slogan
           | Listado de todas las ofertas creadas por el Admin
         .offers
-          each offer in {offers}
-            .offer
-            -for(let i=0;i<offers.length; i++)
-              hr
-              p= offer[i].id
-              h2= offer[i].title
-              h3= offer[i].company
-              p= offer[i].date
-              h3= offer[i].location
-              p= offer[i].description
-              -var url=offer[i].id;
-              h4
-                a(href='./ads/update/'+url) Editar
-              h4
-                a(href='./ads/delete/'+url) Borrar
-          else 
-            p no values
+          //- each offer in {offers}
+          //-   .offer
+          //-   for(let i=0;i<offers.length; i++)
+          //-     hr
+          //-     p= offer[i].id
+          //-     h2= offer[i].title
+          //-     h3= offer[i].company
+          //-     p= offer[i].date
+          //-     h3= offer[i].location
+          //-     p= offer[i].description
+          //-     -var url=offer[i].id;
+          //-     h4
+          //-       a(href='./ads/update/'+url) Editar
+          //-     h4
+          //-       a(href='./ads/delete/'+url) Borrar
+          //- else 
+          //-   p no values
     script(type='text/javascript', src='../scripts/homeNavigation.js')
 include ./footer.pug
