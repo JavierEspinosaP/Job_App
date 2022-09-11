@@ -31,12 +31,10 @@ html(lang='en')
             input#id(type="number" name="id")
             label(for="") Título de oferta:  
             input#title(type="text" name="title")
-            label(for="") Compañia: 
-            input#company(type="text" name="company")
             label(for="") Fecha:  
             input#date(type="text" name="date")
-            label(for="") Localizacion:  
-            input#location(type="text" name="location")
+            label(for="") Presupuesto:  
+            input#budget(type="number" name="budget")
             label(for="") Descripción:  
             input#description(type="text" name="description") 
             button#createBtn(type="submit" value="Search") Crear oferta
@@ -50,11 +48,12 @@ html(lang='en')
               hr
               p= offer[i].id
               h2= offer[i].title
-              h3= offer[i].company
               p= offer[i].date
-              h3= offer[i].location
+              h3= offer[i].budget
               p= offer[i].description
               -var url=offer[i].id;
+              h4
+                a(href='api/ads/open/'+url) Abrir
               h4
                 a(href='api/ads/update/'+url) Editar
               h4

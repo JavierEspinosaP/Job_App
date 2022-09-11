@@ -6,27 +6,27 @@ const pool = require('../utils/db_sql')
 
 
 //ADMIN: VISTA USUARIOS REGISTRADOS 
-const getAllUsers = async()=>{
-    let client,result;
-    try{
+const getAllUsers = async () => {
+    let client, result;
+    try {
         client = await pool.connect();
         const data = await client.query(queries.getAllUsers)
         result = data.rows
-    }catch(error){
+    } catch (error) {
         console.log(error);
         throw error;
-    }finally{
-        client.release();    
+    } finally {
+        client.release();
     }
     return result
 }
 
 //Crear usuario por Admin
 const createNewUser = async (newUser) => {
-    const{name, surname, email, password, role} = newUser
+    const { name, surname, email, password, role } = newUser
     let result;
     try {
-        const data = await pool.query(queries.createUser,[name, surname, email, password, role])
+        const data = await pool.query(queries.createUser, [name, surname, email, password, role])
         result = data.rows
         return result
     } catch (error) {
@@ -38,13 +38,13 @@ const createNewUser = async (newUser) => {
 
 //edit user
 const editUser = async (editedUser) => {
-    const {name, surname, email} = editedUser;
+    const { name, surname, email } = editedUser;
     let result;
-    try{
-        const data = await pool.query(queries.editDataProfile,[name,surname, email])
+    try {
+        const data = await pool.query(queries.editDataProfile, [name, surname, email])
         result = data.rowCount
         return result
-    }catch(error){
+    } catch (error) {
         console.log(error);
         throw error;
     }
@@ -113,8 +113,8 @@ const createOffer = async (offer) => {
 //[PUT] /api/ads Editar datos de una oferta de trabajo o curso (admin)
 const updateOffer = async (offer) => {
     try {
-        const { title, company, date, location, description } = offer;
-        await apiSchema.findOneAndUpdate({ id: offer.id }, { title, company, date, location, description });
+        const { title, date, budget, description } = offer;
+        await apiSchema.findOneAndUpdate({ id: offer.id }, { title, date, budget, description });
         console.log("Edited desde admin.js updateOffer");
         // return {
         //     answer: "edited",

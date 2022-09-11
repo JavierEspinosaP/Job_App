@@ -1,0 +1,32 @@
+doctype html
+html(lang='en')
+  include ./head.pug
+  body
+    header
+      h1 
+        a(href='/') Job Finder
+      #logContainer
+        h4
+          a(href='/profile') profile
+        h4
+          a(href='/favorites') favorites 
+        h4
+          a(href='/') Ofertas aplicadas
+          //- Solo visibles par aadministrador
+        h4
+          a(href='/users') users(admin)
+        h4
+          a(href='api/dashboard') dashboard(admin)
+          //----------------------------------
+        h4
+          a(href='/api/logout') Logout
+    main
+      div#h2SignUpContainer
+        h2#h2SignUp #{offer[0].title}
+        hr
+        div#signUpFormContainer
+          p #{offer[0].date}
+          h4 #{offer[0].budget}
+          p #{offer[0].description}
+    script(type='text/javascript', src='../scripts/homeNavigation.js')
+include ./footer.pug
