@@ -50,6 +50,7 @@ const loginUser = async (req, res)=>{
                     httpOnly:true,
                     sameSite: "strict"
                 }).redirect(`/dashboard_user`)
+                console.log(payload.email);
             }
         }
         
@@ -62,8 +63,17 @@ const loginUser = async (req, res)=>{
     
 }
 
+const logoutUser = async (req, res) => {
+    const {email} = req.body
+    const response = await users.logoutUser({email})
+    console.log(response);
+    res.clearCookie("access-token");
+    res.render("home");
+}
+
 
 module.exports = {
     loginUser,
-    signUpUser
+    signUpUser,
+    logoutUser
 }

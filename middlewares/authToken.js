@@ -5,7 +5,7 @@ const privateRoutes = express.Router();
 
 privateRoutes.use((req, res, next) => {
   const cookies = req.headers.cookie;
-  console.log(cookies);
+  console.log("ESTO ES HEADERS", req.headers);
   if (cookies) {
     const cookieArray = cookies.split("=");
     const token = cookieArray[1];

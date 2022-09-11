@@ -8,7 +8,7 @@ const userController = require('../controllers/userControllers');
 // //endpoinds /API/
 router.post('/login', userController.loginUser);
 router.post('/user', userController.signUpUser);
-// router.post('/logout', userController.logoutUser);
+router.put('/logout', userController.logoutUser);
 // router.post('/user', userController.signinUser);
 // router.put('/user', userController.editProfile);
 
