@@ -89,9 +89,9 @@ const btnEditUser = document.querySelectorAll(".desplegarUser"); //despliega for
 const formEditUser = document.querySelectorAll(".editUserForm");//formulario para EDIT user (se crea en cada tarjeta)
 
 
-const eName = document.getElementById('editName');
-const eSurname = document.getElementById('editSurname');
-const eEmail = document.getElementById('paramEmail');
+// const eName = document.getElementById('editName');
+// const eSurname = document.getElementById('editSurname');
+// const eEmail = document.getElementById('paramEmail');
 
 const sectFormEdit = document.querySelectorAll(".sectFormEdit");//section que se despliega
 
@@ -104,7 +104,6 @@ for (let i = 0; i < btnEditUser.length; i++) {
   btnEditUser[i].addEventListener('click', function (event){
     let index = event.target.getAttribute("edit_index")
     for (let i = 0; i < sectFormEdit.length; i++) {
-      // sectFormEdit[i].getAttribute("id_user")
       if(sectFormEdit[i].getAttribute("id_user") == index){
         sectFormEdit[i].style.display = "block";
       } else {
@@ -113,8 +112,6 @@ for (let i = 0; i < btnEditUser.length; i++) {
     }
   })
 }
-
-
 
 
 //botón de todas las tarjetas para editar usuario (se manda ya la info editada)
@@ -180,7 +177,6 @@ for (let x = 0; x < editUserbtn.length; x++) {
       console.log(error);
     }
   }
-
 
 
 
