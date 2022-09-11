@@ -1,7 +1,9 @@
+
+
 const queries = {
     "getAllUsers" : "SELECT * FROM users WHERE role = 'member';",
     "getUsersByEmail": "SELECT email FROM users",
-    "loginUser": "SELECT email, password FROM users",
+    "loginUser": "SELECT * FROM users WHERE email = $1",
     "updateStatus": `UPDATE users SET logged = true WHERE email = $1 AND logged = false`,
     "favOffers": `SELECT reference_offer FROM favorites INNER JOIN users ON users.user_id= favorites.user_id WHERE users.email = $1`, //traemos ofertas ya guardadas como favs
     "profile": `SELECT name, surname, email, role WHERE users.email = $1`,

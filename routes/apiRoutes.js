@@ -1,7 +1,9 @@
 const express = require("express")
 const router = express.Router()
 const adminController = require("../controllers/adminControllers");
-const userController = require('../controllers/frontControllers');
+const userController = require('../controllers/userControllers');
+
+
 
 //funciones MONGO (admin)
 router.get('/dashboard/', adminController.getOffers);
@@ -12,9 +14,9 @@ router.get('/ads/delete/:id', adminController.deleteOffer);//Modificar form para
 
 //endpoinds /API/
 
-// router.post('/login', userController.loginUser);
-// router.post('/logout',userController.logoutUser);
-// router.post('/user',userController.signinUser);
+router.post('/login', userController.loginUser);
+router.post('/user', userController.signUpUser);
+// router.post('/logout', userController.logoutUser);
 // router.put('/user', userController.editProfile);
 
 router.get('/users', adminController.getUsersRegistered);

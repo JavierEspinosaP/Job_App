@@ -1,3 +1,4 @@
+
 const { Pool } = require('pg');
 require('dotenv').config()
 // const ClientClass = pg.Client
@@ -17,9 +18,9 @@ const pool = new Pool({
   host: process.env.HOST_LOCAL,
   user: process.env.USER_LOCAL,
   database: process.env.DB_LOCAL,
-  password: process.env.PASSWORD_LOCAL
+  password: process.env.PASSWORD_LOCAL,
+  port: process.env.PORT_LOCAL
 })
-
 
 
 module.exports = pool

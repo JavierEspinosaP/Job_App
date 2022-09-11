@@ -35,15 +35,16 @@ comeBackButton2.addEventListener('click', () => {
 })
 
 
+
 searchButton.addEventListener('click', () => {
-    
+
     const searchData = async () => {
-        spinner.style.display= "block"
+        spinner.style.display = "block"
         let responseOffers = await fetch(`/api/search?search=${inputValue}`)
         let offersData = await responseOffers.json()
-        spinner.style.display = "none" 
+        spinner.style.display = "none"
         for (let i = 0; i < offersData.length; i++) {
-            let offer =`
+            let offer = `
             <section id="offerCard">
             <h3>${offersData[i].proyect_name}</h3>
             <p>Publicado:${offersData[i].published}</p>
@@ -51,10 +52,10 @@ searchButton.addEventListener('click', () => {
             <p>Descripcion:${offersData[i].description}</p>
             <a id="urlLink" href="${offersData[i].url}">Link a la oferta</a>
             </section>`
-            cardsContainer.innerHTML += offer   
+            cardsContainer.innerHTML += offer
         }
-      
+
     }
-searchData() 
+    searchData()
 
 })
