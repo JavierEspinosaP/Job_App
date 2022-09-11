@@ -1,6 +1,7 @@
 const users = require('../models/users');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const transporter = require('../utils/nodemailer'); 
 require('dotenv').config()
 
 const signUpUser = async (req, res) => {
@@ -82,7 +83,7 @@ const logoutUser = async (req, res) => {
     res.redirect('/')
 }
 
-const restorePassword = async (req, res) => {
+const changePassword = async (req, res) => {
     console.log("Hola");
     const {password} = req.body
     
@@ -99,10 +100,31 @@ const restorePassword = async (req, res) => {
     }
 }
 
+const recoverPassword = async (req, res) => {
+    const {email} = req.body
+    try {
+        const token = jwt.sign({ email: req.body.email }, process.env.RECOVER_KEY, { expiresIn: '20m' });
+        console.log(token);
+        const url = `http://localhost:3005/recoverpass/`+ token;
+        console.log(email);
+        await transporter.sendMail({
+            to: req.body.email,
+            subject: 'Recuperación de contraseña',
+            html: `<h3>Aquí tienes el link para recuperar tu contraseña</h3>
+                <a href = ${url}>Click</a>
+                <p>El link expirará en 20 minutos</p>`
+        });
+        res.redirect('/dashboard_user')
+    } catch (error) {
+        console.log('Error:', error)
+    }
+}
+
 
 module.exports = {
     loginUser,
     signUpUser,
     logoutUser,
-    restorePassword
+    changePassword,
+    recoverPassword
 }

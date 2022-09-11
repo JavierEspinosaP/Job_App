@@ -115,18 +115,7 @@ const restorePasswordView = async (req, res, next) => {
 
 //"recoverPassword":`SELECT password FROM users WHERE users.email = $1`
 const recoverPasswordView = async (req, res, next) => {
-    let client, result;
-    const { email } = req.query
-    try {
-        client = await pool.connect();
-        const data = await client.query(userQueries.recoverPassword, [email])
-        result = data.rows
-        return res.status(200).json(result)
-    } catch (err) {
-        return next(err);
-    } finally {
-        client.release();
-    }
+    res.render('recover_pass')
 }
 
 
