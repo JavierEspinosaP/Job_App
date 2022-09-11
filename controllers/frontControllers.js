@@ -26,7 +26,6 @@ const getHome = async (req, res) => {
 const getSearch = async (req, res) => {
     try {
         let search = req.query.search
-        console.log(search);
         let url = ["https://www.workana.com/jobs?language=en%2Ces", "https://www.freelancer.com/jobs/web-development/"]
         const offers = []
         for (let i = 0; i < url.length; i++) {
@@ -43,25 +42,10 @@ const getSearch = async (req, res) => {
     }
 }
 
-
-// "/signup"
-const getSingup = async (req, res) => {
+// "/dashboard_user"
+const getDashboardUser = async (req, res) => {
     try {
-        const newUser = req.body;
-        const response = await users.registeredUser(newUser, res);
-        res.status(201).redirect(`/login`) //hay que redireccionarlo???
-        //res.render("singup", { section: "singup" });
-
-    } catch (error) {
-        //return res.status(400).json(error);
-        console.log("Error:", error)
-    }
-};
-
-// "/login"
-const getLogin = async (req, res) => {
-    try {
-        res.render("login", { section: "login" });
+        res.render("dashboard_user");
 
     } catch (error) {
         return res.status(400).json(error);
@@ -100,7 +84,7 @@ const getUsers = async (req, res) => {
 };
 
 // "/dashboard"
-const getDashboard = async (req, res) => {
+const getDashboardAdmin = async (req, res) => {
     try {
         res.render("dashboard", { section: "dashboard" });
 
@@ -189,12 +173,11 @@ const deleteFavorite = async (req, res, next) => {
 
 module.exports = {
     getHome,
-    getSingup,
-    getLogin,
+    getDashboardUser,
     getFavorites,
     getProfile,
     getUsers,
-    getDashboard,
+    getDashboardAdmin,
     getScrap,
     getSearch,
     restorePassword,

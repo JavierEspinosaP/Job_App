@@ -17,15 +17,13 @@ html(lang='en')
         div#signUpFormContainer
           form(action="post" id="signUpForm")
             label Nombre
-            input(type="text" placeholder="John")
+            input(id="signUpName" type="text" placeholder="John")
             label Apellidos
-            input(type="text" placeholder="Wick")
+            input(id="signUpSurname" type="text" placeholder="Wick")
             label Email 
-            input(type="text" placeholder="John_Wick@terra.es")
-            label Nickname 
-            input(type="text" placeholder="Johnny_Wicky")
+            input(id="signUpEmail" type="text" placeholder="John_Wick@terra.es")
             label Contraseña
-            input(type="password" placeholder="Omelette123")
+            input(id="signUpPassword" type="password" placeholder="Omelette123")
             label Repite Contraseña
             input(type="password" placeholder="Omelette123")
             input(type="submit")
@@ -48,7 +46,9 @@ html(lang='en')
         div#searchContainer
           input(id="inputValue" placeholder="Introduce tu busqueda")
           button#searchButton Click
-        div#cardsContainer
+                  div#cardsContainer
           div(id="spinner" class="loader") Loading...
+  script(type='text/javascript', src='//cdn.jsdelivr.net/npm/sweetalert2@11')
+  script(type='text/javascript', src='sweetalert2.min.js')
   script(type='text/javascript', src='/scripts/homeNavigation.js')
 include ./footer.pug
