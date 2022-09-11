@@ -1,16 +1,21 @@
 //REQUIRES
+
 require('dotenv').config();
 const userQueries = require('../queries/userQueries')
 const pool = require('../utils/db_sql')
 
 //queries para los Endpoints web
-//REGISTRO DE USUARIO - se añade a la bbdd
-const registeredUser = async() => {
+
+//REGISTRO DE USUARIO
+
+const registerUser = async(user) => {
     let client, result;
+    
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.registerUser)
+        const data = await client.query(userQueries.registerUser,[user.name,user.surname, user.email, user.hash]);
         result = data.rows
+        console.log(result);
     } catch (err) {
         console.log(err);
         throw err;
@@ -22,11 +27,12 @@ const registeredUser = async() => {
 }
 
 //LOGIN DE USUARIO (ya registrado)
-const logInUser = async() => {
+const signInUser = async(user) => {
+    
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.loginUser)
+        let data = await client.query(userQueries.loginUser, [user.email])
         result = data.rows
     } catch (err) {
         console.log(err);
@@ -37,13 +43,12 @@ const logInUser = async() => {
     return result
 }
 
-
         //update status logged colum
-const loggedStatus= async () => {
+const loggedStatus= async (email) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.updateStatus)
+        const data = await client.query(userQueries.updateStatus, [email])
         result = data.rows
     } catch (err) {
         console.log(err);
@@ -194,8 +199,8 @@ const changedPassword = async () => {
 
 
 module.exports = {
-    registeredUser,
-    logInUser,
+    registerUser,
+    signInUser,
     loggedStatus,
     getFavorites,
     saveFavorite,

@@ -4,6 +4,8 @@ const express = require('express')
 const cowsay = require('cowsay2');
 const owl = require('cowsay2/cows/owl');
 const helmet = require('helmet');
+const morgan = require('./utils/morgan');
+
 
 const frontRoutes = require('./routes/frontRoutes')
 const apiRoutes = require('./routes/apiRoutes')
@@ -21,7 +23,7 @@ app.set('views', './views');
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
-
+app.use(morgan(':method :host :status :param[id] - :response-time ms :body'));
 //WEB
 app.use('/', frontRoutes);
 app.use('/api', apiRoutes);

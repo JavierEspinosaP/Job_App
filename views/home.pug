@@ -17,15 +17,13 @@ html(lang='en')
         div#signUpFormContainer
           form(action="/api/user" method="post" id="signUpForm")
             label Nombre
-            input(type="text" placeholder="John")
+            input(id="signUpName" type="text" placeholder="John")
             label Apellidos
-            input(type="text" placeholder="Wick")
+            input(id="signUpSurname" type="text" placeholder="Wick")
             label Email 
-            input(type="text" placeholder="John_Wick@terra.es")
-            label Nickname 
-            input(type="text" placeholder="Johnny_Wicky")
+            input(id="signUpEmail" type="text" placeholder="John_Wick@terra.es")
             label Contraseña
-            input(type="password" placeholder="Omelette123")
+            input(id="signUpPassword" type="password" placeholder="Omelette123")
             label Repite Contraseña
             input(type="password" placeholder="Omelette123")
             input(type="submit")
@@ -37,12 +35,10 @@ html(lang='en')
         div#LoginFormContainer
           form(action="/api/login" method="post" id="loginForm")
             label Email 
-            input(type="text" placeholder="John_Wick@terra.es")
+            input(id="loginEmail" name="email" type="text" placeholder="John_Wick@terra.es")
             label Contraseña
-            input(type="password" placeholder="Omelette123")
+            input(id="loginPassword" name="password" type="password" placeholder="Omelette123")
             input(type="submit")
-            h4 
-              a(href='/login') LOGIN
       div#mainContainer
         h1#h1Slogan Tu proyecto, nuestro objetivo
         h3#h3Slogan
@@ -50,7 +46,9 @@ html(lang='en')
         div#searchContainer
           input(id="inputValue" placeholder="Introduce tu busqueda")
           button#searchButton Click
-        div#cardsContainer
+                  div#cardsContainer
           div(id="spinner" class="loader") Loading...
+  script(type='text/javascript', src='//cdn.jsdelivr.net/npm/sweetalert2@11')
+  script(type='text/javascript', src='sweetalert2.min.js')
   script(type='text/javascript', src='/scripts/homeNavigation.js')
 include ./footer.pug
