@@ -6,36 +6,50 @@ const pool = require('../utils/db_sql')
 
 
 //ADMIN: VISTA USUARIOS REGISTRADOS 
-const getAllUsers = async () => {
-    let client, result;
-    try {
-        client = await pool.connect(); // Espera a abrir conexion
+const getAllUsers = async()=>{
+    let client,result;
+    try{
+        client = await pool.connect();
         const data = await client.query(queries.getAllUsers)
         result = data.rows
-    } catch (err) {
-        console.log(err);
-        throw err;
-    } finally {
-        client.release();
+    }catch(error){
+        console.log(error);
+        throw error;
+    }finally{
+        client.release();    
     }
     return result
 }
 
-//por mail - EXTRA!!
-// const getUsersByEmail = async () => {
-//     let client,result;
-//     try{
-//         client = await pool.connect();
-//         const data = await client.query(queries.getUsersByEmail)
-//         result = data.rows
-//     }catch(err){
-//         console.log(err);
-//         throw err;
-//     }finally{
-//         client.release();    
-//     }
-//     return result
-// }
+//Crear usuario por Admin
+const createNewUser = async (newUser) => {
+    const{name, surname, email, password, role} = newUser
+    let result;
+    try {
+        const data = await pool.query(queries.createUser,[name, surname, email, password, role])
+        result = data.rows
+        return result
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
+
+//edit user
+const editUser = async (editedUser) => {
+    const {name, surname, email} = editedUser;
+    let result;
+    try{
+        const data = await pool.query(queries.editDataProfile,[name,surname, email])
+        result = data.rowCount
+        return result
+    }catch(error){
+        console.log(error);
+        throw error;
+    }
+}
+
 
 //Borrar usuario de la bd
 const deleteUser = async (email) => {
@@ -127,6 +141,8 @@ const deleteOffer = async (id) => {
 
 module.exports = {
     getAllUsers,
+    createNewUser,
+    editUser,
     deleteUser,
     createOffer,
     updateOffer,
