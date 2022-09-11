@@ -53,17 +53,18 @@ html(lang='en')
             p=user.role
             div#buttonsCard
               button.deleteUser.btnClass(value="delete" user_email=user.email) Delete
-              button.editUser.btnClass(type="click") Edit 
-              section.sectFormEdit
-                form#editUserForm
+              button.desplegarUser.btnClass(type="click" edit_index=user.user_id) Edit 
+              section.sectFormEdit(id_user=user.user_id)
+                form.editUserForm
                   div#editUserDiv
+                    p #{index}
                     label Name:
-                    input#editName(type='text' placeholder='User name')
+                    input.editName(type='text' placeholder='User name' name_id=user.user_id)
                     label Surname:
-                    input#editSurname(type='text' placeholder='User surname')
+                    input.editSurname(type='text' placeholder='User surname' surname_id=user.user_id)
                     label Email:
-                    input#paramEmail(type='text' placeholder='Email')
-                    button.editUser.btnClass(type="submit" edit_name=user.name, edit_surname=user.surname edit_email=user.email) Edit user
+                    input.paramEmail(type='text' placeholder='Email' email_id=user.user_id)
+                    button.editUser.btnClass(type="click" btn_index=user.user_id) Edit user
                 ul#addUsers(action="/api/users" method="POST")
 
     script(type='text/javascript', src='../scripts/adminNavigation.js')

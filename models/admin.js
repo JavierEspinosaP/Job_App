@@ -11,6 +11,7 @@ const getAllUsers = async()=>{
     try{
         client = await pool.connect();
         const data = await client.query(queries.getAllUsers)
+        console.log("esto es data models",data);
         result = data.rows
     }catch(error){
         console.log(error);
