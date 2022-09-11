@@ -88,26 +88,29 @@ console.log("este es el newUser", newUser)
 
 const btnEditUser = document.querySelectorAll("editUser"); //despliega form edit
 const formEditUser = document.getElementById("editUserForm");//formulario para EDIT user (se crea en cada tarjeta)
-const sectFormEdit = document.getElementById("sectFormEdit");//div que se dezspliega ****tenemos que coger el section???
-sectFormEdit.style.display = "none";
+const sectFormEdit = document.getElementById("sectFormEdit");//section que se despliega
+// sectFormEdit.style.display = "none";
+
 
 const eName = document.getElementById('editName');
 const eSurname = document.getElementById('editSurname');
 const eEmail = document.getElementById('paramEmail');
 
+//btn para desplegar los forms de Edit user
+// for (let j = 0; j < btnEditUser.length; j++){
+//   btnEditUser[j].addEventListener('click', function(){
+//     console.log("entra en el botón");
+//     sectFormEdit.style.display = "flex";
+//   })
+// }
 
-for (let j = 0; j < btnEditUser.length;j++){
-  btnEditUser[j].addEventListener('click', function(e){
-    e.preventDefault();
-    sectFormEdit.style.display = "flex";
-  })
-}
-
-//botón de todas las tarjetas para editar usuario (se manda ya la info)
+//botón de todas las tarjetas para editar usuario (se manda ya la info editada)
 const editUserbtn = document.querySelectorAll(".editUser");
 for (let x = 0; x < editUserbtn.length; x++) {
   editUserbtn[x].addEventListener('click', function (event){
   let email = event.target.getAttribute("edit_email")
+  // let name = event.target.getAttribute("edit_name")
+  // let surname = event.target.getAttribute("edit_surname")
         updatedUser(email);
         location.reload();
     })
