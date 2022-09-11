@@ -89,8 +89,8 @@ console.log("este es el newUser", newUser)
 
 // Editar usuario (admin)
 const btnEditUser = document.querySelectorAll("editUser"); //despliega form edir
-const formEditUser = document.getElementById("editUserForm")
-const sectFormEdit = document.querySelectorAll("#editUserDiv");
+const formEditUser = document.getElementById("editUserForm");//formulario para EDIT user (se crea en cada tarjeta)
+const sectFormEdit = document.querySelectorAll("#editUserDiv");//div que se dezspliega
 // sectFormEdit.style.display = "none";
 
 const eName = document.getElementById('editName');
