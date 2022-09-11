@@ -182,11 +182,11 @@ const recoveredPassword = async () => {
 
 
 //cambiar contraseña
-const changedPassword = async () => {
+const changedPassword = async (user) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.changePassword)
+        const data = await client.query(userQueries.changePassword, [user.password, user.email])
         result = data.rows
     } catch (err) {
         console.log(err);

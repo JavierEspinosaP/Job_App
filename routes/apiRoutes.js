@@ -17,6 +17,7 @@ router.get('/ads/delete/:id', adminController.deleteOffer);//Modificar form para
 router.post('/login', userController.loginUser);
 router.post('/user', userController.signUpUser);
 router.post('/logout', userController.logoutUser);
+router.post('/passrest', userController.restorePassword)
 // router.put('/user', userController.editProfile);
 
 router.get('/users', adminController.getUsersRegistered);

@@ -64,12 +64,7 @@ const loginUser = async (req, res) => {
                         httpOnly: true,
                         sameSite: "strict"
                     }).redirect(`/dashboard_user`)
-                }
-            }
-
-
-        }
-    }
+                }}}}
     catch (err) {
         console.log(err);
     }
@@ -87,9 +82,27 @@ const logoutUser = async (req, res) => {
     res.redirect('/')
 }
 
+const restorePassword = async (req, res) => {
+    console.log("Hola");
+    const {password} = req.body
+    
+    const token = (req.headers.cookie).slice(13);
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    const userEmail = decoded.email
+    const hash = await bcrypt.hash(password, 10)
+     try {
+
+        users.changedPassword({password: hash, email: userEmail})
+        res.redirect('/dashboard_user')
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 
 module.exports = {
     loginUser,
     signUpUser,
-    logoutUser
+    logoutUser,
+    restorePassword
 }

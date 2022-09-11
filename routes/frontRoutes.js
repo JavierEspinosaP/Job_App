@@ -25,8 +25,7 @@ frontRouter.get('/users',authToken, authAdmin, frontController.getUsers);
 frontRouter.get('/dashboard',authToken, frontController.getDashboardAdmin);
 
 
-//estas dos no llevan "/api" delante
-frontRouter.get('/recoverpassword', frontController.recoverPassword);
-frontRouter.get('/restorepassword', frontController.restorePassword);
+frontRouter.get('/recoverpassword', frontController.recoverPasswordView);
+frontRouter.get('/restorepassword', frontController.restorePasswordView);
 
 module.exports = frontRouter;

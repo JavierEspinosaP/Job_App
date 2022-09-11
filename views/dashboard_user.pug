@@ -20,19 +20,16 @@ html(lang='en')
           //----------------------------------
         form(action="/api/logout" method="post")
           input(type="submit")
+        h4
+          a(href='/restorepassword') Recuperar contraseña
     main
       div#mainContainer
         h1#h1Slogan NOMBRE DE USUARIO
         h3#h3Slogan
           | Tenemo nuevas ofertas publicadas, ¿les echas un vistazo?
         div#searchFormContainer
-          form#searchForm
-          input(type="text" placeholder="Buscar Proyecto")
-          select
-            option(value="FrontEnd") FrontEnd 
-            option(value="Backend") Backend
-            option(value="DevOps") DevOps
-            option(value="Diseño") Diseño
-          input(type="submit")
+        div#searchContainer
+          input(id="inputValue" placeholder="Introduce tu busqueda")
+          button#searchButton Click
     script(type='text/javascript', src='../scripts/homeNavigation.js')
 include ./footer.pug
