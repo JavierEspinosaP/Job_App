@@ -17,13 +17,13 @@ html(lang='en')
         div#signUpFormContainer
           form(action="/api/user" method="post" id="signUpForm")
             label Nombre
-            input(id="signUpName" type="text" placeholder="John")
+            input(id="signUpName" name="name" type="text" placeholder="John")
             label Apellidos
-            input(id="signUpSurname" type="text" placeholder="Wick")
+            input(id="signUpSurname" name="surname" type="text" placeholder="Wick")
             label Email 
-            input(id="signUpEmail" type="text" placeholder="John_Wick@terra.es")
+            input(id="signUpEmail" name="email"  type="text" placeholder="John_Wick@terra.es")
             label Contraseña
-            input(id="signUpPassword" type="password" placeholder="Omelette123")
+            input(id="signUpPassword" name="password" type="password" placeholder="Omelette123")
             label Repite Contraseña
             input(type="password" placeholder="Omelette123")
             input(type="submit")
