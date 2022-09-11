@@ -53,8 +53,8 @@ html(lang='en')
             p=user.role
             div#buttonsCard
               button.deleteUser.btnClass(value="delete" user_email=user.email) Delete
-              button#editUser.btnClass(type="click") Edit 
-              section#sectFormEdit
+              button.editUser.btnClass(type="click") Edit 
+              section.sectFormEdit
                 form#editUserForm
                   div#editUserDiv
                     label Name:

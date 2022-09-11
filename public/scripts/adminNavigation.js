@@ -86,28 +86,43 @@ console.log("este es el newUser", newUser)
 
 //-----------------Editar usuario(admin)-------------------//
 
-const btnEditUser = document.querySelectorAll("#editUser"); //despliega form edit
+const btnEditUser = document.querySelector(".editUser"); //despliega form edit
 const formEditUser = document.getElementById("editUserForm");//formulario para EDIT user (se crea en cada tarjeta)
-const sectFormEdit = document.querySelectorAll("#sectFormEdit");//section que se despliega
+
 
 const eName = document.getElementById('editName');
 const eSurname = document.getElementById('editSurname');
 const eEmail = document.getElementById('paramEmail');
 
+const sectFormEdit = document.querySelectorAll(".sectFormEdit");//section que se despliega
 
-for (const sect of sectFormEdit) {
-  sect.style.display = "none";
+for(const section of sectFormEdit){
+  section.style.display = "none";
+}
+
+
+btnEditUser.addEventListener('click', () => {
+  for (const sect of sectFormEdit){
+    sect.style.display = 'block';
   }
-
-  for(const btn of btnEditUser){
-    btn.addEventListener('click', () => {
-      for(const section of sectFormEdit){
-        section.style.display = "flex";
-      }
-    })
-  }
+})
 
 
+
+// const hideBtn = document.querySelector('#hide')
+// const divs = document.querySelectorAll('div')
+// showBtn.addEventListener('click', () => {
+//   for (const div of divs) {
+//     div.style.display = 'block'
+//   }
+// })
+
+
+// hideBtn.addEventListener('click', () => {
+//   for (const div of divs) {
+//     div.style.display = 'none'
+//   }
+// })
 
 //btn para desplegar los forms de Edit user
 // for (let j = 0; j < btnEditUser.length; j++){
@@ -116,6 +131,17 @@ for (const sect of sectFormEdit) {
 //     sectFormEdit.style.display = "flex";
 //   })
 // }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
