@@ -16,7 +16,7 @@ html(lang='en')
         h4
           a(href='/users') users(admin)
         h4
-          a(href='/api/dashboard') dashboard(admin)
+          a(href='/dashboard') dashboard(admin)
           //----------------------------------
         h4
           a(href='/api/logout') Logout
@@ -56,9 +56,9 @@ html(lang='en')
               p= offer[i].description
               -var url=offer[i].id;
               h4
-                a(href='./ads/update/'+url) Editar
+                a(href='api/ads/update/'+url) Editar
               h4
-                a(href='./ads/delete/'+url) Borrar
+                a(href='api/ads/delete/'+url) Borrar
           else 
             p no values
     script(type='text/javascript', src='../scripts/homeNavigation.js')

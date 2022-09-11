@@ -6,7 +6,6 @@ const userController = require('../controllers/userControllers');
 
 
 //funciones MONGO (admin)
-router.get('/dashboard/', adminController.getOffers);
 router.post('/ads/create', adminController.createOffer);
 router.post('/ads/update/:id?', adminController.updateOffer);//Modificar form para que envie como PUT
 router.get('/ads/update/:id', adminController.getOffer);//Te lleva a updateOffer

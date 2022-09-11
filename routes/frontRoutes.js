@@ -12,16 +12,15 @@ frontRouter.get('/', frontController.getHome);
 
 
 frontRouter.get('/dashboard_user', authToken, frontController.getDashboardUser);
-frontRouter.get('/favorites',authToken, frontController.getFavorites);
-frontRouter.get('/profile',authToken, frontController.getProfile);
+frontRouter.get('/favorites', authToken, frontController.getFavorites);
+frontRouter.get('/profile', authToken, frontController.getProfile);
 
 //Scraping
 frontRouter.get('/api/search', frontController.getSearch)
 
 //Vistas solo de admin
-
-frontRouter.get('/users',authToken, frontController.getUsers);
-frontRouter.get('/dashboard',authToken, frontController.getDashboardAdmin);
+frontRouter.get('/users', authToken, frontController.getUsers);
+frontRouter.get('/dashboard', authToken, adminController.getOffers);
 
 
 //estas dos no llevan "/api" delante
