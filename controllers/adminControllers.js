@@ -94,6 +94,19 @@ const getOffer = async (req, res) => {
   }
 }
 
+// Abrir la oferta seleccionada
+const openOffer = async (req, res) => {
+  try {
+    const offer = await apiSchema.find({ id: req.params.id });
+    console.log("Holi desde getOffer controller");
+    console.log(offer);
+    res.render("openOffer", { offer });
+  } catch (error) {
+    console.log(`ERROR: ${error.stack}`);
+    res.status(404).json({ "message": "Offer not found" });
+  }
+}
+
 //[POST] /api/ads Crear una oferta (admin)
 const createOffer = async (req, res) => {
   try {
@@ -139,6 +152,7 @@ module.exports = {
   deleteUser,
   getOffers,
   getOffer,
+  openOffer,
   createOffer,
   updateOffer,
   deleteOffer
