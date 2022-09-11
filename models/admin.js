@@ -40,14 +40,14 @@ const createNewUser = async (newUser) => {
 //edit user
 const editUser = async (editedUser) => {
     const {name, surname, email} = editedUser;
-    let client,result;
+    let result;
     try{
         const data = await pool.query(queries.editDataProfile,[name,surname, email])
         result = data.rowCount
         return result
-    }catch(err){
-        console.log(err);
-        throw err;
+    }catch(error){
+        console.log(error);
+        throw error;
     }
 }
 
