@@ -8,13 +8,52 @@ const getUsersRegistered = async (req, res) => {
   let usersRegistered;
   try {
     usersRegistered = await adminModel.getAllUsers()
-    console.log("Estos son todos los usuarios registrados");
     res.status(200).render('users', { results: usersRegistered })
-
   } catch (error) {
     console.log(error.message);
   }
 }
+
+
+const createUser = async(req,res) =>{
+  const newUser = req.body;
+  try {
+      const response = await admin.createNewUser(newUser,
+        { method: "POST",
+          headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newUser)
+    })
+      res.status(201).json({"User created": response})
+
+  } catch (error) {
+      console.log(error);
+    res.status(404).json({ "message": "user not created" });
+    
+  }
+}
+
+
+
+const editUser = async(req,res)=>{
+  const editedUser= req.body
+  try{
+    const response = await admin.editUser(editedUser,
+      { method: "PUT",
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+    body: JSON.stringify(editedUser)})
+    res.status(200).json({"User edited": response})
+    }
+  catch(error){
+    res.status(400).json({"message":"User can not be edited"});
+  }
+}
+
 
 const deleteUser = async (req, res) => {
   const userMail = req.query.email;
@@ -93,10 +132,12 @@ const deleteOffer = async (req, res) => {
 }
 
 module.exports = {
+  getUsersRegistered,
+  createUser,
+  editUser,
+  deleteUser,
   getOffers,
   getOffer,
-  getUsersRegistered,
-  deleteUser,
   createOffer,
   updateOffer,
   deleteOffer
