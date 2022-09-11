@@ -15,23 +15,23 @@ const getUsersRegistered = async (req, res) => {
 }
 
 
-const createUser = async(req,res) =>{
+const createUser = async (req, res) => {
   const newUser = req.body;
   try {
-      const response = await adminModel.createNewUser(newUser,
-        { method: "POST",
-          headers: {
+      const response = await adminModel.createNewUser(newUser,{
+        method: "POST",
+        headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newUser)
-    })
-      res.status(201).json({"User created": response})
+        },
+        body: JSON.stringify(newUser)
+      })
+    res.status(201).json({ "User created": response })
 
   } catch (error) {
-      console.log(error);
+    console.log(error);
     res.status(404).json({ "message": "user not created" });
-    
+
   }
 }
 
@@ -40,17 +40,18 @@ const createUser = async(req,res) =>{
 const editUser = async(req,res)=>{
   const editedUser= req.body
   try{
-    const response = await adminModel.editUser(editedUser,
-      { method: "PUT",
+    const response = await adminModel.editUser(editedUser,{
+        method: "PUT",
         headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         },
-    body: JSON.stringify(editedUser)})
-    res.status(200).json({"User edited": response})
-    }
-  catch(error){
-    res.status(400).json({"message":"User can not be edited"});
+        body: JSON.stringify(editedUser)
+      })
+    res.status(200).json({ "User edited": response })
+  }
+  catch (error) {
+    res.status(400).json({ "message": "User can not be edited" });
   }
 }
 
@@ -99,7 +100,7 @@ const createOffer = async (req, res) => {
     await adminModel.createOffer(req.body);
     console.log("Holi desde createOffer controller");
     console.log("Oferta creada: ", req.body);
-    res.redirect('/api/dashboard');
+    res.redirect('/dashboard');
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
     res.status(404).json({ "message": "Offer not found" });
@@ -112,7 +113,7 @@ const updateOffer = async (req, res) => {
     await adminModel.updateOffer(req.body);
     console.log("Holi desde updateOffer controller");
     console.log("Oferta edited: ", req.body);
-    res.redirect('/api/dashboard');
+    res.redirect('/dashboard');
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
     res.status(404).json({ "message": "Offer not found" });
@@ -124,7 +125,7 @@ const deleteOffer = async (req, res) => {
   try {
     await adminModel.deleteOffer(req.params.id);
     console.log("Offer deleted: ", req.params.id);
-    res.redirect('/api/dashboard');
+    res.redirect('/dashboard');
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
     res.status(404).json({ "message": "offer not found" });
