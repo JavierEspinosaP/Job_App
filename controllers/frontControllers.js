@@ -108,8 +108,12 @@ const getScrap = async (req, res) => {
 }
 
 //"changePassword": `UPDATE users SET password = $1 WHERE users.email = $2`
-const restorePasswordView = async (req, res, next) => {
-    res.render('restore_pass')
+const changePasswordView = async (req, res, next) => {
+    res.render('change_pass')
+}
+
+const resetPasswordView = async (req, res, next) => {
+    res.render('reset_pass')
 }
 
 
@@ -161,7 +165,8 @@ module.exports = {
     getDashboardAdmin,
     getScrap,
     getSearch,
-    restorePasswordView,
+    changePasswordView,
+    resetPasswordView,
     recoverPasswordView,
     saveFavorite,
     deleteFavorite

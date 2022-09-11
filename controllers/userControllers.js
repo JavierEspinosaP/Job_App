@@ -84,7 +84,6 @@ const logoutUser = async (req, res) => {
 }
 
 const changePassword = async (req, res) => {
-    console.log("Hola");
     const {password} = req.body
     
     const token = (req.headers.cookie).slice(13);
@@ -117,6 +116,39 @@ const recoverPassword = async (req, res) => {
         res.redirect('/dashboard_user')
     } catch (error) {
         console.log('Error:', error)
+    }
+}
+
+const resetPass = async (req, res) => {
+
+    try {
+        let client;
+        const token = req.params.recoverToken;
+        const payload = jwt.verify(token, process.env.RECOVER_KEY);
+        const password = req.body.password
+        const user = users.find(u => { return payload.email === u.email });
+        if (user) {
+            if (regex.validatePassword(pass) && pass == pass2) {
+                client = await pool.connect();
+                const hashPassword = await bcrypt.hash(pass, 10);
+                await client.query(
+                    `UPDATE users
+                    SET password = ($1)
+                    WHERE email = ($2)`, [hashPassword, payload.email]);
+                res.status(200).redirect(`${process.env.URL_BASE}/login`);
+            }
+            else if (pass != pass2) {
+                res.send("Passwords dont match");
+            }
+            else {
+                res.status(400).json({ msg: 'Password must have at least 8 characters, one uppercase, one lowercase and one special character' });
+            }
+        }
+        else {
+            res.send("No se encontró ninguna dirección de email")
+        }
+    } catch (error) {
+        console.log('Error:', error);
     }
 }
 

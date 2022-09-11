@@ -9,11 +9,10 @@ html(lang='en')
         h4#signUpAccess Registro
         h4#loginAccess Log In
     main
-        form(action="/api/passrest" method="post")
-            label Nueva contraseña
-            input(name="password" type="password" Placeholder="John_Wick@terra.es") 
-            label Repite contraseña
-            input(name="passwordRepeat" type="password" Placeholder="John_Wick@terra.es")
+        h2 Recuperar contraseña
+        form(action="/api/passrecover" method="post")
+            label Introduce email
+            input(name="email" type="text" Placeholder="John_Wick@terra.es") 
             input(type="submit")
   script(type='text/javascript', src='//cdn.jsdelivr.net/npm/sweetalert2@11')
   script(type='text/javascript', src='sweetalert2.min.js')

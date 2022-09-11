@@ -26,6 +26,7 @@ frontRouter.get('/dashboard',authToken, frontController.getDashboardAdmin);
 
 
 frontRouter.get('/recoverpassword', frontController.recoverPasswordView);
-frontRouter.get('/restorepassword', frontController.restorePasswordView);
+frontRouter.get('/changepassword', frontController.changePasswordView);
+frontRouter.get('/recoverpass/:token', frontController.resetPasswordView);
 
 module.exports = frontRouter;
