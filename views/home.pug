@@ -15,7 +15,7 @@ html(lang='en')
         div#h2SignUpContainer
           h2#h2SignUp Registro
         div#signUpFormContainer
-          form(action="post" id="signUpForm")
+          form(action="/api/user" method="post" id="signUpForm")
             label Nombre
             input(id="signUpName" type="text" placeholder="John")
             label Apellidos
