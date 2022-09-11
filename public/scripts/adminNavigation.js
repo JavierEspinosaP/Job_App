@@ -86,22 +86,22 @@ console.log("este es el newUser", newUser)
 
 //-----------------Editar usuario(admin)-------------------//
 
-const btnEditUser = document.querySelectorAll("editUser"); //despliega form edir
+const btnEditUser = document.querySelectorAll("editUser"); //despliega form edit
 const formEditUser = document.getElementById("editUserForm");//formulario para EDIT user (se crea en cada tarjeta)
-const sectFormEdit = document.querySelectorAll("#editUserDiv");//div que se dezspliega ****tenemos que coger el section???
-// sectFormEdit.style.display = "none";
+const sectFormEdit = document.getElementById("sectFormEdit");//div que se dezspliega ****tenemos que coger el section???
+sectFormEdit.style.display = "none";
 
 const eName = document.getElementById('editName');
 const eSurname = document.getElementById('editSurname');
 const eEmail = document.getElementById('paramEmail');
 
 
-// for (let j = 0; j < btnEditUser.length;j++){
-//   editUser[j].addEventListener('click', function(e){
-//     e.preventDefault();
-//     sectFormEdit.style.display = "flex";
-//   })
-// }
+for (let j = 0; j < btnEditUser.length;j++){
+  btnEditUser[j].addEventListener('click', function(e){
+    e.preventDefault();
+    sectFormEdit.style.display = "flex";
+  })
+}
 
 //botón de todas las tarjetas para editar usuario (se manda ya la info)
 const editUserbtn = document.querySelectorAll(".editUser");
