@@ -18,7 +18,7 @@ const getUsersRegistered = async (req, res) => {
 const createUser = async(req,res) =>{
   const newUser = req.body;
   try {
-      const response = await admin.createNewUser(newUser,
+      const response = await adminModel.createNewUser(newUser,
         { method: "POST",
           headers: {
           'Accept': 'application/json',
@@ -40,7 +40,7 @@ const createUser = async(req,res) =>{
 const editUser = async(req,res)=>{
   const editedUser= req.body
   try{
-    const response = await admin.editUser(editedUser,
+    const response = await adminModel.editUser(editedUser,
       { method: "PUT",
         headers: {
         'Accept': 'application/json',

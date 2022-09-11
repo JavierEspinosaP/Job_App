@@ -89,7 +89,7 @@ console.log("este es el newUser", newUser)
 const btnEditUser = document.querySelectorAll("editUser"); //despliega form edit
 const formEditUser = document.getElementById("editUserForm");//formulario para EDIT user (se crea en cada tarjeta)
 const sectFormEdit = document.getElementById("sectFormEdit");//div que se dezspliega ****tenemos que coger el section???
-sectFormEdit.style.display = "none";
+// sectFormEdit.style.display = "none";
 
 const eName = document.getElementById('editName');
 const eSurname = document.getElementById('editSurname');
