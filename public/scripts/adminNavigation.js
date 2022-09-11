@@ -1,4 +1,4 @@
-//Para eliminar usuario (admin)
+//-----------------Borrar usuario(admin)-------------------//
 async function deleteUserByEmail(userMail) {
     try {
       let response = await fetch('/api/users?email='+userMail,{
@@ -27,7 +27,9 @@ for (let i = 0; i < deleteUserBtn.length; i++) {
 }
 
 
-//botón despliegue form para crear usuario (admin)
+
+//-----------------Crear usuario, dentro del form(admin)-------------------//
+
 const btnFormCreateUser = document.getElementById("createNewUser");
 const sectFormCreate = document.getElementById("formCreate");
 sectFormCreate.style.display = "none";
@@ -38,8 +40,6 @@ btnFormCreateUser.addEventListener('click', function (e) {
 })
 
 
-
-//Crear usuario, dentro del form(admin)
 const formCreateUser = document.getElementById("createUserForm");
 const cName = document.getElementById('inputName');
 const cSurname = document.getElementById('inputSurname');
@@ -84,13 +84,11 @@ console.log("este es el newUser", newUser)
 
 
 
+//-----------------Editar usuario(admin)-------------------//
 
-
-
-// Editar usuario (admin)
 const btnEditUser = document.querySelectorAll("editUser"); //despliega form edir
 const formEditUser = document.getElementById("editUserForm");//formulario para EDIT user (se crea en cada tarjeta)
-const sectFormEdit = document.querySelectorAll("#editUserDiv");//div que se dezspliega
+const sectFormEdit = document.querySelectorAll("#editUserDiv");//div que se dezspliega ****tenemos que coger el section???
 // sectFormEdit.style.display = "none";
 
 const eName = document.getElementById('editName');
@@ -98,11 +96,22 @@ const eSurname = document.getElementById('editSurname');
 const eEmail = document.getElementById('paramEmail');
 
 
-for (let j = 0; j < btnEditUser.length;j++){
-  editUser[j].addEventListener('click', function(e){
-    e.preventDefault();
-    sectFormEdit.style.display = "flex";
-  })
+// for (let j = 0; j < btnEditUser.length;j++){
+//   editUser[j].addEventListener('click', function(e){
+//     e.preventDefault();
+//     sectFormEdit.style.display = "flex";
+//   })
+// }
+
+//botón de todas las tarjetas para editar usuario (se manda ya la info)
+const editUserbtn = document.querySelectorAll(".editUser");
+for (let x = 0; x < editUserbtn.length; x++) {
+  editUserbtn[x].addEventListener('click', function (event){
+  let email = event.target.getAttribute("edit_email")
+        updatedUser(email);
+        location.reload();
+    })
+    
 }
 
 
@@ -137,6 +146,7 @@ formEditUser.addEventListener('submit', function(e) {
   }
   updatedUser();
 })
+
 
 
 async function addNewUser(){

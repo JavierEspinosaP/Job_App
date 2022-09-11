@@ -47,14 +47,14 @@ html(lang='en')
       div#Users
         each user in results
           article.userCard
-            h4=user.name 
-            p=user.surname 
+            h4 #{user.name}
+            p #{user.surname}
             p #{user.email}
             p=user.role
             div#buttonsCard
               button.deleteUser.btnClass(value="delete" user_email=user.email) Delete
               button#editUser.btnClass(type="click") Edit 
-              section#formCreate
+              section#sectFormEdit
                 form#editUserForm
                   div#editUserDiv
                     label Name:
@@ -63,7 +63,7 @@ html(lang='en')
                     input#editSurname(type='text' placeholder='User surname')
                     label Email:
                     input#paramEmail(type='text' placeholder='Email')
-                    button.editUser.btnClass(type="submit") Edit user
+                    button.editUser.btnClass(type="submit" edit_email=user.email) Edit user
                 ul#addUsers(action="/api/users" method="POST")
 
     script(type='text/javascript', src='../scripts/adminNavigation.js')
