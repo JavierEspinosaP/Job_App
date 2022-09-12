@@ -5,8 +5,17 @@ header{
   flex-direction:column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
+.viewHeader{
+  background-image: linear-gradient(to right, #ffa200 , #ffea00);
+  height: 150px;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+}
 
 body {
     font-family: 'Yanone Kaffeesatz', sans-serif;
@@ -34,7 +43,36 @@ body {
   align-content: center;
   justify-content: space-between;
   align-items: center;
-  width: 335%;
+  width: 100%;
+}
+
+
+.headerDash div{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+
+.headerDash h1 {
+  text-align: center;
+}
+
+.headerDash h1 a {
+  color: black
+}
+
+.logContainer{
+  margin-right: 100px;
+}
+
+.logContainer h4 a{
+  color: black;
+  font-size: smaller;
 }
 
 .logContainer h4{
@@ -60,7 +98,7 @@ body {
   text-align: center;
   padding-right: 30px;
   padding-left: 30px;
-  font-size: 21px;
+  font-size: 26px;
   font-style: italic;
   line-height: 35px;
   font-weight: 500;
@@ -168,19 +206,6 @@ footer{
   font-size: 1.9rem;
 }
 
-.sendSend{
-  background-image: linear-gradient(to right, #F7971E 0%, #FFD200 51%, #F7971E 100%);
-  padding: 11px 19px;
-  text-align: center;
-  text-transform: uppercase;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;
-  box-shadow: 0 0 20px #eee;
-  display: block;
-  border-radius: 40px;
-  margin-bottom: 27px
-}
 
 #Users{
     display:flex;
@@ -189,6 +214,21 @@ footer{
     align-content: center;
     align-items: center;
     justify-content: center;
+}
+
+.marcoForm{
+  border-width: 3px;
+  border-style: solid;
+  -webkit-border-image: 
+    -webkit-gradient(linear, 0 0, 0 100%, from(black), to(rgba(0, 0, 0, 0))) 1 100%;
+  -webkit-border-image: 
+    -webkit-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
+  -moz-border-image:
+    -moz-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;    
+  -o-border-image:
+    -o-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
+  border-image:
+    linear-gradient(to bottom, black, rgba(0, 0, 0, 0)) 1 100%;
 }
 
 .userCard{
@@ -336,18 +376,58 @@ footer{
 }
 
 #LoginFormContainer{
-    padding: 20px;
-    margin-top:50px;
-    width: 200px;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 66px;
+  margin-top: 20px;
+  width: 200px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 15px;
 }
+
+#LoginFormContainer form{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: space-between;
+  justify-content: center;
+  align-items: center;
+}
+
 #loginContainer{
-    display: none;
-    flex-direction: column;
-    align-items: center;
+  display: none;
+  flex-direction: column;
+  align-items: center;
 }
+
+#LoginFormContainer form label {
+  font-size: 20px;
+ }
+
+
+.searchInputSignin {
+  height: 21px;
+  border-radius: 30px;
+  text-align: center;
+  font-size: small;
+  margin: 10px;
+ }
+
+
+ #loginForm input .btnSend{
+  background-image: linear-gradient(to right, #F7971E 0%, #FFD200 51%, #F7971E 100%);
+  padding: 11px 19px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  display: block;
+  border-radius: 40px;
+  margin-bottom: 27px;
+}
+
 
 #comeBackButtonContainer2{
     margin-top:50px;
