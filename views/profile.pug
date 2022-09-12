@@ -22,8 +22,16 @@ html(lang='en')
           a(href='/api/logout') Logout
     main
       div#mainContainer
-        h1#h1Slogan PROFILE
+        h1#h1Slogan #{data[0].name}
         h3#h3Slogan
           | Aqui puedes modificar tu perfil
+        form.editUserForm
+          div#editUserDiv
+            label Name:
+            input.editName(type='text' value=data[0].name name='name')
+            label Surname:
+            input.editSurname(type='text' value=data[0].surname surname='surname')
+            button.editUser.btnClass(type="click") Edit user
+        ul#addUsers(action="/api/users" method="POST")
     script(type='text/javascript', src='../scripts/homeNavigation.js')
 include ./footer.pug

@@ -8,27 +8,27 @@ const pool = require('../utils/db_sql')
 
 //REGISTRO DE USUARIO
 
-const registerUser = async(user) => {
+const registerUser = async (user) => {
     let client, result;
-    
+
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.registerUser,[user.name,user.surname, user.email, user.hash]);
+        const data = await client.query(userQueries.registerUser, [user.name, user.surname, user.email, user.hash]);
         result = data.rows
         console.log(result);
     } catch (err) {
         console.log(err);
         throw err;
-    }finally{
-        client.release();    
+    } finally {
+        client.release();
     }
     return result
-    
+
 }
 
 //LOGIN DE USUARIO (ya registrado)
-const signInUser = async(user) => {
-    
+const signInUser = async (user) => {
+
     let client, result;
     try {
         client = await pool.connect();
@@ -37,14 +37,14 @@ const signInUser = async(user) => {
     } catch (err) {
         console.log(err);
         throw err;
-    }finally{
+    } finally {
         client.release();
     }
     return result
 }
 
-        //update status logged colum
-const loggedStatus= async (email) => {
+//update status logged colum
+const loggedStatus = async (email) => {
     let client, result;
     try {
         client = await pool.connect();
@@ -53,8 +53,8 @@ const loggedStatus= async (email) => {
     } catch (err) {
         console.log(err);
         throw err;
-    }finally{
-        client.release();    
+    } finally {
+        client.release();
     }
     return result
 }
@@ -71,11 +71,11 @@ const getFavorites = async () => {
     } catch (err) {
         console.log(err);
         throw err;
-    }finally{
-        client.release();    
+    } finally {
+        client.release();
     }
     return result
-    
+
 }
 
 //Guardar favorito - usuario
@@ -83,14 +83,14 @@ const saveFavorite = async () => {
     let client, result;
     try {
         client = await pool.connect();
-        const data =  await client.query(userQueries.saveFav)
+        const data = await client.query(userQueries.saveFav)
         result = data.rows
-        
+
     } catch (err) {
         console.log(err);
         throw err;
-    }finally{
-        client.release();    
+    } finally {
+        client.release();
     }
     return result
 }
@@ -105,11 +105,11 @@ const editProfile = async () => {
     } catch (err) {
         console.log(err);
         throw err;
-    }finally{
-        client.release();    
+    } finally {
+        client.release();
     }
     return result
-    
+
 }
 
 
@@ -123,28 +123,32 @@ const deleteFavorites = async () => {
     } catch (err) {
         console.log(err);
         throw err;
-    }finally{
-        client.release();    
+    } finally {
+        client.release();
     }
     return result
-    
+
 }
 
 
 //Datos de perfil del usuario/admin
-const userProfile = async () => {
+const userProfile = async (email) => {
+    console.log("Holi desde users userProfile");
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.profile)
+        const data = await client.query(userQueries.profile, [email])
+
         result = data.rows
+        console.log(result);
+        return result
     } catch (err) {
         console.log(err);
         throw err;
-    }finally{
-        client.release();    
+    } finally {
+        client.release();
     }
-    return result
+
 }
 
 // Salir de la app: logout
@@ -157,8 +161,8 @@ const logoutUser = async () => {
     } catch (err) {
         console.log(err);
         throw err;
-    }finally{
-        client.release();    
+    } finally {
+        client.release();
     }
     return result
 }
@@ -174,8 +178,8 @@ const recoveredPassword = async () => {
     } catch (err) {
         console.log(err);
         throw err;
-    }finally{
-        client.release();    
+    } finally {
+        client.release();
     }
     return result
 }
@@ -191,8 +195,8 @@ const changedPassword = async () => {
     } catch (err) {
         console.log(err);
         throw err;
-    }finally{
-        client.release();    
+    } finally {
+        client.release();
     }
     return result
 }

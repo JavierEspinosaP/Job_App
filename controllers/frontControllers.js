@@ -35,7 +35,7 @@ const getSearch = async (req, res) => {
         const merged = [].concat.apply([], offers);
 
         res.status(200).json(merged)
-        
+
     }
     catch (error) {
         console.log(error);
@@ -55,7 +55,7 @@ const getDashboardUser = async (req, res) => {
 // "/favorites"
 const getFavorites = async (req, res) => {
     try {
-        res.render("favorites", { section: "favorites", list:["patata"] });
+        res.render("favorites", { section: "favorites", list: ["patata"] });
 
     } catch (error) {
         return res.status(400).json(error);
@@ -63,19 +63,23 @@ const getFavorites = async (req, res) => {
 };
 
 // "/profile"
-const getProfile = async (req, res) => {
-    try {
-        res.render("profile", { section: "profile" });
 
+const getProfile = async (req, res) => {
+    console.log("Holi desde frontControllers get");
+    const profile = req.user.email;
+    try {
+        console.log(profile);
+        data = await users.userProfile(profile)
+        res.status(200).render('profile', { data })
     } catch (error) {
         return res.status(400).json(error);
     }
-};
+}
 
 // "/users"
 const getUsers = async (req, res) => {
     try {
-        
+
         res.render("users", { section: "users" });
 
     } catch (error) {
@@ -96,12 +100,12 @@ const getDashboardAdmin = async (req, res) => {
 // "/scrap"
 
 const getScrap = async (req, res) => {
-    try{
+    try {
         //const offers = await scraper.arrScrapers[0]("https://ticjob.es/esp/freelances-it")
-        res.render("scraping", { section: "Scraping" , list:["patata"]});
-       // res.status(200).json(offers)
+        res.render("scraping", { section: "Scraping", list: ["patata"] });
+        // res.status(200).json(offers)
     }
-    catch (err){
+    catch (err) {
         console.log(err)
         res.status(404).json({})
     }
