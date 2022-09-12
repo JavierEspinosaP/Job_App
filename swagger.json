@@ -1,0 +1,430 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Job App Project",
+    "description": "\n- Aplicación desarrollada como proyecto intermedio en The Bridge School por Ignacio López, Ramón Moreno, Mónica Ortiz y Javier Espinosa. Se trata de una web enfocada a la búsqueda de proyectos freelance en todo el mundo. Para ello la web utiliza el método de scraping y filtra por un buscador las ofertas de varias plataformas y las despliega en un listado. Además el usuario puede darse de alta y en la segunda fase podrá guardar sus ofertas favoritas. Los administradores también pueden publicar ofertas propias y editar la información de los usuarios dados de alta.\n- Las tecnologías utilizadas son:\n    - MongoDB y PostgreSQL, para guardar ofertas creadas por los admin y guardar los datos de los usuarios y favoritos respectivamente, junto con sus cloud, Mongo Atlas y Elephant SQL.\n    - Pupeteer para scraping.\n    - Json Web Token para la autenticación de los usuarios y la recuperación de contraseña en caso de querer restablecerla.\n    - Nodemailer para el envío de la nueva contraseña al mail.\n    - Bcrypt para el encriptado de las contraseñas antes de ser guardadas en la base de datos.\n    - Helmet para las posibles vulnerabilidades en ciberseguridad.\n    - Morgan para el chequeo de los métodos http en el envío o recepción de peticiones.",
+    "contact": {
+      "email": "jespinosap91@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3005"
+    }
+  ],
+  "tags": [
+    {
+      "name": "/",
+      "description": "Todas las vistas de la web"
+    },
+    {
+      "name": "/api",
+      "description": "Endpoints relacionados con la interacción con base de datos o con el scraper"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "/"
+        ],
+        "summary": "Vista de la home",
+        "description": "Vista inicial de la página, con login, registro y búsqueda de proyectos",
+        "operationId": "getHome",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "404": {
+            "description": "Página no encontrada"
+          }
+        }
+      }
+    },
+    "/dashboard_user": {
+      "get": {
+        "tags": [
+          "/"
+        ],
+        "summary": "Vista de usuario logueado",
+        "description": "Vista una vez te autenticas, con editar perfil y favoritos",
+        "operationId": "getDashboardUser",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "404": {
+            "description": "Página no encontrada"
+          }
+        }
+      }
+    },
+    "/favorites": {
+      "get": {
+        "tags": [
+          "/"
+        ],
+        "summary": "Vista de favoritos",
+        "description": "Aquí se guardan los favoritos del usuario.",
+        "operationId": "getFavorites",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "404": {
+            "description": "Página no encontrada"
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "tags": [
+          "/"
+        ],
+        "summary": "Vista perfil",
+        "description": "Vista de perfil del usuario donde poder editar sus datos personales",
+        "operationId": "getProfile",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "404": {
+            "description": "Página no encontrada"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "/"
+        ],
+        "summary": "Vista de todos los users (vista solo de admin)",
+        "operationId": "getUsers",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "404": {
+            "description": "Página no encontrada"
+          }
+        }
+      }
+    },
+    "/dashboard": {
+      "get": {
+        "tags": [
+          "/"
+        ],
+        "summary": "Vista general del admin",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "404": {
+            "description": "Página no encontrada"
+          }
+        }
+      }
+    },
+    "/recoverpassword": {
+      "get": {
+        "tags": [
+          "/"
+        ],
+        "summary": "Vista de recuperación de contraseña",
+        "operationId": "recoverPasswordView",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "404": {
+            "description": "Página no encontrada"
+          }
+        }
+      }
+    },
+    "/changepassword": {
+      "get": {
+        "tags": [
+          "/"
+        ],
+        "summary": "Vista de cambiar contraseña",
+        "operationId": "changePasswordView",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "404": {
+            "description": "Página no encontrada"
+          }
+        }
+      }
+    },
+    "/recoverpass/:token": {
+      "get": {
+        "tags": [
+          "/"
+        ],
+        "summary": "Vista de reseteo de la contraseña una vez mandado mail de recuperación",
+        "operationId": "resetPasswordView",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "404": {
+            "description": "Página no encontrada"
+          }
+        }
+      }
+    },
+    "/ads/open/:id": {
+      "get": {
+        "tags": [
+          "/api"
+        ],
+        "summary": "Traer oferta seleccionada de MongoDB",
+        "operationId": "openOffer",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/ads/create": {
+      "post": {
+        "tags": [
+          "/api"
+        ],
+        "summary": "Crear oferta",
+        "description": "",
+        "operationId": "createOffer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "description": "Nombre de la oferta",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Fecha de publicación",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "budget",
+            "in": "query",
+            "description": "Presupuesto",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "Descripcion de la oferta",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/ads/update/:id": {
+      "post": {
+        "tags": [
+          "/api"
+        ],
+        "summary": "Editar oferta",
+        "operationId": "updateOffer",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "/api"
+        ],
+        "summary": "Obtener la oferta a editar",
+        "operationId": "getOffer",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/ads/delete/:id": {
+      "get": {
+        "tags": [
+          "/api"
+        ],
+        "summary": "Borrar oferta",
+        "operationId": "deleteOffer",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "/api"
+        ],
+        "summary": "Enviar datos de login",
+        "operationId": "loginUser",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/user": {
+      "post": {
+        "tags": [
+          "/api"
+        ],
+        "summary": "Enviar datos de registro de usuario",
+        "operationId": "signUpUser",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "post": {
+        "tags": [
+          "/api"
+        ],
+        "summary": "Enviar datos para desloguear usuario",
+        "operationId": "logoutUser",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/passrest": {
+      "post": {
+        "tags": [
+          "/api"
+        ],
+        "summary": "Cambiar contraseña",
+        "operationId": "changePassword",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/passrecover": {
+      "post": {
+        "tags": [
+          "/api"
+        ],
+        "summary": "Recuperar contraseña",
+        "operationId": "recoverPassword",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "offersAdmin": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 10
+          },
+          "title": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "budget": {
+            "type": "number",
+            "format": "int64",
+            "example": 10
+          },
+          "description": {
+            "type": "string",
+            "example": "approved"
+          }
+        }
+      }
+    }
+  }
+}

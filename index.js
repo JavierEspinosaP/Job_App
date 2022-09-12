@@ -5,6 +5,8 @@ const cowsay = require('cowsay2');
 const owl = require('cowsay2/cows/owl');
 const helmet = require('helmet');
 const morgan = require('./utils/morgan');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 
 const frontRoutes = require('./routes/frontRoutes')
@@ -24,6 +26,7 @@ app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan(':method :host :status :param[id] - :response-time ms :body'));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //WEB
 app.use('/', frontRoutes);
 app.use('/api', apiRoutes);
