@@ -1,14 +1,19 @@
 
-const { pg } = require('pg');
+const pg = require('pg');
 require('dotenv').config()
 
 
 //ELEPHANT
-const conString = process.env.DATABASE_URL
-const client = new pg.Client(conString)
-let clientConnected = client.connect() //se conecta a la bd
 
+const pgUrl = process.env.DATABASE_URL
+const client = new pg.Client(pgUrl)
+clientConnected = client.connect(), //se conecta a la bd
 console.log("Estamos conectados a Elephant", clientConnected)
+
+
+// const client = new ClientClass(pgUrl)
+// clientConnected = client.connect(), //se conecta a la bd
+// console.log("Estamos conectados a Elephant", clientConnected)
 
 // //LOCAL
 // const pool = new Pool({

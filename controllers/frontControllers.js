@@ -151,7 +151,6 @@ module.exports = {
     getProfile,
     getUsers,
     getDashboardAdmin,
-    getScrap,
     getSearch,
     changePasswordView,
     resetPasswordView,
