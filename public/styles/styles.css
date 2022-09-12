@@ -1,26 +1,52 @@
 header{
-    background-color: rgb(239, 188, 99);
-    height: 150px;
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
+  background-image: linear-gradient(to right, #ffa200 , #ffea00);
+  height: 150px;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
 }
+
 
 body {
     font-family: 'Yanone Kaffeesatz', sans-serif;
 }
+
+.header {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center; 
+}
+
+.header h1 a{
+  font-size: xxx-large;
+  color: black;
+  font-weight: bolder
+}
+
+.header div{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  width: 335%;
+}
+
+.logContainer h4{
+  font-size: x-large
+}
+
 
 
 #signUpAccess{
     cursor: pointer;
 }
 
-#logContainer{
-    display: flex;
-    justify-content:space-evenly;
-    width: 300px
-}
 
 #h1Slogan{
     text-align: center;

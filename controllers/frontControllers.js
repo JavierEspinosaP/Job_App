@@ -190,7 +190,5 @@ module.exports = {
     changePasswordView,
     resetPasswordView,
     recoverPasswordView,
-    saveFavorite,
-    deleteFavorite,
     getScrap
 };

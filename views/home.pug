@@ -3,11 +3,13 @@ html(lang='en')
   include ./head.pug
   body
     header
-      h1 
-        a(href='/') Job Finder
-      #logContainer
-        h4#signUpAccess Registro
-        h4#loginAccess Log In
+      div.header
+        h1 
+          a(href='/') Job Finder
+        #logContainer
+        div.logContainer
+          h4#signUpAccess Registro
+          h4#loginAccess Log In
     main
       div#signUpContainer
         div#comeBackButtonContainer
