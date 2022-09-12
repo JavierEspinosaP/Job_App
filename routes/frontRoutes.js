@@ -15,6 +15,7 @@ frontRouter.get('/', frontController.getHome);
 frontRouter.get('/dashboard_user', authToken, frontController.getDashboardUser);
 frontRouter.get('/favorites', authToken, frontController.getFavorites);
 frontRouter.get('/profile', authToken, frontController.getProfile);
+frontRouter.post('/profile', authToken, frontController.updateUser);//en pug no funciona input(type='hidden' name='_method' value='PUT')
 
 //Scraping
 frontRouter.get('/api/search', frontController.getSearch)

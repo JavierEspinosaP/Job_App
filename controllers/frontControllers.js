@@ -1,5 +1,6 @@
 
 const users = require('../models/users');
+const adminModel = require('../models/admin');
 // const admin = require('../models/admin')
 
 //Traer el scraper
@@ -35,7 +36,7 @@ const getSearch = async (req, res) => {
         const merged = [].concat.apply([], offers);
 
         res.status(200).json(merged)
-        
+
     }
     catch (error) {
         console.log(error);
@@ -55,27 +56,44 @@ const getDashboardUser = async (req, res) => {
 // "/favorites"
 const getFavorites = async (req, res) => {
     try {
-        res.render("favorites", { section: "favorites", list:["patata"] });
+        res.render("favorites", { section: "favorites", list: ["patata"] });
 
     } catch (error) {
         return res.status(400).json(error);
     }
 };
 
-// "/profile"
+// "/profile" get profile by email
 const getProfile = async (req, res) => {
+    console.log("Holi desde frontControllers getProfile");
+    const profile = req.user.email;
     try {
-        res.render("profile", { section: "profile" });
-
+        console.log(profile);
+        data = await users.userProfile(profile)
+        res.status(200).render('profile', { data })
     } catch (error) {
         return res.status(400).json(error);
     }
-};
+}
+
+//updateUser
+const updateUser = async (req, res) => {
+    try {
+        await adminModel.editUser(req.body);
+        console.log("Holi desde updateOffer controller");
+        console.log("Oferta edited: ", req.body);
+        res.redirect('/profile');
+    } catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(404).json({ "message": "Offer not found" });
+    }
+}
+
 
 // "/users"
 const getUsers = async (req, res) => {
     try {
-        
+
         res.render("users", { section: "users" });
 
     } catch (error) {
@@ -92,8 +110,6 @@ const getDashboardAdmin = async (req, res) => {
         return res.status(400).json(error);
     }
 };
-
-
 
 //"changePassword": `UPDATE users SET password = $1 WHERE users.email = $2`
 const changePasswordView = async (req, res, next) => {
@@ -160,6 +176,7 @@ module.exports = {
     getUsers,
     getDashboardAdmin,
     getSearch,
+    updateUser,
     changePasswordView,
     resetPasswordView,
     recoverPasswordView,
