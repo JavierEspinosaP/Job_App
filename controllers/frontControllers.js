@@ -125,7 +125,7 @@ const recoverPasswordView = async (req, res, next) => {
 
 const saveFavorite = async (req, res, next) => {
     let client;
-    const { body } = req
+    const { body } = req.body
 
     try {
         client = await pool.connect();

@@ -43,7 +43,7 @@ const signInUser = async(user) => {
     return result
 }
 
-        //update status logged colum
+//update status logged colum
 const loggedStatus= async (email) => {
     let client, result;
     try {
@@ -83,7 +83,7 @@ const saveFavorite = async () => {
     let client, result;
     try {
         client = await pool.connect();
-        const data =  await client.query(userQueries.saveFav)
+        const data =  await client.query(userQueries.saveFav, [])
         result = data.rows
         
     } catch (err) {

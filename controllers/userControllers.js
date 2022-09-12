@@ -158,5 +158,6 @@ module.exports = {
     signUpUser,
     logoutUser,
     changePassword,
-    recoverPassword
+    recoverPassword,
+    resetPass
 }
