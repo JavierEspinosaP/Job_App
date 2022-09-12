@@ -22,7 +22,7 @@ router.get('/users', adminController.getUsersRegistered);
 router.delete('/users', adminController.deleteUser);
 router.post('/users', adminController.createUser);
 router.put('/users', adminController.editUser);
-router.post('/favorites', userController.saveFavorite);
-router.delete('/favorites', userController.deleteFavorite);
+// router.post('/favorites', userController.saveFavorite);
+// router.delete('/favorites', userController.deleteFavorite);
 
 module.exports = router
