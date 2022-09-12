@@ -62,7 +62,7 @@ const loggedStatus= async (email) => {
 
 
 //VISTA DE USUARIO: favoritos
-const getFavorites = async () => {
+const getFavorites = async (email) => { 
     let client, result;
     try {
         client = await pool.connect();
@@ -79,7 +79,7 @@ const getFavorites = async () => {
 }
 
 //Guardar favorito - usuario
-const saveFavorite = async () => {
+const saveFavorite = async (obj) => {
     let client, result;
     try {
         client = await pool.connect();
