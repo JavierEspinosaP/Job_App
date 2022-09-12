@@ -44,7 +44,7 @@ const signInUser = async (user) => {
 }
 
 //update status logged colum
-const loggedStatus = async (email) => {
+const loggedStatus= async (email) => {
     let client, result;
     try {
         client = await pool.connect();
@@ -62,7 +62,7 @@ const loggedStatus = async (email) => {
 
 
 //VISTA DE USUARIO: favoritos
-const getFavorites = async () => {
+const getFavorites = async (email) => { 
     let client, result;
     try {
         client = await pool.connect();
@@ -79,11 +79,11 @@ const getFavorites = async () => {
 }
 
 //Guardar favorito - usuario
-const saveFavorite = async () => {
+const saveFavorite = async (obj) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.saveFav)
+        const data =  await client.query(userQueries.saveFav, [])
         result = data.rows
 
     } catch (err) {
@@ -150,11 +150,11 @@ const userProfile = async (email) => {
 }
 
 // Salir de la app: logout
-const logoutUser = async () => {
+const logoutUser = async (email) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.logoutUser)
+        const data = await client.query(userQueries.logoutUser, [email])
         result = data.rows
     } catch (err) {
         console.log(err);
@@ -184,11 +184,11 @@ const recoveredPassword = async () => {
 
 
 //cambiar contraseña
-const changedPassword = async () => {
+const changedPassword = async (user) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.changePassword)
+        const data = await client.query(userQueries.changePassword, [user.password, user.email])
         result = data.rows
     } catch (err) {
         console.log(err);
