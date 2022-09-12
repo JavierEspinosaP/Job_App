@@ -1,10 +1,8 @@
 //REQUIRES
-
 require('dotenv').config();
 const userQueries = require('../queries/userQueries')
 const pool = require('../utils/db_sql')
 
-//queries para los Endpoints web
 
 //REGISTRO DE USUARIO
 
@@ -62,11 +60,11 @@ const loggedStatus= async (email) => {
 
 
 //VISTA DE USUARIO: favoritos
-const getFavorites = async (email) => { 
+const getFavorites = async (email) => {
     let client, result;
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.favOffers)
+        const data = await client.query(userQueries.favOffers, [email])
         result = data.rows
     } catch (err) {
         console.log(err);
@@ -75,8 +73,9 @@ const getFavorites = async (email) => {
         client.release();    
     }
     return result
-    
 }
+
+
 
 //Guardar favorito - usuario
 const saveFavorite = async (obj) => {

@@ -23,7 +23,9 @@ html(lang='en')
     main
       div#mainContainer
         h1#h1Slogan FAVORITES
-        h3#h3Slogan
-          | estos son tus favoritos
-    script(type='text/javascript', src='../scripts/homeNavigation.js')
+        h3#h3Slogan Estos son tus favoritos
+        each fav in userFavs
+          p=fav.reference_offer
+
+    //- //script(type='text/javascript', src='../scripts/homeNavigation.js')
 include ./footer.pug
