@@ -19,6 +19,7 @@ frontRouter.get('/profile', authToken, frontController.getProfile);
 //Scraping
 frontRouter.get('/api/search', frontController.getSearch)
 
+
 //Vistas solo de admin
 
 

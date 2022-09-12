@@ -14,7 +14,7 @@ const cardsContainer = document.getElementById('cardsContainer')
 const spinner = document.getElementById('spinner')
 
 //Navegacion
-signUpAccess.addEventListener('click', ()=>{
+signUpAccess.addEventListener('click', () => {
     mainContainer.style.display = 'none'
     signUpContainer.style.display = 'block'
 })
@@ -51,6 +51,22 @@ searchButton.addEventListener('click', () => {
             <p>Presupuesto:${offersData[i].budget}</p>
             <p>Descripcion:${offersData[i].description}</p>
             <a id="urlLink" href="${offersData[i].url}">Link a la oferta</a>
+            <button id="addFav">Añadir Favorito</button>
+<button id="delFav">Eliminar Favorito</button>
+
+<script type="text/javascript">
+    let add = document.getElementById("addFav");
+    add.id = "addFav" + offersData[i].project_name;
+    add.onclick = function () {
+        saveFavorite();
+    }
+
+    let del = document.getElementById("delFav");
+    del.id = "delFav" + offersData[i].project_name;
+    del.onclick = function () {
+    deleteFavorite();
+    }
+</script>
             </section>`
             cardsContainer.innerHTML += offer
         }

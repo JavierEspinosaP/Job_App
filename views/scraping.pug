@@ -62,6 +62,18 @@ html(lang='en')
           ul
             each val in list
               li= val
+              button#addFav Agregar Favorito
+              button#delFav Borrar Favorito
+              script(type='text/javascript').
+                let add = document.getElementById("addFav")
+                add.id="addFav"+val["proyect_name"]
+                add.onclick=function(){saveFavorite}
+                let del = document.getElementById("delFav")
+                del.id="delFav"+val["proyect_name"]
+                del.onclick=function(){deleteFavorite}
+
+
+              
             
             
     script(type='text/javascript', src='../scripts/homeNavigation.js')

@@ -110,16 +110,14 @@ const recoverPasswordView = async (req, res, next) => {
     res.render('recover_pass')
 }
 
-
+//Save Favorite
 const saveFavorite = async (req, res, next) => {
     let client;
     const { body } = req.body
-
     try {
         client = await pool.connect();
         const data = await pool.query(userQueries.saveFav)
         //no existe query - falta pasarle los datos
-
         return res.status(200).json("Favorito guardado correctamente")
     } catch (err) {
         return next(err);
@@ -143,6 +141,16 @@ const deleteFavorite = async (req, res, next) => {
     }
 
 }
+//Scrapeo
+const getScrap = async (req, res) => {
+    try {
+        
+        res.render("scraping", { section: "scraping" });
+
+    } catch (error) {
+        return res.status(400).json(error);
+    }
+};
 
 module.exports = {
     getHome,
@@ -156,5 +164,6 @@ module.exports = {
     resetPasswordView,
     recoverPasswordView,
     saveFavorite,
-    deleteFavorite
+    deleteFavorite,
+    getScrap
 };
