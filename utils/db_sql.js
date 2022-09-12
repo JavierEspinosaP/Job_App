@@ -25,4 +25,4 @@ console.log("Estamos conectados a Elephant", clientConnected)
 // })
 
 
-module.exports = clientConnected
+module.exports = client
