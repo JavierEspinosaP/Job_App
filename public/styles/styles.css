@@ -207,6 +207,21 @@ footer{
 }
 
 
+#offerCreate{
+  display: flex;
+  justify-content: center;
+  align-content: space-between;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 44px;
+}
+
+
+.labelOffer{
+
+}
+
 #Users{
     display:flex;
     flex-direction: column;
@@ -339,9 +354,16 @@ footer{
   height: 20px;
   border-radius: 30px;
   text-align: center;
-  font-size: small;
+  font-size: 15px;
 }
 
+.searchInputOffer{ 
+  height: 20px;
+  border-radius: 30px;
+  text-align: center;
+  font-size: small;
+  margin-bottom: 16px;
+}
 
  #signUpFormContainer form label {
   font-size: 20px;
@@ -428,6 +450,86 @@ footer{
   margin-bottom: 27px;
 }
 
+.offerCardContainer{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.offerCard{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  padding: 10px 30px;
+  margin:40px;
+  background-color: #edede9;
+}
+
+.offerCard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+.bot-left {
+  position: relative;
+}
+.bot-left:before, .bot-left:after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: -3px;
+  
+}
+.bot-left:before {
+  top: -3px;
+  width: 3px;
+  background-image: -webkit-gradient(linear, 0 100%, 0 0, from(#000), to(transparent));
+  background-image: -webkit-linear-gradient(transparent, #000);
+  background-image: -moz-linear-gradient(transparent, #000);
+  background-image: -o-linear-gradient(transparent, #000);
+}
+.bot-left:after {
+  right: -3px;
+  height: 3px;
+  background-image: -webkit-gradient(linear, 0 0, 100% 0, from(#000), to(transparent));
+  background-image: -webkit-linear-gradient(left, #000, transparent);
+  background-image: -moz-linear-gradient(left, #000, transparent);
+  background-image: -o-linear-gradient(left, #000, transparent);
+}
+
+.pOffer{
+  font-size: larger;
+  text-align: justify;
+}
+
+.h2Offer{
+  color: black;
+  font-size: larger;
+}
+
+
+.h3Offer{
+ font-size: x-large;
+}
+
+.offerOptions{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.offerOptions h4{
+  margin:20px;
+}
+
+#offerDiv h4 a{
+  color: black;
+  font-size: larger;
+}
 
 #comeBackButtonContainer2{
     margin-top:50px;
