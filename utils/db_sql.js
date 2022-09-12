@@ -7,7 +7,7 @@ require('dotenv').config()
 
 const pgUrl = process.env.DATABASE_URL
 const client = new pg.Client(pgUrl)
-clientConnected = client.connect(), //se conecta a la bd
+let clientConnected = client.connect() //se conecta a la bd
 console.log("Estamos conectados a Elephant", clientConnected)
 
 
@@ -25,4 +25,4 @@ console.log("Estamos conectados a Elephant", clientConnected)
 // })
 
 
-module.exports = pg
+module.exports = clientConnected
