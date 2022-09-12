@@ -1,5 +1,6 @@
 
 const users = require('../models/users');
+const adminModel = require('../models/admin');
 // const admin = require('../models/admin')
 
 //Traer el scraper
@@ -62,10 +63,9 @@ const getFavorites = async (req, res) => {
     }
 };
 
-// "/profile"
-
+// "/profile" get profile by email
 const getProfile = async (req, res) => {
-    console.log("Holi desde frontControllers get");
+    console.log("Holi desde frontControllers getProfile");
     const profile = req.user.email;
     try {
         console.log(profile);
@@ -75,6 +75,20 @@ const getProfile = async (req, res) => {
         return res.status(400).json(error);
     }
 }
+
+//updateUser
+const updateUser = async (req, res) => {
+    try {
+        await adminModel.editUser(req.body);
+        console.log("Holi desde updateOffer controller");
+        console.log("Oferta edited: ", req.body);
+        res.redirect('/profile');
+    } catch (error) {
+        console.log(`ERROR: ${error.stack}`);
+        res.status(404).json({ "message": "Offer not found" });
+    }
+}
+
 
 // "/users"
 const getUsers = async (req, res) => {
@@ -186,6 +200,7 @@ module.exports = {
     getDashboardAdmin,
     getScrap,
     getSearch,
+    updateUser,
     restorePassword,
     recoverPassword,
     saveFavorite,

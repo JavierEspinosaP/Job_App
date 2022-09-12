@@ -22,16 +22,16 @@ html(lang='en')
           a(href='/api/logout') Logout
     main
       div#mainContainer
-        h1#h1Slogan #{data[0].name}
+        h1#h1Slogan Perfil de #{data[0].email}
         h3#h3Slogan
           | Aqui puedes modificar tu perfil
-        form.editUserForm
+        form.editUserForm(action="/profile" method="POST")
           div#editUserDiv
             label Name:
             input.editName(type='text' value=data[0].name name='name')
             label Surname:
-            input.editSurname(type='text' value=data[0].surname surname='surname')
-            button.editUser.btnClass(type="click") Edit user
-        ul#addUsers(action="/api/users" method="POST")
+            input.editSurname(type='text' value=data[0].surname name='surname')
+            input(type='hidden' value=data[0].email name='email')
+            button.editUser.btnClass(type="submit") Edit profile
     script(type='text/javascript', src='../scripts/homeNavigation.js')
 include ./footer.pug

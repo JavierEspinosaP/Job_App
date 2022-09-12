@@ -112,7 +112,6 @@ const editProfile = async () => {
 
 }
 
-
 //Borrar favorito - usuario
 const deleteFavorites = async () => {
     let client, result;
@@ -130,8 +129,7 @@ const deleteFavorites = async () => {
 
 }
 
-
-//Datos de perfil del usuario/admin
+//Get user by email
 const userProfile = async (email) => {
     console.log("Holi desde users userProfile");
     let client, result;
