@@ -16,14 +16,17 @@ html(lang='en')
         h4
           a(href='/api/users') users(admin)
         h4
-          a(href='/dashboard') dashboard(admin)
+          a(href='api/dashboard') dashboard(admin)
           //----------------------------------
         h4
           a(href='/api/logout') Logout
     main
-      div#mainContainer
-        h1#h1Slogan PROFILE
-        h3#h3Slogan
-          | Aqui puedes modificar tu perfil
+      div#h2SignUpContainer
+        h2#h2SignUp #{offer[0].title}
+        hr
+        div#signUpFormContainer
+          p #{offer[0].date}
+          h4 #{offer[0].budget}
+          p #{offer[0].description}
     script(type='text/javascript', src='../scripts/homeNavigation.js')
 include ./footer.pug

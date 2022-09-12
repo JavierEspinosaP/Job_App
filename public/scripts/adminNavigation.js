@@ -27,7 +27,6 @@ for (let i = 0; i < deleteUserBtn.length; i++) {
 }
 
 
-
 //-----------------Crear usuario, dentro del form(admin)-------------------//
 
 const btnFormCreateUser = document.getElementById("createNewUser");
@@ -86,47 +85,76 @@ console.log("este es el newUser", newUser)
 
 //-----------------Editar usuario(admin)-------------------//
 
-const btnEditUser = document.querySelectorAll("editUser"); //despliega form edit
-const formEditUser = document.getElementById("editUserForm");//formulario para EDIT user (se crea en cada tarjeta)
-const sectFormEdit = document.getElementById("sectFormEdit");//div que se dezspliega ****tenemos que coger el section???
-sectFormEdit.style.display = "none";
+const btnEditUser = document.querySelectorAll(".desplegarUser"); //despliega form edit
+const formEditUser = document.querySelectorAll(".editUserForm");//formulario para EDIT user (se crea en cada tarjeta)
 
-const eName = document.getElementById('editName');
-const eSurname = document.getElementById('editSurname');
-const eEmail = document.getElementById('paramEmail');
+// const eName = document.getElementById('editName');
+// const eSurname = document.getElementById('editSurname');
+// const eEmail = document.getElementById('paramEmail');
 
+const sectFormEdit = document.querySelectorAll(".sectFormEdit");
 
-for (let j = 0; j < btnEditUser.length;j++){
-  btnEditUser[j].addEventListener('click', function(e){
-    e.preventDefault();
-    sectFormEdit.style.display = "flex";
+for(const section of sectFormEdit){
+  section.style.display = "none";
+}
+
+for (let i = 0; i < btnEditUser.length; i++) {
+  btnEditUser[i].addEventListener('click', function (event){
+    let index = event.target.getAttribute("edit_index")
+    for (let i = 0; i < sectFormEdit.length; i++) {
+      if(sectFormEdit[i].getAttribute("id_user") == index){
+        sectFormEdit[i].style.display = "block";
+      } else {
+        sectFormEdit[i].style.display = "none";
+      }
+    }
   })
 }
 
-//botón de todas las tarjetas para editar usuario (se manda ya la info)
+//botón de todas las tarjetas para editar usuario (se manda ya la info editada)
 const editUserbtn = document.querySelectorAll(".editUser");
+
 for (let x = 0; x < editUserbtn.length; x++) {
   editUserbtn[x].addEventListener('click', function (event){
-  let email = event.target.getAttribute("edit_email")
-        updatedUser(email);
-        location.reload();
-    })
+    event.preventDefault();
+    event.stopPropagation();
+    let name = "";
+    let surname = "";
+    let email = "";
+
+    let currentIndex = editUserbtn[x].getAttribute('btn_index');
+    for (let i = 0; i < document.querySelectorAll(".editName").length; i++) {
+      if(document.querySelectorAll(".editName")[i].getAttribute('name_id') == currentIndex) {
+        name = document.querySelectorAll(".editName")[i].value;
+        console.log("dentro del for name:", name);
+      }
+    }
     
+    for (let j = 0; j < document.querySelectorAll(".editSurname").length; j++) {
+      if(document.querySelectorAll(".editSurname")[j].getAttribute('surname_id') == currentIndex) {
+        surname = document.querySelectorAll(".editSurname")[j].value;
+        console.log("dentro del for surname:", surname);
+      }
+    }
+
+    for (let x = 0; x < document.querySelectorAll(".paramEmail").length; x++) {
+      if(document.querySelectorAll(".paramEmail")[x].getAttribute('email_id') == currentIndex) {
+        email = document.querySelectorAll(".paramEmail")[x].value;
+        console.log("dentro del for email:", email);
+      }
+    }
+    
+    updatedUser(name, surname, email)
+    })
 }
-
-
-
-
-
-formEditUser.addEventListener('submit', function(e) {
-  e.preventDefault();
-  let updateUser = {
-    name: eName.value,
-    surname: eSurname.value,
-    email: eEmail.value,
-  }
-
-  async function updatedUser() {
+  
+  async function updatedUser(name, surname, email) {
+    let updateUser = {
+      name: name,
+      surname: surname,
+      email: email,
+    }
+    console.log("objeto actualizado:", updateUser);
     try {
       await fetch('/api/users',{
         method:'PUT',
@@ -144,8 +172,6 @@ formEditUser.addEventListener('submit', function(e) {
       console.log(error);
     }
   }
-  updatedUser();
-})
 
 
 

@@ -15,7 +15,7 @@ html(lang='en')
           a(href='/') Offers
           //- Solo visibles par aadministrador
         h4
-          a(href='/users') Users
+          a(href='/api/users') users(admin)
         h4
           a(href='/dashboard') Dashboard
         h4
@@ -44,26 +44,27 @@ html(lang='en')
         h3#h3Slogan
           | Users registered
       div#Users
-        //- each user in results
-        //-   article.userCard
-        //-     h4 #{user.name}
-        //-     p #{user.surname}
-        //-     p #{user.email}
-        //-     p=user.role
-        //-     div#buttonsCard
-        //-       button.deleteUser.btnClass(value="delete" user_email=user.email) Delete
-        //-       button#editUser.btnClass(type="click") Edit 
-        //-       section#sectFormEdit
-        //-         form#editUserForm
-        //-           div#editUserDiv
-        //-             label Name:
-        //-             input#editName(type='text' placeholder='User name')
-        //-             label Surname:
-        //-             input#editSurname(type='text' placeholder='User surname')
-        //-             label Email:
-        //-             input#paramEmail(type='text' placeholder='Email')
-        //-             button.editUser.btnClass(type="submit" edit_email=user.email) Edit user
-        //-         ul#addUsers(action="/api/users" method="POST")
+        each user in results
+          article.userCard
+            h4 #{user.name}
+            p #{user.surname}
+            p #{user.email}
+            p=user.role
+            div#buttonsCard
+              button.deleteUser.btnClass(value="delete" user_email=user.email) Delete
+              button.desplegarUser.btnClass(type="click" edit_index=user.user_id) Edit 
+              section.sectFormEdit(id_user=user.user_id)
+                form.editUserForm
+                  div#editUserDiv
+                    p #{index}
+                    label Name:
+                    input.editName(type='text' placeholder='User name' name_id=user.user_id)
+                    label Surname:
+                    input.editSurname(type='text' placeholder='User surname' surname_id=user.user_id)
+                    label Email:
+                    input.paramEmail(type='text' placeholder='Email' email_id=user.user_id)
+                    button.editUser.btnClass(type="click" btn_index=user.user_id) Edit user
+                ul#addUsers(action="/api/users" method="POST")
 
     script(type='text/javascript', src='../scripts/adminNavigation.js')
 include ./footer.pug
