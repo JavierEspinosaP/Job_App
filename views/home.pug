@@ -13,22 +13,22 @@ html(lang='en')
     main
       div#signUpContainer
         div#comeBackButtonContainer
-          button(id="comeBackButton") Volver
+          button.backBtn(id="comeBackButton") Volver
         div#h2SignUpContainer
-          h2#h2SignUp Registro
+          h2.classH2#h2SignUp Registro
         div#signUpFormContainer
           form(action="/api/user" method="post" id="signUpForm")
             label Nombre
-            input(id="signUpName" name="name" type="text" placeholder="John")
+            input.searchInputRegister(id="signUpName" name="name" type="text" placeholder="John")
             label Apellidos
-            input(id="signUpSurname" name="surname" type="text" placeholder="Wick")
+            input.searchInputRegister(id="signUpSurname" name="surname" type="text" placeholder="Wick")
             label Email 
-            input(id="signUpEmail" name="email"  type="text" placeholder="John_Wick@terra.es")
+            input.searchInputRegister(id="signUpEmail" name="email"  type="text" placeholder="John_Wick@terra.es")
             label Contraseña
-            input(id="signUpPassword" name="password" type="password" placeholder="Omelette123")
+            input.searchInputRegister(id="signUpPassword" name="password" type="password" placeholder="Omelette123")
             label Repite Contraseña
-            input(type="password" placeholder="Omelette123")
-            input(type="submit")
+            input.searchInputRegister(type="password" placeholder="Omelette123")
+            input.backBtn(type="submit")
       div#loginContainer
         div#comeBackButtonContainer2
           button(id="comeBackButton2") Volver
@@ -44,7 +44,7 @@ html(lang='en')
       div#mainContainer
         h1#h1Slogan Tu proyecto, nuestro objetivo
         h3#h3Slogan
-          | Con más de 300000 usuarios, nuestra app ha demostrado por tercer año consecutivo ser la web preferente en búsqueda de proyectos freelance de España
+          | Con más de 300,000 usuarios, nuestra app ha demostrado por tercer año consecutivo ser la web preferente en búsqueda de proyectos freelance de España
         div#searchContainer
           input.searchInput(id="inputValue" placeholder="Introduce tu busqueda")
           button.clickBtn#searchButton Buscar

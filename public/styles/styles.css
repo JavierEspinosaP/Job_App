@@ -144,6 +144,44 @@ footer{
   font-size: 20px;
 }
 
+.backBtn{
+  background-image: linear-gradient(to right, #F7971E 0%, #FFD200 51%, #F7971E 100%);
+  padding: 11px 19px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  display: block;
+  border-radius: 40px;
+  margin-bottom: 27px
+}
+
+.backBtn:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.classH2{
+  font-size: 1.9rem;
+}
+
+.sendSend{
+  background-image: linear-gradient(to right, #F7971E 0%, #FFD200 51%, #F7971E 100%);
+  padding: 11px 19px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  display: block;
+  border-radius: 40px;
+  margin-bottom: 27px
+}
+
 #Users{
     display:flex;
     flex-direction: column;
@@ -226,22 +264,23 @@ footer{
 }
 
 #newUserForm input {
-    border-radius: 4% / 50%;
-    padding: 7px;
-    text-align: center;
-    margin: 10px;
+  border-radius: 4% / 50%;
+  padding: 7px;
+  text-align: center;
+  margin: 10px;
 }
 
 #h2SignUpContainer{
-    margin-top: 30px;
-    text-align: center;
+  margin-top: 30px;
+  text-align: center;
 }
 
 #signUpFormContainer{
-    margin-top:30px;
-    display: flex;
-    justify-content:center;
-    align-content:center;
+  margin-top: 30px;
+  margin-bottom: 65px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 #signUpForm{
@@ -252,8 +291,34 @@ footer{
 }
 
 #signUpForm input{
-    width:170px;
-    margin: 10px
+  width: 165px;
+  margin: 10px;
+}
+
+.searchInputRegister{
+  height: 20px;
+  border-radius: 30px;
+  text-align: center;
+  font-size: small;
+}
+
+
+ #signUpFormContainer form label {
+  font-size: 20px;
+ }
+
+ #signUpForm input .btnSend{
+  background-image: linear-gradient(to right, #F7971E 0%, #FFD200 51%, #F7971E 100%);
+  padding: 11px 19px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  display: block;
+  border-radius: 40px;
+  margin-bottom: 27px;
 }
 
 #mainContainer{
