@@ -1,23 +1,20 @@
 const mongoose = require('mongoose');
 
 const offersAdmin = {
-    id: { 
-        type: Number, 
+    id: {
+        type: Number,
         unique: true
     },
-    title: { 
-        type: String, 
-    },
-    company: { 
-        type: String, 
-    },
-    date: { 
-        type: Date, 
-    },
-    location:{
+    title: {
         type: String,
     },
-    description:{
+    date: {
+        type: Date,
+    },
+    budget: {
+        type: Number,
+    },
+    description: {
         type: String,
     }
 };

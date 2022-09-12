@@ -13,16 +13,18 @@ frontRouter.get('/', frontController.getHome);
 
 
 frontRouter.get('/dashboard_user', authToken, frontController.getDashboardUser);
-frontRouter.get('/favorites',authToken, frontController.getFavorites);
-frontRouter.get('/profile',authToken, frontController.getProfile);
+frontRouter.get('/favorites', authToken, frontController.getFavorites);
+frontRouter.get('/profile', authToken, frontController.getProfile);
 
 //Scraping
 frontRouter.get('/api/search', frontController.getSearch)
 
 //Vistas solo de admin
 
+
 frontRouter.get('/users',authToken, authAdmin, frontController.getUsers);
-frontRouter.get('/dashboard',authToken, frontController.getDashboardAdmin);
+frontRouter.get('/dashboard', authToken, adminController.getOffers);
+
 
 
 frontRouter.get('/recoverpassword', frontController.recoverPasswordView);
