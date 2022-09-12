@@ -93,19 +93,7 @@ const getDashboardAdmin = async (req, res) => {
     }
 };
 
-// "/scrap"
 
-const getScrap = async (req, res) => {
-    try{
-        //const offers = await scraper.arrScrapers[0]("https://ticjob.es/esp/freelances-it")
-        res.render("scraping", { section: "Scraping" , list:["patata"]});
-       // res.status(200).json(offers)
-    }
-    catch (err){
-        console.log(err)
-        res.status(404).json({})
-    }
-}
 
 //"changePassword": `UPDATE users SET password = $1 WHERE users.email = $2`
 const changePasswordView = async (req, res, next) => {
