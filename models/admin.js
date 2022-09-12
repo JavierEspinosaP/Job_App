@@ -83,17 +83,16 @@ const deleteUser = async (email) => {
 
 //Obtener oferta por id (_id NO)
 //No se volver a controllers con los parametros obtenidos
-// const getOffer = async (req, res) => {
-//     try {
-//         const offer = await apiSchema.find({ id: req.params.id });
-//         console.log("Holi desde getOffer admin.js");
-//         return offer
-//     }
-//     catch (error) {
-//         console.log(`ERROR: ${error.stack}`)
-//         res.status(404).json({ "message": "Offer not found" });
-//     }
-// }
+const getOffer = async (id) => {
+    try {
+        const offer = await apiSchema.find({id},"-__v -_id -id ");
+        return offer
+    }
+    catch (error) {
+        console.log(`ERROR: ${error.stack}`)
+        res.status(404).json({ "message": "Offer not found" });
+    }
+}
 
 //[POST] /api/ads Crear una oferta de trabajo o curso (admin)
 const createOffer = async (offer) => {
@@ -144,6 +143,7 @@ module.exports = {
     createNewUser,
     editUser,
     deleteUser,
+    getOffer,
     createOffer,
     updateOffer,
     deleteOffer

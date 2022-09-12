@@ -1,5 +1,5 @@
 const users = require('../models/users');
-// const admin = require('../models/admin')
+const admin = require('../models/admin')
 
 //Traer el scraper
 const scraper = require('../utils/scraper')
@@ -96,11 +96,34 @@ const recoverPasswordView = async (req, res) => {
 const getFavorites = async (req, res) => { 
     const email = req.query.email;
     try {
-        const userFavs = await users.getFavorites(email); // [] array de ofertas con ID de MONGO
-        // llamo a las ofertas de mongo con ID en bucle, recorrer array en bucle
 
-        console.log(userFavs);
-        res.render("favorites", { section: "favorites", userFavs});
+        //const userFavs = await users.getFavorites(email); 
+        const userFavs = await users.getFavorites("example@gmail.com"); 
+            
+        // [] array de ofertas con ID de MONGO
+        // llamo a las ofertas de mongo con ID en bucle, recorrer array en bucle
+        
+        let offers = [];
+        for (let i = 0; i < userFavs.length; i++) {
+            let offer = {};
+            const ref = userFavs[i].reference_offer;
+            if(ref.startsWith('https')){
+                offer = {
+                    title: ref,
+                    date: 2022-09-13,
+                    budget: 5000,
+                    description: 'Desarrollo FullStack',
+                  }
+                  
+                
+            } else { //id mongo
+                const mongoOffer = await admin.getOffer(ref)
+                offer = mongoOffer[0];
+            }
+            offers.push(offer);
+        }
+        console.log(offers);
+        res.render("favorites", {section: "favorites", offers});
 
     } catch (error) {
         return res.status(400).json(error);
