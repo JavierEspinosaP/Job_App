@@ -68,6 +68,32 @@ const deleteUser = async (email) => {
 
 //Ofertas en MONGODB----------------------------------------------
 //[GET] Obtener todas las ofertas en mongo
+//No se volver a controllers con los parametros obtenidos
+// const getOffers = async (req, res) => {
+//     try {
+//         const offers = await apiSchema.find({});
+//         console.log('ofertas ', offers);
+//         res.render('/dashboard');
+//     }
+//     catch (error) {
+//         console.log(`ERROR: ${error.stack}`)
+//         res.status(404).json({ "message": "Offer not found" });
+//     }
+// }
+
+//Obtener oferta por id (_id NO)
+//No se volver a controllers con los parametros obtenidos
+const getOffer = async (id) => {
+    try {
+        const offer = await apiSchema.find({id},"-__v -_id -id ");
+        return offer
+    }
+    catch (error) {
+        console.log(`ERROR: ${error.stack}`)
+        res.status(404).json({ "message": "Offer not found" });
+    }
+}
+
 
 //[POST] /api/ads Crear una oferta de trabajo o curso (admin)
 const createOffer = async (offer) => {
@@ -118,6 +144,7 @@ module.exports = {
     createNewUser,
     editUser,
     deleteUser,
+    getOffer,
     createOffer,
     updateOffer,
     deleteOffer

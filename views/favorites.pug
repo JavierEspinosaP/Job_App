@@ -23,7 +23,12 @@ html(lang='en')
     main
       div#mainContainer
         h1#h1Slogan FAVORITES
-        h3#h3Slogan
-          | estos son tus favoritos
-    script(type='text/javascript', src='../scripts/homeNavigation.js')
+        h3#h3Slogan Estos son tus favoritos
+        p=section
+        p=offers[0].title
+
+          //- each offer in offers
+          //-   p=offer.title
+
+    //- //script(type='text/javascript', src='../scripts/homeNavigation.js')
 include ./footer.pug
