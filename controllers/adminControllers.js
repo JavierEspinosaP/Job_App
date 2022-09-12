@@ -18,14 +18,14 @@ const getUsersRegistered = async (req, res) => {
 const createUser = async (req, res) => {
   const newUser = req.body;
   try {
-      const response = await adminModel.createNewUser(newUser,{
-        method: "POST",
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newUser)
-      })
+    const response = await adminModel.createNewUser(newUser, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newUser)
+    })
     res.status(201).json({ "User created": response })
 
   } catch (error) {
@@ -37,17 +37,18 @@ const createUser = async (req, res) => {
 
 
 
-const editUser = async(req,res)=>{
-  const editedUser= req.body
-  try{
-    const response = await adminModel.editUser(editedUser,{
-        method: "PUT",
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(editedUser)
-      })
+const editUser = async (req, res) => {
+  const editedUser = req.body
+  try {
+    const response = await adminModel.editUser(editedUser, {
+      method: "PUT",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(editedUser)
+    })
+    console.log(response);
     res.status(200).json({ "User edited": response })
   }
   catch (error) {
