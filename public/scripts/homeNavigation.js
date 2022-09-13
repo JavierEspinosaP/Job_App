@@ -45,14 +45,14 @@ searchButton.addEventListener('click', () => {
         spinner.style.display = "none"
         for (let i = 0; i < offersData.length; i++) {
             let offer = `
-            <section id="offerCard">
+            <section class="bot-left" id="offerCard">
             <h3>${offersData[i].proyect_name}</h3>
             <p>Publicado:${offersData[i].published}</p>
             <p>Presupuesto:${offersData[i].budget}</p>
             <p>Descripcion:${offersData[i].description}</p>
-            <a id="urlLink" href="${offersData[i].url}">Link a la oferta</a>
-            <button id="addFav">Añadir Favorito</button>
-<button id="delFav">Eliminar Favorito</button>
+            <a class="logContainer" id="urlLink" href="${offersData[i].url}">Link a la oferta</a>
+            <button class="backBtn" id="addFav">Añadir Favorito</button>
+<button class="backBtn" id="delFav">Eliminar Favorito</button>
 
 <script type="text/javascript">
     let add = document.getElementById("addFav");
