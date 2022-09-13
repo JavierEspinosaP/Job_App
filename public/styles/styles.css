@@ -80,10 +80,12 @@ body {
 }
 
 #loginAccess{
+  padding-left: 100px;
   cursor: pointer;
 }
 
 #signUpAccess{
+  padding-left: 100px;
     cursor: pointer;
 }
 
