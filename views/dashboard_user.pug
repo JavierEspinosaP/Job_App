@@ -16,10 +16,7 @@ html(lang='en')
             a(href='/') Ofertas aplicadas
             //- Solo visibles par aadministrador
           h4
-            a(href='/api/users') Usuarios
-          h4
-            a(href='/dashboard') Tablón
-            
+            a(href='/api/users') Usuarios   
           h4
             a(href='/changepassword') Cambiar contraseña
           h4 
@@ -36,5 +33,7 @@ html(lang='en')
         div#searchContainer
           input.searchInput(id="inputValue" placeholder="Introduce tu busqueda")
           button.clickBtn#searchButton Buscar
+                  div#cardsContainer
+          div(id="spinner" class="loader") Loading...
     script(type='text/javascript', src='../scripts/homeNavigation.js')
 include ./footer.pug

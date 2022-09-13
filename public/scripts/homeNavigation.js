@@ -45,7 +45,7 @@ searchButton.addEventListener('click', () => {
         spinner.style.display = "none"
         for (let i = 0; i < offersData.length; i++) {
             let offer = `
-            <section id="offerCard">
+            <section class="bot-left" id="offerCard">
             <h3>${offersData[i].proyect_name}</h3>
             <p>Publicado:${offersData[i].published}</p>
             <p>Presupuesto:${offersData[i].budget}</p>
