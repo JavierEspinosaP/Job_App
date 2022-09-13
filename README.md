@@ -34,9 +34,11 @@ Y si no recordamos nuestra contraseña, podemos enviarla a nuestro correo al pul
 ![recover_pass](https://user-images.githubusercontent.com/107397146/189877492-6e9ca84e-702b-4cb7-a44c-b5bb00e32df1.jpg)
 ***
 ***
-Si hemos iniciado sesion con una cuenta de usuario, se nos redirigira al dashboard de administrador desde el cual podemos crear una nueva oferta rellenando el formulario y pulsando en "crear oferta" y ver las que ya tenemos creadas. Además tambien tenemos botones para acceder a nuestro perfil, favoritos, listado de usuarios registrados y salir de la cuenta
+Si hemos iniciado sesion con una cuenta de usuario, se nos redirigira al dashboard de administrador desde el cual podemos crear una nueva oferta rellenando el formulario y pulsando en "crear oferta" y ver las que ya tenemos creadas, las cuales podemos ver a pantalla completa pulsando en "ver oferta completa", editarla al pulsar en "editar" y borrarla desde el boton "borrar". Además tambien tenemos botones para acceder a nuestro perfil, favoritos, listado de usuarios registrados y salir de la cuenta
 ![dashboard_admin](https://user-images.githubusercontent.com/107397146/189878297-25841c93-bbf0-4781-b526-b0d74dd960aa.png)
 ***
+Si pulsamos en "Usuarios" nos redirecciona a una pantalla donde podemos crear un usuario rellenando su formulario y ver los usuarios ya registrados. Si pulsamos "edit" en alguno de los usuarios se nos deplegará un formulario en el cual podemos editar sus datos. Y borrarlo si pulsamos en "delete"
+![edit_users](https://user-images.githubusercontent.com/107397146/189879114-058781e5-51cd-412d-b025-31eebfa94de0.png)
 
 
 
