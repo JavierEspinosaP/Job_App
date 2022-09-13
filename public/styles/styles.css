@@ -589,15 +589,17 @@ footer{
     align-items: center;
 }
 
+
 #offerCard{
-    border-style: solid;
-    border-radius: 15px;
-    transition:0.2s;
-    padding:20px;
-    margin: 20px;
-    width:400px;
-    text-align: center;
+  border-radius: 15px;
+  transition:0.2s;
+  padding:20px;
+  margin: 20px;
+  width:400px;
+  text-align: center;
+  background-color: #EDEDE9;
 }
+
 #offerCard:hover{
    background-color: rgb(155, 195, 221); 
 }
