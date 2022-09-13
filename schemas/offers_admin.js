@@ -5,10 +5,10 @@ const offersAdmin = {
         type: Number,
         unique: true
     },
-    title: {
+    proyect_name: {
         type: String,
     },
-    date: {
+    published: {
         type: Date,
     },
     budget: {

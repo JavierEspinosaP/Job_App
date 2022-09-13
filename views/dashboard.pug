@@ -31,9 +31,9 @@ html(lang='en')
             label.labelOffer(for="") id: 
             input.searchInputOffer#id(type="number" name="id" placeholder="Añade una ID")
             label.labelOffer(for="") Título de oferta:  
-            input.searchInputOffer#title(type="text" name="title" placeholder="Nombre de la oferta")
+            input.searchInputOffer#title(type="text" name="proyect_name" placeholder="Nombre de la oferta")
             label.labelOffer(for="") Fecha:  
-            input.searchInputOffer#date(type="text" name="date" placeholder="Fecha de publicación")
+            input.searchInputOffer#date(type="text" name="published" placeholder="Fecha de publicación")
             label.labelOffer(for="") Salario:  
             input.searchInputOffer#budget(type="number" name="budget" placeholder="Salario estimado")
             label.labelOffer(for="") Descripción:  
@@ -47,8 +47,8 @@ html(lang='en')
             -for(let i=0;i<offers.length; i++)
               div.bot-left.offerCard.offerCardContainer#offerDiv
                 p.pOffer= offer[i].id
-                h2.h2Offer= offer[i].title
-                p.pOffer= offer[i].date
+                h2.h2Offer= offer[i].proyect_name
+                p.pOffer= offer[i].published
                 h3.h3Offer= offer[i].budget
                 p.pOffer= offer[i].description
                 -var url=offer[i].id;
