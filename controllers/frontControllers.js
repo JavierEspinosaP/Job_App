@@ -111,56 +111,25 @@ const getDashboardAdmin = async (req, res) => {
     }
 };
 
-// "/scrap"
-
-const getScrap = async (req, res) => {
-    try {
-        //const offers = await scraper.arrScrapers[0]("https://ticjob.es/esp/freelances-it")
-        res.render("scraping", { section: "Scraping", list: ["patata"] });
-        // res.status(200).json(offers)
-    }
-    catch (err) {
-        console.log(err)
-        res.status(404).json({})
-    }
+//"changePassword": `UPDATE users SET password = $1 WHERE users.email = $2`
+const changePasswordView = async (req, res, next) => {
+    res.render('change_pass')
 }
 
-//"changePassword": `UPDATE users SET password = $1 WHERE users.email = $2`
-const restorePassword = async (req, res, next) => {
-    let client;
-    const { password, email } = req.query
-    try {
-        client = await pool.connect();
-        const data = await client.query(userQueries.changePassword, [password, email])
-        return res.status(200).json("Password cambiado correctamente")
-    } catch (err) {
-        return next(err);
-    } finally {
-        client.release();
-    }
+const resetPasswordView = async (req, res, next) => {
+    res.render('reset_pass')
 }
 
 
 //"recoverPassword":`SELECT password FROM users WHERE users.email = $1`
-const recoverPassword = async (req, res, next) => {
-    let client, result;
-    const { email } = req.query
-    try {
-        client = await pool.connect();
-        const data = await client.query(userQueries.recoverPassword, [email])
-        result = data.rows
-        return res.status(200).json(result)
-    } catch (err) {
-        return next(err);
-    } finally {
-        client.release();
-    }
+const recoverPasswordView = async (req, res, next) => {
+    res.render('recover_pass')
 }
 
 
 const saveFavorite = async (req, res, next) => {
     let client;
-    const { body } = req
+    const { body } = req.body
 
     try {
         client = await pool.connect();
@@ -198,11 +167,11 @@ module.exports = {
     getProfile,
     getUsers,
     getDashboardAdmin,
-    getScrap,
     getSearch,
     updateUser,
-    restorePassword,
-    recoverPassword,
+    changePasswordView,
+    resetPasswordView,
+    recoverPasswordView,
     saveFavorite,
     deleteFavorite
 };
