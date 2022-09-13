@@ -1,6 +1,6 @@
 const users = require('../models/users');
 const adminModel = require('../models/admin');
-
+const apiSchema = require('../schemas/offers_admin');
 //Traer el scraper
 const scraper = require('../utils/scraper')
 const fetch = require('node-fetch')
@@ -16,7 +16,8 @@ const getHome = async (req, res) => {
 
 
 
-const getSearch = async (req, res) => {    try {
+const getSearch = async (req, res) => {
+    try {
         let search = req.query.search
         let url = ["https://www.workana.com/jobs?language=en%2Ces", "https://www.freelancer.com/jobs/web-development/"]
         const offers = []
@@ -25,8 +26,14 @@ const getSearch = async (req, res) => {    try {
             offers.push(dataOffers)
         }
         const merged = [].concat.apply([], offers);
+        //Traer ofertas de mongo
 
-        res.status(200).json(merged)
+        const mongoOffers = await apiSchema.find();
+        console.log(mongoOffers);
+        // merged.concat(mongoOffers);
+        // mongoOffers.concat(merged);
+        const allOffers = [...mongoOffers, ...merged];
+        res.status(200).json(allOffers)
 
     }
     catch (error) {
@@ -124,29 +131,29 @@ const recoverPasswordView = async (req, res) => {
 
 
 // ***GET DE FAVORITOS
-const getFavorites = async (req, res) => { 
+const getFavorites = async (req, res) => {
     const email = req.query.email;
     try {
 
         //const userFavs = await users.getFavorites(email); 
-        const userFavs = await users.getFavorites("example@gmail.com"); 
-            
+        const userFavs = await users.getFavorites("example@gmail.com");
+
         // [] array de ofertas con ID de MONGO
         // llamo a las ofertas de mongo con ID en bucle, recorrer array en bucle
-        
+
         let offers = [];
         for (let i = 0; i < userFavs.length; i++) {
             let offer = {};
             const ref = userFavs[i].reference_offer;
-            if(ref.startsWith('https')){
+            if (ref.startsWith('https')) {
                 offer = {
                     title: ref,
-                    date: 2022-09-13,
+                    date: 2022 - 09 - 13,
                     budget: 5000,
                     description: 'Desarrollo FullStack',
-                  }
-                  
-                
+                }
+
+
             } else { //id mongo
                 const mongoOffer = await admin.getOffer(ref)
                 offer = mongoOffer[0];
@@ -154,7 +161,7 @@ const getFavorites = async (req, res) => {
             offers.push(offer);
         }
         console.log(offers);
-        res.render("favorites", {section: "favorites", offers});
+        res.render("favorites", { section: "favorites", offers });
 
     } catch (error) {
         return res.status(400).json(error);
@@ -167,7 +174,7 @@ const getFavorites = async (req, res) => {
 //Scrapeo
 const getScrap = async (req, res) => {
     try {
-        
+
         res.render("scraping", { section: "scraping" });
 
     } catch (error) {
