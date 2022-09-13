@@ -3,35 +3,37 @@ html(lang='en')
   include ./head.pug
   body
     header
-      h1 
-        a(href='/') Job Finder
-      #logContainer
-        h4
-          a(href='/profile') profile
-        h4
-          a(href='/favorites') favorites 
-        h4
-          a(href='/') Ofertas aplicadas
-          //- Solo visibles par aadministrador
-        h4
-          a(href='/api/users') users(admin)
-        h4
-          a(href='/dashboard') dashboard(admin)
-          //----------------------------------
-        form(action="/api/logout" method="post")
-          input(type="submit")
-        h4
-          a(href='/changepassword') Cambiar contraseña
-        h4 
-          a(href='/recoverpassword') Recuperar contraseña
+      div.headerDash
+        h1 
+          a(href='/') Job Finder
+        #logContainer
+        div.logContainer
+          h4
+            a(href='/profile') Perfil
+          h4
+            a(href='/favorites') Favoritos 
+          h4
+            a(href='/') Ofertas aplicadas
+            //- Solo visibles par aadministrador
+          h4
+            a(href='/api/users') Usuarios
+          h4
+            a(href='/dashboard') Tablón
+            
+          form(action="/api/logout" method="post")
+            input(type="submit")
+          h4
+            a(href='/changepassword') Cambiar contraseña
+          h4 
+            a(href='/recoverpassword') Recuperar contraseña
     main
       div#mainContainer
-        h1#h1Slogan NOMBRE DE USUARIO
+        h1#h1Slogan ¡Hola!
         h3#h3Slogan
-          | Tenemo nuevas ofertas publicadas, ¿les echas un vistazo?
+          | Tenemos nuevas ofertas publicadas, ¿les echas un vistazo?
         div#searchFormContainer
         div#searchContainer
-          input(id="inputValue" placeholder="Introduce tu busqueda")
-          button#searchButton Click
+          input.searchInput(id="inputValue" placeholder="Introduce tu busqueda")
+          button.clickBtn#searchButton Buscar
     script(type='text/javascript', src='../scripts/homeNavigation.js')
 include ./footer.pug

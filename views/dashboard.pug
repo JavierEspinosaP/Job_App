@@ -3,60 +3,62 @@ html(lang='en')
   include ./head.pug
   body
     header
-      h1 
-        a(href='/') Job Finder
-      #logContainer
-        h4
-          a(href='/profile') profile
-        h4
-          a(href='/favorites') favorites 
-        h4
-          a(href='/') Ofertas aplicadas
-          //- Solo visibles par aadministrador
-        h4
-          a(href='/api/users') users(admin)
-        h4
-          a(href='/dashboard') dashboard(admin)
-          //----------------------------------
-        h4
-          a(href='/api/logout') Logout
+      div.headerDash
+        h1 
+          a(href='/') Job Finder
+        #logContainer
+        div.logContainer
+          h4
+            a(href='/profile') Perfil
+          h4
+            a(href='/favorites') Favoritos 
+          h4
+            a(href='/') Ofertas aplicadas
+          h4
+            a(href='/api/users') Usuarios
+          h4
+            a(href='/dashboard') Tablón
+            //----------------------------------
+          h4
+            a(href='/api/logout') Salir
     main
       div#mainContainer
-        h1#h1Slogan DASHBOARD (ADMIN)
+        h1#h1Slogan Tablón
         h3#h3Slogan
-          |Publicar una oferta
+          |Publicar nueva oferta
         div#signUpFormContainer
-          form#offerCreate(action="/api/ads/create" method="POST") 
-            label(for="") id: 
-            input#id(type="number" name="id")
-            label(for="") Título de oferta:  
-            input#title(type="text" name="title")
-            label(for="") Fecha:  
-            input#date(type="text" name="date")
-            label(for="") Presupuesto:  
-            input#budget(type="number" name="budget")
-            label(for="") Descripción:  
-            input#description(type="text" name="description") 
-            button#createBtn(type="submit" value="Search") Crear oferta
+          form.marcoForm#offerCreate(action="/api/ads/create" method="POST") 
+            label.labelOffer(for="") id: 
+            input.searchInputOffer#id(type="number" name="id" placeholder="Añade una ID")
+            label.labelOffer(for="") Título de oferta:  
+            input.searchInputOffer#title(type="text" name="title" placeholder="Nombre de la oferta")
+            label.labelOffer(for="") Fecha:  
+            input.searchInputOffer#date(type="text" name="date" placeholder="Fecha de publicación")
+            label.labelOffer(for="") Salario:  
+            input.searchInputOffer#budget(type="number" name="budget" placeholder="Salario estimado")
+            label.labelOffer(for="") Descripción:  
+            input.searchInputOffer#description(type="text" name="description" placeholder="Descripción de la oferta") 
+            button#createBtn.clickBtn(type="submit" value="Search") Crear oferta
         h3#h3Slogan
-          | Listado de todas las ofertas creadas por el Admin
+          | Listado de todas las ofertas creadas:
         .offers
           each offer in {offers}
             .offer
             -for(let i=0;i<offers.length; i++)
-              hr
-              p= offer[i].id
-              h2= offer[i].title
-              p= offer[i].date
-              h3= offer[i].budget
-              p= offer[i].description
-              -var url=offer[i].id;
-              h4
-                a(href='api/ads/open/'+url) Abrir
-              h4
-                a(href='api/ads/update/'+url) Editar
-              h4
-                a(href='api/ads/delete/'+url) Borrar
+              div.bot-left.offerCard.offerCardContainer#offerDiv
+                p.pOffer= offer[i].id
+                h2.h2Offer= offer[i].title
+                p.pOffer= offer[i].date
+                h3.h3Offer= offer[i].budget
+                p.pOffer= offer[i].description
+                -var url=offer[i].id;
+                div.offerOptions
+                  h4
+                    a(href='api/ads/open/'+url) Ver oferta completa
+                  h4
+                    a(href='api/ads/update/'+url) Editar
+                  h4
+                    a(href='api/ads/delete/'+url) Borrar
           else 
             p no values
 
