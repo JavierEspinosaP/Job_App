@@ -30,7 +30,8 @@ En la pantalla de perfil, podremos editar nuestro nombre y apellido.
 Si pulsamos en cambiar contraseña se nos abrirá un formulario para introducir 2 veces la nueva contraseña.
 ![change_password](https://user-images.githubusercontent.com/107397146/189877264-5172e128-573f-4248-b3c0-b296d2e9bb50.jpg)
 ***
-Y si no recordamos nuestra contraseña, podemos enviarla a nuestro correo al pulsar en recuperar contraseña e introducri nuestro correo
+Y si no recordamos nuestra contraseña, podemos enviarla a nuestro correo al pulsar en recuperar contraseña e introducir nuestro correo
+
 ![recover_pass](https://user-images.githubusercontent.com/107397146/189877492-6e9ca84e-702b-4cb7-a44c-b5bb00e32df1.jpg)
 ***
 ***
