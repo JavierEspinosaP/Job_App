@@ -51,8 +51,9 @@ searchButton.addEventListener('click', () => {
             <p>Presupuesto:${offersData[i].budget}</p>
             <p>Descripcion:${offersData[i].description}</p>
             <a class="logContainer" id="urlLink" href="${offersData[i].url}">Link a la oferta</a>
+            <div class="divContainerFav">
             <button class="backBtn" id="addFav">Añadir Favorito</button>
-<button class="backBtn" id="delFav">Eliminar Favorito</button>
+<button class="backBtn" id="delFav">Eliminar Favorito</button></div>
 
 <script type="text/javascript">
     let add = document.getElementById("addFav");
