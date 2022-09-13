@@ -3,18 +3,22 @@ html(lang='en')
   include ./head.pug
   body
     header
-      h1 
-        a(href='/') Job Finder
-      #logContainer
-        h4#signUpAccess Registro
-        h4#loginAccess Log In
-    main
-        form(action="/api/passrest" method="post")
+      div.header
+        h1 
+          a(href='/') Job Finder
+        #logContainer
+        div.logContainer
+          h4#signUpAccess Registro
+          h4#loginAccess Log In
+    main.recover
+        h2 Cambiar contraseña
+        div
+        form.formRecover.marcoForm(action="/api/passrest" method="post")
             label Nueva contraseña
             input(name="password" type="password" Placeholder="John_Wick@terra.es") 
             label Repite contraseña
             input(name="passwordRepeat" type="password" Placeholder="John_Wick@terra.es")
-            input(type="submit")
+            button.recoverBtn(type="submit") Cambiar
   script(type='text/javascript', src='//cdn.jsdelivr.net/npm/sweetalert2@11')
   script(type='text/javascript', src='sweetalert2.min.js')
   script(type='text/javascript', src='/scripts/homeNavigation.js')

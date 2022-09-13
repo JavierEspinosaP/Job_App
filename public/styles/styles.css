@@ -283,10 +283,10 @@ footer{
 }
 
 #editUserForm input {
-    border-radius: 4% / 50%;
-    padding: 7px;
-    text-align: center;
-    margin: 10px;
+  border-radius: 4% / 50%;
+  padding: 7px;
+  text-align: center;
+  margin: 10px;
 }
 
 #editUserDiv{
@@ -401,6 +401,12 @@ footer{
   margin-bottom: 27px;
 }
 
+#signUpForm input .btnSend:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
 #mainContainer{
     display:block;
 }
@@ -467,6 +473,12 @@ footer{
   display: block;
   border-radius: 40px;
   margin-bottom: 27px;
+}
+
+#loginForm input .btnSend:hover{
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
 
 .offerCardContainer{
@@ -634,6 +646,83 @@ footer{
   text-align: center;
   font-size: 15px;
   margin:17px;
+}
+
+
+.recover{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.formRecover{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  padding: 30px;
+}
+
+.formRecover label {
+  font-size: 20px;
+}
+
+.formRecover input {
+  border-radius: 40px;
+  padding: 7px;
+  text-align: center;
+  margin: 10px;
+}
+
+
+.formReset{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  padding: 30px;
+}
+
+
+.formReset label {
+  font-size: 20px;
+}
+
+.formReset input {
+  border-radius: 40px;
+  padding: 7px;
+  text-align: center;
+  margin: 10px;
+}
+
+.recoverBtn{
+  background-image: linear-gradient(to right, #F7971E 0%, #FFD200 51%, #F7971E 100%);
+  padding: 11px 19px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  display: block;
+  border-radius: 40px;
+  margin-top: 27px
+}
+
+.recoverBtn:hover{
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
 
 #searchContainer{
