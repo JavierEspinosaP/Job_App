@@ -137,7 +137,6 @@ const userProfile = async (email) => {
         const data = await client.query(userQueries.profile, [email])
 
         result = data.rows
-        console.log(result);
         return result
     } catch (err) {
         console.log(err);

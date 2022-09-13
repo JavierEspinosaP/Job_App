@@ -36,6 +36,8 @@
     "postgre": "^0.1.8",
     "pug": "^3.0.2",
     "puppeteer": "^17.1.2",
-    "stack": "^0.1.0"
+    "stack": "^0.1.0",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.5.0"
   }
 }

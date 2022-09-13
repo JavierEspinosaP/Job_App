@@ -47,7 +47,6 @@ const getDashboardUser = async (req, res) => {
 
 // "/profile"
 const getProfile = async (req, res) => {
-    console.log("Holi desde frontControllers getProfile");
     const profile = req.user.email;
     try {
         console.log(profile);
@@ -62,8 +61,6 @@ const getProfile = async (req, res) => {
 const updateUser = async (req, res) => {
     try {
         await adminModel.editUser(req.body);
-        console.log("Holi desde updateOffer controller");
-        console.log("Oferta edited: ", req.body);
         res.redirect('/profile');
     } catch (error) {
         console.log(`ERROR: ${error.stack}`);

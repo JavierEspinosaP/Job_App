@@ -86,8 +86,6 @@ const getOffers = async (req, res) => {
 const getOffer = async (req, res) => {
   try {
     const offer = await apiSchema.find({ id: req.params.id });
-    console.log("Holi desde getOffer controller");
-    console.log(offer);
     res.render("updateOffer", { offer });
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
@@ -99,8 +97,6 @@ const getOffer = async (req, res) => {
 const openOffer = async (req, res) => {
   try {
     const offer = await apiSchema.find({ id: req.params.id });
-    console.log("Holi desde getOffer controller");
-    console.log(offer);
     res.render("openOffer", { offer });
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
@@ -112,8 +108,6 @@ const openOffer = async (req, res) => {
 const createOffer = async (req, res) => {
   try {
     await adminModel.createOffer(req.body);
-    console.log("Holi desde createOffer controller");
-    console.log("Oferta creada: ", req.body);
     res.redirect('/dashboard');
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
@@ -125,8 +119,6 @@ const createOffer = async (req, res) => {
 const updateOffer = async (req, res) => {
   try {
     await adminModel.updateOffer(req.body);
-    console.log("Holi desde updateOffer controller");
-    console.log("Oferta edited: ", req.body);
     res.redirect('/dashboard');
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
@@ -138,7 +130,6 @@ const updateOffer = async (req, res) => {
 const deleteOffer = async (req, res) => {
   try {
     await adminModel.deleteOffer(req.params.id);
-    console.log("Offer deleted: ", req.params.id);
     res.redirect('/dashboard');
   } catch (error) {
     console.log(`ERROR: ${error.stack}`);
