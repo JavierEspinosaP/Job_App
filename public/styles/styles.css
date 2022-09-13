@@ -104,7 +104,15 @@ body {
   font-weight: 500;
 }
 
-
+.divContainerFav{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 16px;
+}
 .searchInput{
   margin: 40px auto;
   width: 300px;
