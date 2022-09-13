@@ -7,6 +7,7 @@ const userController = require('../controllers/userControllers');
 
 //funciones MONGO (admin)
 router.get('/ads/open/:id?', adminController.openOffer);
+router.get('/ads/search', adminController.getSearch);
 router.post('/ads/create', adminController.createOffer);
 router.post('/ads/update/:id?', adminController.updateOffer);//en pug no funciona input(type='hidden' name='_method' value='PUT')
 router.get('/ads/update/:id', adminController.getOffer);//Te lleva a updateOffer

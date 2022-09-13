@@ -82,6 +82,26 @@ const getOffers = async (req, res) => {
   }
 }
 
+//search
+const getSearch = async (req, res) => {
+  try {
+    let offer = await apiSchema.find();
+    // let search = req.query.search
+    // let url = ["https://www.workana.com/jobs?language=en%2Ces", "https://www.freelancer.com/jobs/web-development/"]
+    const offers = []
+    for (let i = 0; i < offer.length; i++) {
+      let dataOffers = offer[i]
+      offers.push(dataOffers)
+    }
+    const merged = [].concat.apply([], offers);
+
+    res.status(200).json(merged)
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
+
 // Obtener la oferta a editar
 const getOffer = async (req, res) => {
   try {
@@ -153,6 +173,7 @@ module.exports = {
   deleteUser,
   getOffers,
   getOffer,
+  getSearch,
   openOffer,
   createOffer,
   updateOffer,

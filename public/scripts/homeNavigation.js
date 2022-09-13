@@ -14,7 +14,7 @@ const cardsContainer = document.getElementById('cardsContainer')
 const spinner = document.getElementById('spinner')
 
 //Navegacion
-signUpAccess.addEventListener('click', ()=>{
+signUpAccess.addEventListener('click', () => {
     mainContainer.style.display = 'none'
     signUpContainer.style.display = 'block'
 })
@@ -40,20 +40,32 @@ searchButton.addEventListener('click', () => {
 
     const searchData = async () => {
         spinner.style.display = "block"
-        let responseOffers = await fetch(`/api/search?search=${inputValue}`)
-        let offersData = await responseOffers.json()
+        // let responseOffers = await fetch(`/api/search?search=${inputValue}`)
+        let mongoOffers = await fetch('/api/ads/search');
+        // let offersData = await responseOffers.json()
+        let mongoData = await mongoOffers.json()
         spinner.style.display = "none"
-        for (let i = 0; i < offersData.length; i++) {
-            let offer = `
+        for (let i = 0; i < mongoData.length; i++) {
+            let mongoOffer = `
             <section id="offerCard">
-            <h3>${offersData[i].proyect_name}</h3>
-            <p>Publicado:${offersData[i].published}</p>
-            <p>Presupuesto:${offersData[i].budget}</p>
-            <p>Descripcion:${offersData[i].description}</p>
-            <a id="urlLink" href="${offersData[i].url}">Link a la oferta</a>
+            <h3>${mongoData[i].proyect_name}</h3>
+            <p>Publicado:${mongoData[i].published}</p>
+            <p>Presupuesto:${mongoData[i].budget}</p>
+            <p>Descripcion:${mongoData[i].description}</p>
             </section>`
-            cardsContainer.innerHTML += offer
+            cardsContainer.innerHTML += mongoOffer
         }
+        // for (let i = 0; i < offersData.length; i++) {
+        //     let offer = `
+        //     <section id="offerCard">
+        //     <h3>${offersData[i].proyect_name}</h3>
+        //     <p>Publicado:${offersData[i].published}</p>
+        //     <p>Presupuesto:${offersData[i].budget}</p>
+        //     <p>Descripcion:${offersData[i].description}</p>
+        //     <a id="urlLink" href="${offersData[i].url}">Link a la oferta</a>
+        //     </section>`
+        //     cardsContainer.innerHTML += offer
+        // }
 
     }
     searchData()
