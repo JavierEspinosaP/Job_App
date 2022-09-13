@@ -4,66 +4,67 @@ html(lang='en')
  
   body
     header
-      h1 
-        a(href='/') Job Finder
-      #logContainer
-        h4
-          a(href='/profile') Profile
-        h4
-          a(href='/favorites') Favorites 
-        h4
-          a(href='/') Offers
-          //- Solo visibles par aadministrador
-        h4
-          a(href='/api/users') users(admin)
-        h4
-          a(href='/dashboard') Dashboard
-        h4
-          a(href='/api/logout') Logout
+      div.headerDash
+        h1 
+          a(href='/') Job Finder
+        #logContainer
+        div.logContainer
+          h4
+            a(href='/profile') Perfil
+          h4
+            a(href='/favorites') Favoritos 
+          h4
+            a(href='/') Ofertas
+          h4
+            a(href='/api/users') Usuarios
+          h4
+            a(href='/dashboard') Tablón
+          form(action="/api/logout" method="post")
+            button.clickBtnlogOut.logoutBtn(type="submit") Salir
     main
       div#mainContainer
-        h1#h1Slogan USERS
+        h1#h1Slogan USUARIOS
         div#searchFormContainer
-          button#createNewUser.btnClass(type="click") Create new user
+          button#createNewUser.btnClass.backBtn(type="click") Crear nuevo usuario
           section#formCreate
             form#createUserForm
               div#newUserForm
-                label Name:
+                label Nombre:
                 input#inputName(type='text' placeholder='User name')
-                label Surname:
+                label Apellido:
                 input#inputSurname(type='text' placeholder='User surname')
                 label Email:
                 input#inputEmail(type='text' placeholder='Email')
-                label Password:
+                label Contraseña:
                 input#inputPassword(type='password' placeholder='Password')
                 label Role:
                 input#inputRole(type='text' placeholder='Role')
-                button#createUser.btnClass(type="submit") Create use
+                button#createUser.btnClass(type="submit") Crear usuario
             ul#addUsers(action="/api/users" method="POST")
 
         h3#h3Slogan
-          | Users registered
+          | Todos los usuarios registrados
       div#Users
         each user in results
-          article.userCard
+          article.userCard.bot-left.offerCard.offerCardContainer#usersCards
             h4 #{user.name}
-            p #{user.surname}
-            p #{user.email}
-            p=user.role
+            p.pOffer #{user.surname}
+            p.pOffer #{user.email}
+            p.pOffer=user.role
             div#buttonsCard
-              button.deleteUser.btnClass(value="delete" user_email=user.email) Delete
-              button.desplegarUser.btnClass(type="click" edit_index=user.user_id) Edit 
+              button.deleteUser.clickBtnDelete(value="delete" user_email=user.email) Delete
+              button.desplegarUser.clickBtnDelete(type="click" edit_index=user.user_id) Edit 
               section.sectFormEdit(id_user=user.user_id)
                 form.editUserForm
                   div#editUserDiv
                     p #{index}
-                    label Name:
+                    label Nombre:
                     input.editName(type='text' placeholder='User name' name_id=user.user_id)
-                    label Surname:
+                    label Apellido:
                     input.editSurname(type='text' placeholder='User surname' surname_id=user.user_id)
                     label Email:
                     input.paramEmail(type='text' placeholder='Email' email_id=user.user_id)
-                    button.editUser.btnClass(type="click" btn_index=user.user_id) Edit user
+                    button.editUser.clickBtn(type="click" btn_index=user.user_id) Edit user
                 ul#addUsers(action="/api/users" method="POST")
 
     script(type='text/javascript', src='../scripts/adminNavigation.js')

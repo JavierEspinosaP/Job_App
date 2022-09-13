@@ -218,10 +218,6 @@ footer{
 }
 
 
-.labelOffer{
-
-}
-
 #Users{
     display:flex;
     flex-direction: column;
@@ -303,11 +299,33 @@ footer{
 }
 
 
-.btnClass{
+/* .btnClass{
     margin: 20px;
     border-radius: 10% / 50%;;
     padding: 7px;
     background-color: #ffda9e;
+} */
+
+.logoutBtn{
+  margin-top: 140px;
+  background-image: linear-gradient(to right, #F7971E 0%, #FFD200  51%, #F7971E  100%);
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  display: block;
+  border-radius: 40px;
+
+}
+
+.clickBtnlogOut{
+  margin: 20px;
+  padding: 7px;
+  background-color: #ffda9e;
 }
 
 .btnClass:hover{
@@ -424,10 +442,11 @@ footer{
 
 #LoginFormContainer form label {
   font-size: 20px;
+  margin: 13px;
  }
 
 
-.searchInputSignin {
+.searchInputSign {
   height: 21px;
   border-radius: 30px;
   text-align: center;
@@ -470,6 +489,15 @@ footer{
 .offerCard:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
+
+#editProfile form label{
+  font-size: 20px;  
+}
+
+#editProfile form input{
+  font-size: 20px;  
+}
+
 
 
 .bot-left {
@@ -562,6 +590,51 @@ footer{
    background-color: rgb(155, 195, 221); 
 }
 
+#buttonsCard{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+#usersCards{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px;
+}
+
+.clickBtnDelete{
+  background-image: linear-gradient(to right, #F7971E 0%, #FFD200  51%, #F7971E  100%);
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  display: block;
+  border-radius: 40px;
+}
+
+
+.editUserForm div label{
+  font-size: 20px;
+}
+
+.editUserForm div input{
+  height: 20px;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 15px;
+  margin:17px;
+}
 
 #searchContainer{
     display: flex;
