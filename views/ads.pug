@@ -3,23 +3,25 @@ html(lang='en')
   include ./head.pug
   body
     header
-      h1 
-        a(href='/') Job Finder
-      #logContainer
-        h4
-          a(href='/profile') Perfil
-        h4
-          a(href='/favorites') Favoritos 
-        h4
-          a(href='/') Ofertas aplicadas
-          //- Solo visibles par aadministrador
-        h4
-          a(href='/users') Usuarios
-        h4
-          a(href='/dashboard') Tablón
-          //----------------------------------
-        h4
-          a(href='/api/logout') Salir
+      div.header
+        h1 
+          a(href='/') Job Finder
+        #logContainer
+        div.logContainer
+          h4
+            a(href='/profile') Perfil
+          h4
+            a(href='/favorites') Favoritos 
+          h4
+            a(href='/') Ofertas aplicadas
+            //- Solo visibles par aadministrador
+          h4
+            a(href='/users') Usuarios
+          h4
+            a(href='/dashboard') Tablón
+            //----------------------------------
+          h4
+            a(href='/api/logout') Salir
     main
       div#mainContainer
         h1#h1Slogan ADS (ADMIN)
@@ -30,12 +32,12 @@ html(lang='en')
             .offer
             -for(let i=0;i<offers.length; i++)
               hr
-              h2= offer[i].title
-              h3= offer[i].company
-              p= offer[i].date
+              h2.h2Offer= offer[i].title
+              h3.h3Offer= offer[i].company
+              p.pOffer= offer[i].date
               h3= offer[i].location
-              p= offer[i].company
-              p= offer[i].id
+              p.pOffer= offer[i].company
+              p.pOffer= offer[i].id
               -var url=offer[i].id;
               h4
                 a(href='./ads/update/'+url) Editar
