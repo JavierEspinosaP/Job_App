@@ -3,17 +3,20 @@ html(lang='en')
   include ./head.pug
   body
     header
-      h1 
-        a(href='/') Job Finder
-      #logContainer
-        h4#signUpAccess Registro
-        h4#loginAccess Log In
-    main
+      div.header
+        h1 
+          a(href='/') Job Finder
+        #logContainer
+        div.logContainer
+          h4#signUpAccess Registro
+          h4#loginAccess Log In
+    main.recover
         h2 Recuperar contraseña
-        form(action="/api/passrecover" method="post")
+        div
+        form.formRecover.marcoForm(action="/api/passrecover" method="post")
             label Introduce email
             input(name="email" type="text" Placeholder="John_Wick@terra.es") 
-            input(type="submit")
+            button.recoverBtn(type="submit") Recuperar
   script(type='text/javascript', src='//cdn.jsdelivr.net/npm/sweetalert2@11')
   script(type='text/javascript', src='sweetalert2.min.js')
   script(type='text/javascript', src='/scripts/homeNavigation.js')
