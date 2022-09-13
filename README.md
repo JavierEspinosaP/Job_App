@@ -13,6 +13,7 @@ Scrapping de 2 webs para obtención de datos
 ![Image text](https://uploads-ssl.webflow.com/60780bff57ddc42a6adc1d7e/607eeb4b0517b6659206c10f_thebridgelogo.svg)
 ***
 Al acceder a nuestra Web App lo primero que nos muestra es la home, que nos da las opciones de registrarnos, inciciar sesión o hacer una busqueda de ofertas segun una palabra clave
+![Home]<img src"https://user-images.githubusercontent.com/107397146/189875054-64a3921c-9a2f-4dd0-9865-2e976e442c53.jpg width="10">
 ![Home](https://user-images.githubusercontent.com/107397146/189875054-64a3921c-9a2f-4dd0-9865-2e976e442c53.jpg)
 ***
 Al pulsar en "Registro", se nos desplegará un formulario para introducri nuestros datos. Al pulsar enviar se creara nuestra cuenta y podremos usar las funcionalidades de usuario de la Web App
