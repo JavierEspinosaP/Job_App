@@ -17,7 +17,8 @@ const registerUser = async (user) => {
     } catch (err) {
         console.log(err);
         throw err;
-    } finally {
+    }
+    finally{
         client.release();
     }
     return result
@@ -29,14 +30,14 @@ const signInUser = async (user) => {
 
     let client, result;
     try {
-        client = await pool.connect();
-        let data = await client.query(userQueries.loginUser, [user.email])
+
+        let data = await pool.query(userQueries.loginUser, [user.email])
         result = data.rows
     } catch (err) {
         console.log(err);
         throw err;
     } finally {
-        client.release();
+        pool.end();
     }
     return result
 }

@@ -3,6 +3,7 @@ const router = express.Router()
 const adminController = require("../controllers/adminControllers");
 const userController = require('../controllers/userControllers');
 
+
 //funciones MONGO (admin)
 router.get('/ads/open/:id?', adminController.openOffer);
 router.post('/ads/create', adminController.createOffer);

@@ -3,7 +3,7 @@ const adminModel = require('../models/admin');
 const apiSchema = require('../schemas/offers_admin');
 //Traer el scraper
 const scraper = require('../utils/scraper')
-const fetch = require('node-fetch')
+
 
 const getHome = async (req, res) => {
     try {

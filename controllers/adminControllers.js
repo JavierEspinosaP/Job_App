@@ -1,12 +1,12 @@
 
-const users = require('../models/users')
+
 const adminModel = require('../models/admin');
 const apiSchema = require('../schemas/offers_admin');
 require('../utils/db_sql')
 
 const getUsersRegistered = async (req, res) => {
   let usersRegistered;
-  try {
+  try{
     usersRegistered = await adminModel.getAllUsers()
     res.status(200).render('users', { results: usersRegistered })
   } catch (error) {
@@ -18,14 +18,7 @@ const getUsersRegistered = async (req, res) => {
 const createUser = async (req, res) => {
   const newUser = req.body;
   try {
-    const response = await adminModel.createNewUser(newUser, {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newUser)
-    })
+    const response = await adminModel.createNewUser(newUser)
     res.status(201).json({ "User created": response })
 
   } catch (error) {
