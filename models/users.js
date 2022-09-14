@@ -31,13 +31,13 @@ const signInUser = async (user) => {
     let client, result;
     try {
         client = await pool.connect();
-        let data = await pool.query(userQueries.loginUser, [user.email])
+        let data = await client.query(userQueries.loginUser, [user.email])
         result = data.rows
     } catch (err) {
         console.log(err);
         throw err;
     } finally {
-        pool.release();
+        client.release()
     }
     return result
 }
