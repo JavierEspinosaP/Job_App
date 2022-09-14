@@ -37,7 +37,7 @@ const signInUser = async (user) => {
         console.log(err);
         throw err;
     } finally {
-        client.release();
+        client.end();
     }
     return result
 }
