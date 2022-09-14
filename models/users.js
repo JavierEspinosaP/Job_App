@@ -37,7 +37,7 @@ const signInUser = async (user) => {
         console.log(err);
         throw err;
     } finally {
-        client.end()
+        client.release()
     }
     return result
 }
@@ -53,7 +53,7 @@ const loggedStatus= async (email) => {
         console.log(err);
         throw err;
     } finally {
-        client.end();
+        client.release();
     }
     return result
 }
