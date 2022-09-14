@@ -9,11 +9,11 @@ const pgUrl = process.env.DATABASE_URL
 
 const { Pool } = require('pg');
 const pool = new Pool({
-    user: "asmlztcc",
-    host: "tyke.db.elephantsql.com",
-    database: "asmlztcc",
-    password: "m_gSxwvBV_YOoJw_bbWfGRjYY6J5i8MY",
-    port: 5432
+    user: process.env.USER_ELEPHANT,
+    host: process.env.HOST_ELEPHANT,
+    database: process.env.DATABASE_ELEPHANT,
+    password: process.env.PASSWORD_ELEPHANT,
+    port: process.env.PORT_ELEPHANT
 });
 module.exports = pool
 
