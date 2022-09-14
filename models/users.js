@@ -19,7 +19,7 @@ const registerUser = async (user) => {
         throw err;
     }
     finally{
-        client.release();
+        pool.release();
     }
     return result
 
@@ -37,7 +37,7 @@ const signInUser = async (user) => {
         console.log(err);
         throw err;
     } finally {
-        client.release();
+        pool.release();
     }
     return result
 }
@@ -53,7 +53,7 @@ const loggedStatus= async (email) => {
         console.log(err);
         throw err;
     } finally {
-        client.release();
+        pool.release();
     }
     return result
 }
