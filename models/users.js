@@ -32,12 +32,11 @@ const signInUser = async (user) => {
     try {
         client = await pool.connect();
         let data = await client.query(userQueries.loginUser, [user.email])
-        result = data.rows
+        result = data.rows   
+        
     } catch (err) {
         console.log(err);
         throw err;
-    } finally {
-        client.release()
     }
     return result
 }

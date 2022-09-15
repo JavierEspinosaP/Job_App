@@ -38,8 +38,7 @@ const loginUser = async (req, res) => {
         if (email == response[0].email) {
             const validPass = await bcrypt.compare(password, response[0].password)
             if (validPass) {
-                users.loggedStatus(email)
-
+               await users.loggedStatus(email)
                 if (response[0].role == 'admin') {
                     const payload = {
                         email: response[0].email,
