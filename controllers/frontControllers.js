@@ -135,8 +135,8 @@ const getFavorites = async (req, res) => {
     const email = req.query.email;
     try {
 
-        //const userFavs = await users.getFavorites(email); 
-        const userFavs = await users.getFavorites("example@gmail.com");
+        const userFavs = await users.getFav(email);
+        // const userFavs = await users.getFavorites("example@gmail.com");
 
         // [] array de ofertas con ID de MONGO
         // llamo a las ofertas de mongo con ID en bucle, recorrer array en bucle
@@ -144,20 +144,19 @@ const getFavorites = async (req, res) => {
         let offers = [];
         for (let i = 0; i < userFavs.length; i++) {
             let offer = {};
-            const ref = userFavs[i].reference_offer;
-            if (ref.startsWith('https')) {
-                offer = {
-                    title: ref,
-                    date: 2022 - 09 - 13,
-                    budget: 5000,
-                    description: 'Desarrollo FullStack',
-                }
-
-
-            } else { //id mongo
-                const mongoOffer = await admin.getOffer(ref)
-                offer = mongoOffer[0];
-            }
+            const ref = userFavs[i].url;
+            // if (ref.startsWith('https')) {
+            //     offer = {
+            //         title: ref,
+            //         date: 2022 - 09 - 13,
+            //         budget: 5000,
+            //         description: 'Desarrollo FullStack',
+            //     }
+            // } else { //id mongo
+            const mongoOffer = await admin.getOffer(ref)
+            //     offer = mongoOffer[0];
+            offer = mongoOffer[0];
+            // }
             offers.push(offer);
         }
         console.log(offers);
@@ -168,8 +167,32 @@ const getFavorites = async (req, res) => {
     }
 };
 
+//Save favorite
+const createFav = async (req, res) => {
+    const newFav = req.body;
+    try {
+        const response = await users.createFav(newFav)
+        res.status(201).json({ "Fav saved": response })
 
+    } catch (error) {
+        console.log(error);
+        res.status(404).json({ "message": "Fav not saved" });
 
+    }
+}
+
+//Delete favorite
+const deleteFav = async (req, res) => {
+    const url = req.query.url;
+    try {
+        await users.deleteFav(url);
+        res.send("Fav deleted")
+
+    } catch (error) {
+        console.log(error.message)
+        res.status(404).json({ "message": "Fav not deleted" });
+    }
+}
 
 //Scrapeo
 const getScrap = async (req, res) => {
@@ -186,6 +209,8 @@ module.exports = {
     getHome,
     getDashboardUser,
     getFavorites,
+    deleteFav,
+    createFav,
     getProfile,
     getUsers,
     getDashboardAdmin,

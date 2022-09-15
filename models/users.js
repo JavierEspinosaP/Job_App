@@ -18,7 +18,7 @@ const registerUser = async (user) => {
         console.log(err);
         throw err;
     }
-    finally{
+    finally {
         client.release();
     }
     return result
@@ -43,7 +43,7 @@ const signInUser = async (user) => {
 }
 
 //update status logged colum
-const loggedStatus= async (email) => {
+const loggedStatus = async (email) => {
     let client, result;
     try {
         client = await pool.connect();
@@ -61,7 +61,7 @@ const loggedStatus= async (email) => {
 
 
 //VISTA DE USUARIO: favoritos
-const getFavorites = async (email) => {
+const getFav = async (email) => {
     let client, result;
     try {
         client = await pool.connect();
@@ -79,11 +79,12 @@ const getFavorites = async (email) => {
 
 
 //Guardar favorito - usuario
-const saveFavorite = async (obj) => {
+const createFav = async (fav) => {
     let client, result;
+    console.log("createFav users models ", fav);
     try {
         client = await pool.connect();
-        const data =  await client.query(userQueries.saveFav, [])
+        const data = await client.query(userQueries.saveFav, [fav.email, fav.url])
         result = data.rows
 
     } catch (err) {
@@ -93,6 +94,23 @@ const saveFavorite = async (obj) => {
         client.release();
     }
     return result
+}
+
+//Borrar favorito - usuario
+const deleteFav = async (url) => {
+    let client, result;
+    try {
+        client = await pool.connect();
+        const data = await client.query(userQueries.deleteFav, [url])
+        result = data.rows
+    } catch (err) {
+        console.log(err);
+        throw err;
+    } finally {
+        client.release();
+    }
+    return result
+
 }
 
 //editar perfil
@@ -101,23 +119,6 @@ const editProfile = async () => {
     try {
         client = await pool.connect();
         const data = await client.query(userQueries.editDataProfile)
-        result = data.rows
-    } catch (err) {
-        console.log(err);
-        throw err;
-    } finally {
-        client.release();
-    }
-    return result
-
-}
-
-//Borrar favorito - usuario
-const deleteFavorites = async () => {
-    let client, result;
-    try {
-        client = await pool.connect();
-        const data = await client.query(userQueries.deleteFav)
         result = data.rows
     } catch (err) {
         console.log(err);
@@ -203,10 +204,10 @@ module.exports = {
     registerUser,
     signInUser,
     loggedStatus,
-    getFavorites,
-    saveFavorite,
+    getFav,
+    createFav,
+    deleteFav,
     editProfile,
-    deleteFavorites,
     userProfile,
     logoutUser,
     recoveredPassword,
