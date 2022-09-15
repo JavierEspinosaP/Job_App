@@ -2,6 +2,8 @@ const express = require("express")
 const router = express.Router()
 const adminController = require("../controllers/adminControllers");
 const userController = require('../controllers/userControllers');
+const frontController = require("../controllers/frontControllers");
+
 
 
 //funciones MONGO (admin)
@@ -24,7 +26,7 @@ router.delete('/users', adminController.deleteUser);
 router.post('/users', adminController.createUser);
 router.put('/users', adminController.editUser);
 
-// router.post('/favorites', userController.saveFavorite);
+router.get('/favorites', frontController.createFav);
 // router.delete('/favorites', userController.deleteFavorite);
 
 module.exports = router

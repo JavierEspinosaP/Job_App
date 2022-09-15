@@ -52,7 +52,7 @@ searchButton.addEventListener('click', () => {
             <p>Descripcion:${offersData[i].description}</p>
             <a class="logContainer" id="urlLink" href="${offersData[i].url}">Link a la oferta</a>
             <div class="divContainerFav">
-            <button class="backBtn" id="addFav">Añadir Favorito</button>
+            <button class="backBtn" id="addFav" href="api/favorites/"${offersData[i].url}"">Añadir Favorito</button>
 <button class="backBtn" id="delFav">Eliminar Favorito</button></div>
 
 <script type="text/javascript">
