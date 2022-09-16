@@ -43,8 +43,9 @@ const getSearch = async (req, res) => {
 
 // "/dashboard_user"
 const getDashboardUser = async (req, res) => {
+    const user = req.user.email;
     try {
-        res.render("dashboard_user");
+        res.render("dashboard_user", { user });
 
     } catch (error) {
         return res.status(400).json(error);
@@ -170,6 +171,9 @@ const getFavorites = async (req, res) => {
 //Save favorite
 const createFav = async (req, res) => {
     const newFav = req.body;
+    const userEmail = req.user.email;
+    console.log(userEmail);
+    console.log("Estas en frontControllers createFav");
     try {
         const response = await users.createFav(newFav)
         res.status(201).json({ "Fav saved": response })

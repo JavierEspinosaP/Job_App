@@ -81,7 +81,7 @@ const getFav = async (email) => {
 //Guardar favorito - usuario
 const createFav = async (fav) => {
     let client, result;
-    console.log("createFav users models ", fav);
+    console.log("Estas en createFav users models ", fav);
     try {
         client = await pool.connect();
         const data = await client.query(userQueries.saveFav, [fav.email, fav.url])
