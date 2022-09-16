@@ -175,7 +175,7 @@ const createFav = async (req, res) => {
     console.log(userEmail);
     console.log("Estas en frontControllers createFav");
     try {
-        const response = await users.createFav(newFav)
+        const response = await users.createFav(userEmail, newFav)
         res.status(201).json({ "Fav saved": response })
 
     } catch (error) {
