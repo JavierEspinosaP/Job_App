@@ -6,7 +6,7 @@ require('../utils/db_sql')
 
 const getUsersRegistered = async (req, res) => {
   let usersRegistered;
-  try{
+  try {
     usersRegistered = await adminModel.getAllUsers()
     res.status(200).render('users', { results: usersRegistered })
   } catch (error) {
