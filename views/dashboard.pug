@@ -30,6 +30,8 @@ html(lang='en')
           form.marcoForm#offerCreate(action="/api/ads/create" method="POST") 
             label.labelOffer(for="") id: 
             input.searchInputOffer#id(type="number" name="id" placeholder="Añade una ID")
+            label.labelOffer(for="") url: 
+            input.searchInputOffer#id(type="text" name="url" placeholder="Añade la URL")
             label.labelOffer(for="") Título de oferta:  
             input.searchInputOffer#title(type="text" name="proyect_name" placeholder="Nombre de la oferta")
             label.labelOffer(for="") Fecha:  

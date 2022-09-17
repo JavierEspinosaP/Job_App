@@ -26,7 +26,7 @@ html(lang='en')
         h1#h1Slogan Tablón
         h3#h3Slogan
           | Listado de todas tus ofertas favoritas:
-        .offers
+        .offers 
           each offer in {offers}
             .offer
             -for(let i=0;i<offers.length; i++)
@@ -40,10 +40,8 @@ html(lang='en')
                 div.offerOptions
                   h4
                     a(href='api/ads/open/'+url) Ver oferta completa
-                  h4
-                    a(href='api/ads/update/'+url) Editar
-                  h4
-                    a(href='api/ads/delete/'+url) Borrar
+                    br
+                    a(href='api/favorites/delete/'+url) Borrar favorito
           else 
             p no values
 

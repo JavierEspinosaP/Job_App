@@ -15,8 +15,8 @@ const queries = {
     "getUsersByEmail": "SELECT email FROM users",
 
     "saveFav": `INSERT INTO favorites (user_id, reference_offer) VALUES ((SELECT user_id FROM users WHERE email = $1), $2)`,
-    "favOffers": `SELECT url FROM favorites INNER JOIN users ON users.user_id= favorites.user_id WHERE users.email = $1`, //traemos ofertas ya guardadas como favs  
-    "deleteFav": `DELETE FROM favorites WHERE url = $1`,
+    "favOffers": `SELECT reference_offer FROM favorites INNER JOIN users ON users.user_id= favorites.user_id WHERE users.email = $1`, //traemos ofertas ya guardadas como favs  
+    "deleteFav": `DELETE FROM favorites WHERE reference_offer = $1`,
 }
 
 

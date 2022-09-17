@@ -5,6 +5,10 @@ const offersAdmin = {
         type: Number,
         unique: true
     },
+    url: {
+        type: String,
+        unique: true
+    },
     proyect_name: {
         type: String,
     },

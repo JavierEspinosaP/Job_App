@@ -27,6 +27,7 @@ router.post('/users', adminController.createUser);
 router.put('/users', adminController.editUser);
 
 router.post('/favorites', frontController.createFav);
-// router.delete('/favorites', userController.deleteFavorite);
+router.post('/favorites/delete', frontController.deleteFav);
+router.get('/favorites/delete/:url?', frontController.deleteFav);
 
 module.exports = router

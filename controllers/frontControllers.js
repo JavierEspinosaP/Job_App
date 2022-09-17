@@ -7,9 +7,12 @@ const scraper = require('../utils/scraper')
 
 const getHome = async (req, res) => {
     try {
-        var user = req.user.email;
-        res.render("home", { user });
-
+        if (req.user) {
+            var user = req.user.email;
+            res.render("home", { user });
+        } else {
+            res.render("home");
+        }
     } catch (error) {
         return res.status(400).json(error);
     }
@@ -117,26 +120,12 @@ const recoverPasswordView = async (req, res) => {
     res.render('recover_pass')
 }
 
-// //Save Favorite
-// const saveFavorite = async (req, res, next) => {
-//     let client;
-//     const { body } = req.body
-//     try {
-//         client = await pool.connect();
-//         const data = await pool.query(userQueries.saveFav)
-//         //no existe query - falta pasarle los datos
-//         return res.status(200).json("Favorito guardado correctamente")
-//     } catch (err) {
-//         return next(err);
-//     } finally {
-//         client.release();
-//     }
-// }
-
 
 // ***GET DE FAVORITOS
 const getFavorites = async (req, res) => {
-    const email = req.query.email;
+    const email = req.user.email;
+    console.log(email);
+    console.log("Estas en frontControllers getFavorites");
     try {
 
         const userFavs = await users.getFav(email);
@@ -144,27 +133,29 @@ const getFavorites = async (req, res) => {
 
         // [] array de ofertas con ID de MONGO
         // llamo a las ofertas de mongo con ID en bucle, recorrer array en bucle
-
+        console.log("Estas de vuelta en frontControllers getFav");
         let offers = [];
         for (let i = 0; i < userFavs.length; i++) {
             let offer = {};
-            const ref = userFavs[i].url;
-            // if (ref.startsWith('https')) {
-            //     offer = {
-            //         title: ref,
-            //         date: 2022 - 09 - 13,
-            //         budget: 5000,
-            //         description: 'Desarrollo FullStack',
-            //     }
-            // } else { //id mongo
-            const mongoOffer = await admin.getOffer(ref)
-            //     offer = mongoOffer[0];
-            offer = mongoOffer[0];
-            // }
+            const ref = userFavs[i].reference_offer;
+            if (ref.startsWith('https')) {
+                console.log("Comienza pr http");
+                offer = {
+                    title: ref,
+                    date: 2022 - 09 - 13,
+                    budget: 5000,
+                    description: 'Desarrollo FullStack',
+                }
+            } else { //id mongo
+                console.log("Comienza por mongo");
+
+                const mongoOffer = await adminModel.getOffer(ref)
+                offer = mongoOffer[0];
+            }
             offers.push(offer);
         }
         console.log(offers);
-        res.render("favorites", { section: "favorites", offers });
+        res.render("favorites", { offers });
 
     } catch (error) {
         return res.status(400).json(error);
@@ -177,8 +168,10 @@ const createFav = async (req, res) => {
     // const userEmail = req.user.email;
     console.log("Estas en frontControllers createFav", newFav);
     try {
-        const response = await users.createFav(newFav)
-        res.status(201).json({ "Fav saved": response })
+        const response = await users.createFav(newFav);
+        // res.redirect('/');
+        // res.status(201).json({ "Fav saved": response })
+
 
     } catch (error) {
         console.log(error);
@@ -189,14 +182,29 @@ const createFav = async (req, res) => {
 
 //Delete favorite
 const deleteFav = async (req, res) => {
-    const url = req.query.url;
-    try {
-        await users.deleteFav(url);
-        res.send("Fav deleted")
+    if (req.body.url == undefined) {
+        const url = req.params.url;
+        console.log("Estas en frontController deleteFav if body 0 ", url);
+        try {
+            await users.deleteFav(url);
+            // res.send("Fav deleted")
 
-    } catch (error) {
-        console.log(error.message)
-        res.status(404).json({ "message": "Fav not deleted" });
+        } catch (error) {
+            console.log(error.message)
+            res.status(404).json({ "message": "Fav not deleted" });
+        }
+    } else {
+        const url = req.body.url;
+
+        console.log("Estas en frontController deleteFav if body 1", url);
+        try {
+            await users.deleteFav(url);
+            // res.send("Fav deleted")
+
+        } catch (error) {
+            console.log(error.message)
+            res.status(404).json({ "message": "Fav not deleted" });
+        }
     }
 }
 

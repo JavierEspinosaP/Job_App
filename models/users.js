@@ -63,6 +63,7 @@ const loggedStatus = async (email) => {
 //VISTA DE USUARIO: favoritos
 const getFav = async (email) => {
     let client, result;
+    console.log("Estas en users getFav", email);
     try {
         client = await pool.connect();
         const data = await client.query(userQueries.favOffers, [email])
@@ -98,6 +99,7 @@ const createFav = async (newFav) => {
 
 //Borrar favorito - usuario
 const deleteFav = async (url) => {
+    console.log("Estas en users deleteFav ", url);
     let client, result;
     try {
         client = await pool.connect();

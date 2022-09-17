@@ -7,6 +7,8 @@ const authAdmin = require('../middlewares/authAdmin');
 
 
 frontRouter.get('/', authToken, frontController.getHome);
+// frontRouter.get('/', frontController.getHome);
+
 
 frontRouter.get('/dashboard_user', authToken, frontController.getDashboardUser);
 frontRouter.get('/favorites', authToken, frontController.getFavorites);
