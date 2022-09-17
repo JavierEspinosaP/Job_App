@@ -7,7 +7,8 @@ const scraper = require('../utils/scraper')
 
 const getHome = async (req, res) => {
     try {
-        res.render("home", { section: "Home" });
+        var user = req.user.email;
+        res.render("home", { user });
 
     } catch (error) {
         return res.status(400).json(error);
@@ -19,6 +20,7 @@ const getHome = async (req, res) => {
 const getSearch = async (req, res) => {
     try {
         let search = req.query.search
+        console.log("Estas en getSearch frontControllers");
         let url = ["https://www.workana.com/jobs?language=en%2Ces", "https://www.freelancer.com/jobs/web-development/"]
         const offers = []
         for (let i = 0; i < url.length; i++) {
@@ -56,6 +58,7 @@ const getDashboardUser = async (req, res) => {
 // "/profile"
 const getProfile = async (req, res) => {
     const profile = req.user.email;
+    console.log("Estas en frontControllers getProfile ", profile);
     try {
         console.log(profile);
         data = await users.userProfile(profile)
@@ -171,11 +174,10 @@ const getFavorites = async (req, res) => {
 //Save favorite
 const createFav = async (req, res) => {
     const newFav = req.body;
-    const userEmail = req.user.email;
-    console.log(userEmail);
-    console.log("Estas en frontControllers createFav");
+    // const userEmail = req.user.email;
+    console.log("Estas en frontControllers createFav", newFav);
     try {
-        const response = await users.createFav(userEmail, newFav)
+        const response = await users.createFav(newFav)
         res.status(201).json({ "Fav saved": response })
 
     } catch (error) {

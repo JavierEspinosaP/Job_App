@@ -79,12 +79,12 @@ const getFav = async (email) => {
 
 
 //Guardar favorito - usuario
-const createFav = async (user, fav) => {
+const createFav = async (newFav) => {
     let client, result;
-    console.log("Estas en createFav users models ", user, fav);
+    console.log("Estas en createFav users models ", newFav);
     try {
         client = await pool.connect();
-        const data = await client.query(userQueries.saveFav, [user.email, fav.url])
+        const data = await client.query(userQueries.saveFav, [newFav.email, newFav.url])
         result = data.rows
 
     } catch (err) {

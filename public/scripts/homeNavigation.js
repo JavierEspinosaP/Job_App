@@ -8,6 +8,7 @@ const loginContainer = document.getElementById('loginContainer')
 const comeBackButton2 = document.getElementById('comeBackButton2')
 const searchForm = document.getElementById('searchForm')
 const inputValue = document.getElementById('inputValue').value
+const userEmail = document.getElementById('userEmail').value
 const searchButton = document.getElementById('searchButton')
 
 const cardsContainer = document.getElementById('cardsContainer')
@@ -39,8 +40,10 @@ comeBackButton2.addEventListener('click', () => {
 searchButton.addEventListener('click', () => {
 
     const searchData = async () => {
+        console.log("Estas en homeNavigation seatchData ");
         spinner.style.display = "block"
         let responseOffers = await fetch(`/api/search?search=${inputValue}`)
+        console.log("variable userEmail ", userEmail);
         let offersData = await responseOffers.json()
         spinner.style.display = "none"
         for (let i = 0; i < offersData.length; i++) {
@@ -52,6 +55,14 @@ searchButton.addEventListener('click', () => {
             <p>Descripcion:${offersData[i].description}</p>
             <a class="logContainer" id="urlLink" href="${offersData[i].url}">Link a la oferta</a>
             <div class="divContainerFav">
+
+            <form action="/api/favorites" method="POST">
+            <input type="text" id="email" name="email" value="${userEmail}"><br>
+            <input type="text" id="url" name="url" value="${offersData[i].url}"><br><br>
+            <input type="submit" value="Añadir Favorito">
+            </form> 
+
+
             <button class="backBtn" id="addFav"><a href="api/favorites/${offersData[i].url}">Añadir Favorito</a></button>
 <button class="backBtn" id="delFav">Eliminar Favorito</button></div>
 
