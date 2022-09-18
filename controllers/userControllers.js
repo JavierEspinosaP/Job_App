@@ -2,8 +2,37 @@ const users = require('../models/users');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const transporter = require('../utils/nodemailer');
+const scraper = require('../utils/scraper')
+const apiSchema = require('../schemas/offers_admin');
 require('dotenv').config()
-const Swal = require('sweetalert2')
+
+
+
+
+const getSearch = async (req, res) => {
+    try {
+        let search = req.query.search
+        console.log(search);
+        let url = ["https://www.workana.com/jobs?language=en%2Ces", "https://www.freelancer.com/jobs/web-development/"]
+        const offers = []
+        for (let i = 0; i < url.length; i++) {
+            let dataOffers = await scraper.arrScrapers[i](url[i], search)
+            offers.push(dataOffers)
+        }
+        const merged = [].concat.apply([], offers);
+        //Traer ofertas de mongo
+
+        const mongoOffers = await apiSchema.find();
+        // merged.concat(mongoOffers);
+        // mongoOffers.concat(merged);
+        const allOffers = [...mongoOffers, ...merged];
+        res.status(200).json(allOffers)
+
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
 
 const signUpUser = async (req, res) => {
     const { name, surname, email, password } = req.body //(name, surname, email, password)
@@ -102,7 +131,10 @@ const logoutUser = async (req, res) => {
     const email = decoded.email
     users.logoutUser(email)
     res.clearCookie("access-token")
-    res.redirect('/')
+    setTimeout(() => {
+     res.redirect('/')   
+    }, 3000);
+    
 }
 
 const changePassword = async (req, res) => {
@@ -179,6 +211,7 @@ const resetPass = async (req, res) => {
 
 
 module.exports = {
+    getSearch,
     loginUser,
     signUpUser,
     logoutUser,

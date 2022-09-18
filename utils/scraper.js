@@ -5,6 +5,9 @@ let searchQuery = "javascript"
 
 //Iniciar el scraping
 
+
+
+
 const arrScrapers = [ scrap = async (url, inputQuery) => {
     try {
         //Creamos objeto vacío para almacenar la info de la oferta

@@ -13,9 +13,6 @@ frontRouter.get('/favorites', authToken, frontController.getFavorites);
 frontRouter.get('/profile', authToken, frontController.getProfile);
 frontRouter.post('/profile', authToken, frontController.updateUser);
 
-//Scraping
-frontRouter.get('/api/search', frontController.getSearch)
-
 
 //Vistas solo de admin
 frontRouter.get('/users',authToken, authAdmin, frontController.getUsers);

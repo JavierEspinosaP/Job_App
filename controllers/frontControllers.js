@@ -1,6 +1,6 @@
 const users = require('../models/users');
 const adminModel = require('../models/admin');
-const apiSchema = require('../schemas/offers_admin');
+
 //Traer el scraper
 const scraper = require('../utils/scraper')
 
@@ -17,30 +17,6 @@ const getHome = async (req, res) => {
 };
 
 
-
-const getSearch = async (req, res) => {
-    try {
-        let search = req.query.search
-        let url = ["https://www.workana.com/jobs?language=en%2Ces", "https://www.freelancer.com/jobs/web-development/"]
-        const offers = []
-        for (let i = 0; i < url.length; i++) {
-            let dataOffers = await scraper.arrScrapers[i](url[i], search)
-            offers.push(dataOffers)
-        }
-        const merged = [].concat.apply([], offers);
-        //Traer ofertas de mongo
-
-        const mongoOffers = await apiSchema.find();
-        // merged.concat(mongoOffers);
-        // mongoOffers.concat(merged);
-        const allOffers = [...mongoOffers, ...merged];
-        res.status(200).json(allOffers)
-
-    }
-    catch (error) {
-        console.log(error);
-    }
-}
 
 // "/dashboard_user"
 const getDashboardUser = async (req, res) => {
@@ -196,7 +172,6 @@ module.exports = {
     getProfile,
     getUsers,
     getDashboardAdmin,
-    getSearch,
     updateUser,
     changePasswordView,
     resetPasswordView,

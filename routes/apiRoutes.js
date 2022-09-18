@@ -24,6 +24,9 @@ router.delete('/users', adminController.deleteUser);
 router.post('/users', adminController.createUser);
 router.put('/users', adminController.editUser);
 
+//Scraping
+router.get('/search', userController.getSearch)
+
 // router.post('/favorites', userController.saveFavorite);
 // router.delete('/favorites', userController.deleteFavorite);
 
