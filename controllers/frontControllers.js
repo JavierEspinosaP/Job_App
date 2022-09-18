@@ -29,7 +29,6 @@ const getSearch = async (req, res) => {
         //Traer ofertas de mongo
 
         const mongoOffers = await apiSchema.find();
-        console.log(mongoOffers);
         // merged.concat(mongoOffers);
         // mongoOffers.concat(merged);
         const allOffers = [...mongoOffers, ...merged];

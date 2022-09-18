@@ -2,6 +2,7 @@ const users = require('../models/users');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const transporter = require('../utils/nodemailer'); 
+const passport = require('passport');
 require('dotenv').config()
 
 const signUpUser = async (req, res) => {
@@ -150,6 +151,9 @@ const resetPass = async (req, res) => {
         console.log('Error:', error);
     }
 }
+
+
+
 
 
 module.exports = {
