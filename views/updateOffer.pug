@@ -27,7 +27,7 @@ html(lang='en')
         div#signUpFormContainer
           form#offerUpdate(action="/api/ads/update" method="POST")
             label(for="") id: 
-            input#id(type="number" name="id" value=offer[0].id)
+            input#id(type="hidden" name="id" value=offer[0].id)
             label(for="") Título de oferta:  
             input#title(type="text" name="proyect_name" value=offer[0].proyect_name)
             label(for="") Fecha:  

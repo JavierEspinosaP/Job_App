@@ -22,7 +22,7 @@ html(lang='en')
             button.clickBtnlogOut.logoutBtn(id="logout" type="submit") Salir
     main
       div#mainContainer
-        h1#h1Slogan ¡Hola!
+        h1#h1Slogan= "¡Hola "+user+"!"
         h3#h3Slogan
           | Tenemos nuevas ofertas publicadas, ¿les echas un vistazo?
         div#searchFormContainer
@@ -32,5 +32,4 @@ html(lang='en')
           div#cardsContainer
           div(id="spinner" class="loader") Loading...
   script(type='text/javascript', src='https://cdn.jsdelivr.net/npm/sweetalert2@11.4.33/dist/sweetalert2.all.min.js')
-  script(type='text/javascript', src='../scripts/dashboardNavigation.js')
 include ./footer.pug

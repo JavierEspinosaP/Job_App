@@ -8,6 +8,7 @@ const loginContainer = document.getElementById('loginContainer')
 const comeBackButton2 = document.getElementById('comeBackButton2')
 const searchForm = document.getElementById('searchForm')
 const inputValue = document.getElementById('inputValue').value
+const userEmail = document.getElementById('userEmail').value
 const searchButton = document.getElementById('searchButton')
 const searchButton2 = document.getElementById('searchButton2')
 const signUpForm = document.getElementById('signUpForm')
@@ -81,12 +82,13 @@ loginForm.addEventListener('submit', () => {
 
 })
 
-
 searchButton.addEventListener('click', () => {
 
     const searchData = async () => {
+        console.log("Estas en homeNavigation seatchData ");
         spinner.style.display = "block"
         let responseOffers = await fetch(`/api/search?search=${inputValue}`)
+        console.log("variable userEmail ", userEmail);
         let offersData = await responseOffers.json()
         spinner.style.display = "none"
         for (let i = 0; i < offersData.length; i++) {
@@ -126,22 +128,18 @@ searchButton.addEventListener('click', () => {
             <p>Descripcion:${offersData[i].description}</p>
             <a class="logContainer" id="urlLink" target="_blank" href="${offersData[i].url}">Link a la oferta</a>
             <div class="divContainerFav">
-            <button class="backBtn" id="addFav">Añadir Favorito</button>
-<button class="backBtn" id="delFav">Eliminar Favorito</button></div>
 
-<script type="text/javascript">
-    let add = document.getElementById("addFav");
-    add.id = "addFav" + offersData[i].project_name;
-    add.onclick = function () {
-        saveFavorite();
-    }
+            <form action="/api/favorites" method="POST">
+            <input type="hidden" id="email" name="email" value="${userEmail}">
+            <input type="hidden" id="url" name="url" value="${offersData[i].url}">
+            <input class="backBtn" type="submit" value="Añadir Favorito">
+            </form> 
 
-    let del = document.getElementById("delFav");
-    del.id = "delFav" + offersData[i].project_name;
-    del.onclick = function () {
-    deleteFavorite();
-    }
-</script>
+            <form action="/api/favorites/delete" method="POST">
+            <input type="hidden" id="url" name="url" value="${offersData[i].url}">
+            <input class="backBtn" type="submit" value="Borrar Favorito">
+            </form> 
+            
             </section>`
             cardsContainer.innerHTML += offer
         }

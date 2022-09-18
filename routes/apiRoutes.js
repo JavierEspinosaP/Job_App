@@ -2,6 +2,8 @@ const express = require("express")
 const router = express.Router()
 const adminController = require("../controllers/adminControllers");
 const userController = require('../controllers/userControllers');
+const frontController = require("../controllers/frontControllers");
+
 
 
 
@@ -24,8 +26,10 @@ router.delete('/users', adminController.deleteUser);
 router.post('/users', adminController.createUser);
 router.put('/users', adminController.editUser);
 
+router.post('/favorites', frontController.createFav);
+router.post('/favorites/delete', frontController.deleteFav);
+router.get('/favorites/delete/:url?', frontController.deleteFav);
 
 router.get('/search', userController.getSearch)
-
 
 module.exports = router
