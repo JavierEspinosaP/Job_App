@@ -5,7 +5,6 @@ const queries = require('../queries/userQueries')
 const pool = require('../utils/db_sql')
 
 
-//ADMIN: VISTA USUARIOS REGISTRADOS 
 const getAllUsers = async () => {
     let client, result;
     try {
@@ -21,7 +20,7 @@ const getAllUsers = async () => {
     return result
 }
 
-//Crear usuario por Admin
+
 const createNewUser = async (newUser) => {
     const { name, surname, email, password, role } = newUser
     let result;
@@ -36,7 +35,6 @@ const createNewUser = async (newUser) => {
 }
 
 
-//edit user
 const editUser = async (editedUser) => {
     const { name, surname, email } = editedUser;
     let result;
@@ -51,7 +49,6 @@ const editUser = async (editedUser) => {
 }
 
 
-//Borrar usuario de la bd
 const deleteUser = async (email) => {
     let client, result;
     try {
@@ -66,24 +63,9 @@ const deleteUser = async (email) => {
 
 }
 
-//Ofertas en MONGODB----------------------------------------------
-//[GET] Obtener todas las ofertas en mongo
-//No se volver a controllers con los parametros obtenidos
-// const getOffers = async (req, res) => {
-//     try {
-//         const offers = await apiSchema.find({});
-//         console.log('ofertas ', offers);
-//         res.render('/dashboard');
-//     }
-//     catch (error) {
-//         console.log(`ERROR: ${error.stack}`)
-//         res.status(404).json({ "message": "Offer not found" });
-//     }
-// }
 
-//Obtener oferta por id (_id NO)
-//No se volver a controllers con los parametros obtenidos
-const getOffer = async (url) => {
+const getOffer = async (id) => {
+
     try {
         console.log("Estas en admin getOffer", url);
         const offer = await apiSchema.find({ url });
@@ -96,7 +78,6 @@ const getOffer = async (url) => {
 }
 
 
-//[POST] /api/ads Crear una oferta de trabajo o curso (admin)
 const createOffer = async (offer) => {
     try {
         let newOffer = new apiSchema(offer);
@@ -111,15 +92,12 @@ const createOffer = async (offer) => {
     }
 }
 
-//[PUT] /api/ads Editar datos de una oferta de trabajo o curso (admin)
+
 const updateOffer = async (offer) => {
     try {
         const { title, date, budget, description } = offer;
         await apiSchema.findOneAndUpdate({ id: offer.id }, { title, date, budget, description });
         console.log("Edited desde admin.js updateOffer");
-        // return {
-        //     answer: "edited",
-        // }
     }
     catch (error) {
         console.log(`ERROR: ${error.stack}`)
@@ -127,7 +105,7 @@ const updateOffer = async (offer) => {
     }
 }
 
-//[DELETE] /api/ads Borrar una oferta de trabajo o curso de la base de datos (admin)
+
 const deleteOffer = async (id) => {
     try {
         console.log(id);
@@ -139,6 +117,8 @@ const deleteOffer = async (id) => {
         res.status(404).json({ "message": "offer not found" });
     }
 }
+
+
 
 module.exports = {
     getAllUsers,

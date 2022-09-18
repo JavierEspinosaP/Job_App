@@ -1,10 +1,7 @@
-//REQUIRES
 require('dotenv').config();
 const userQueries = require('../queries/userQueries')
 const pool = require('../utils/db_sql')
 
-
-//REGISTRO DE USUARIO
 
 const registerUser = async (user) => {
     let client, result;
@@ -22,28 +19,26 @@ const registerUser = async (user) => {
         client.release();
     }
     return result
-
 }
 
-//LOGIN DE USUARIO (ya registrado)
+
 const signInUser = async (user) => {
 
     let client, result;
     try {
         client = await pool.connect();
-        let data = await pool.query(userQueries.loginUser, [user.email])
-        result = data.rows
+        let data = await client.query(userQueries.loginUser, [user.email])
+        result = data.rows   
+        
     } catch (err) {
         console.log(err);
         throw err;
-    } finally {
-        client.release();
     }
     return result
 }
 
-//update status logged colum
-const loggedStatus = async (email) => {
+
+const loggedStatus= async (email) => {
     let client, result;
     try {
         client = await pool.connect();
@@ -57,7 +52,6 @@ const loggedStatus = async (email) => {
     }
     return result
 }
-
 
 
 //VISTA DE USUARIO: favoritos
@@ -81,6 +75,7 @@ const getFav = async (email) => {
 
 //Guardar favorito - usuario
 const createFav = async (newFav) => {
+
     let client, result;
     console.log("Estas en createFav users models ", newFav);
     try {
@@ -97,6 +92,7 @@ const createFav = async (newFav) => {
     return result
 }
 
+
 //Borrar favorito - usuario
 const deleteFav = async (url) => {
     console.log("Estas en users deleteFav ", url);
@@ -112,7 +108,6 @@ const deleteFav = async (url) => {
         client.release();
     }
     return result
-
 }
 
 //editar perfil
@@ -129,10 +124,9 @@ const editProfile = async () => {
         client.release();
     }
     return result
-
 }
 
-//Get user by email
+
 const userProfile = async (email) => {
     console.log("Holi desde users userProfile");
     let client, result;
@@ -148,10 +142,9 @@ const userProfile = async (email) => {
     } finally {
         client.release();
     }
-
 }
 
-// Salir de la app: logout
+
 const logoutUser = async (email) => {
     let client, result;
     try {
@@ -168,7 +161,6 @@ const logoutUser = async (email) => {
 }
 
 
-//recuperar contraseña
 const recoveredPassword = async () => {
     let client, result;
     try {
@@ -185,7 +177,6 @@ const recoveredPassword = async () => {
 }
 
 
-//cambiar contraseña
 const changedPassword = async (user) => {
     let client, result;
     try {
@@ -200,6 +191,7 @@ const changedPassword = async (user) => {
     }
     return result
 }
+
 
 
 module.exports = {

@@ -3,26 +3,27 @@ html(lang='en')
   include ./head.pug
   body
     header
-      h1 
-        a(href='/') Job Finder
-      #logContainer
-        h4
-          a(href='/profile') profile
-        h4
-          a(href='/favorites') favorites 
-        h4
-          a(href='/') Ofertas aplicadas
-          //- Solo visibles par aadministrador
-        h4
-          a(href='/api/users') users(admin)
-        h4
-          a(href='api/dashboard') dashboard(admin)
-          //----------------------------------
-        h4
-          a(href='/api/logout') Logout
+      div.headerDash
+        h1 
+          a(href='/') Job Finder
+        #logContainer
+        div.logContainer
+          h4
+            a(href='/profile') Perfil
+          h4
+            a(href='/favorites') Favoritos 
+          h4
+            a(href='/') Ofertas aplicadas
+          h4
+            a(href='/api/users') Usuarios
+          h4
+            a(href='api/dashboard') Tablón
+          form(action="/api/logout" method="post")
+            button.clickBtnlogOut.logoutBtn(type="submit") Salir
+    main
     main
       div#h2SignUpContainer
-        h2#h2SignUp Update Offer (ADMIN)
+        h2#h2SignUp Editar Oferta
         div#signUpFormContainer
           form#offerUpdate(action="/api/ads/update" method="POST")
             label(for="") id: 

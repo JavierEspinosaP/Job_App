@@ -1,8 +1,9 @@
 const users = require('../models/users');
 const adminModel = require('../models/admin');
-const apiSchema = require('../schemas/offers_admin');
-//Traer el scraper
+
 const scraper = require('../utils/scraper')
+
+const Swal = require('sweetalert2')
 
 
 const getHome = async (req, res) => {
@@ -18,47 +19,24 @@ const getHome = async (req, res) => {
     }
 };
 
-
-
-const getSearch = async (req, res) => {
-    try {
-        let search = req.query.search
-        console.log("Estas en getSearch frontControllers");
-        let url = ["https://www.workana.com/jobs?language=en%2Ces", "https://www.freelancer.com/jobs/web-development/"]
-        const offers = []
-        for (let i = 0; i < url.length; i++) {
-            let dataOffers = await scraper.arrScrapers[i](url[i], search)
-            offers.push(dataOffers)
-        }
-        const merged = [].concat.apply([], offers);
-        //Traer ofertas de mongo
-
-        const mongoOffers = await apiSchema.find();
-        console.log(mongoOffers);
-        // merged.concat(mongoOffers);
-        // mongoOffers.concat(merged);
-        const allOffers = [...mongoOffers, ...merged];
-        res.status(200).json(allOffers)
-
-    }
-    catch (error) {
-        console.log(error);
-    }
-}
-
 // "/dashboard_user"
+
 const getDashboardUser = async (req, res) => {
     const user = req.user.email;
     try {
-        res.render("dashboard_user", { user });
+res.render("dashboard_user", { user });
+Swal.fire({
+            title: 'User logged!',
+            icon: 'success',
+            confirmButtonText: 'Cool!'
+          })
+
 
     } catch (error) {
         return res.status(400).json(error);
     }
 };
 
-
-// "/profile"
 const getProfile = async (req, res) => {
     const profile = req.user.email;
     console.log("Estas en frontControllers getProfile ", profile);
@@ -71,7 +49,7 @@ const getProfile = async (req, res) => {
     }
 }
 
-//updateUser
+
 const updateUser = async (req, res) => {
     try {
         await adminModel.editUser(req.body);
@@ -83,18 +61,19 @@ const updateUser = async (req, res) => {
 }
 
 
-// "/users"
+
 const getUsers = async (req, res) => {
     try {
 
         res.render("users", { section: "users" });
+
 
     } catch (error) {
         return res.status(400).json(error);
     }
 };
 
-// "/dashboard"
+
 const getDashboardAdmin = async (req, res) => {
     try {
         res.render("dashboard", { section: "dashboard" });
@@ -105,7 +84,6 @@ const getDashboardAdmin = async (req, res) => {
 };
 
 
-//"changePassword": `UPDATE users SET password = $1 WHERE users.email = $2`
 const changePasswordView = async (req, res) => {
     res.render('change_pass')
 }
@@ -115,13 +93,13 @@ const resetPasswordView = async (req, res) => {
 }
 
 
-//"recoverPassword":`SELECT password FROM users WHERE users.email = $1`
 const recoverPasswordView = async (req, res) => {
     res.render('recover_pass')
 }
 
 
 // ***GET DE FAVORITOS
+
 const getFavorites = async (req, res) => {
     const email = req.user.email;
     console.log(email);
@@ -134,6 +112,7 @@ const getFavorites = async (req, res) => {
         // [] array de ofertas con ID de MONGO
         // llamo a las ofertas de mongo con ID en bucle, recorrer array en bucle
         console.log("Estas de vuelta en frontControllers getFav");
+
         let offers = [];
         for (let i = 0; i < userFavs.length; i++) {
             let offer = {};
@@ -150,10 +129,12 @@ const getFavorites = async (req, res) => {
                 console.log("Comienza por mongo");
 
                 const mongoOffer = await adminModel.getOffer(ref)
+
                 offer = mongoOffer[0];
             }
             offers.push(offer);
         }
+
         console.log(offers);
         res.render("favorites", { offers });
 
@@ -200,7 +181,6 @@ const deleteFav = async (req, res) => {
         try {
             await users.deleteFav(url);
             // res.send("Fav deleted")
-
         } catch (error) {
             console.log(error.message)
             res.status(404).json({ "message": "Fav not deleted" });
@@ -228,7 +208,6 @@ module.exports = {
     getProfile,
     getUsers,
     getDashboardAdmin,
-    getSearch,
     updateUser,
     changePasswordView,
     resetPasswordView,

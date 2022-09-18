@@ -14,16 +14,12 @@ html(lang='en')
             a(href='/favorites') Favoritos 
           h4
             a(href='/') Ofertas aplicadas
-            //- Solo visibles par aadministrador
-          h4
-            a(href='/api/users') Usuarios   
           h4
             a(href='/changepassword') Cambiar contraseña
           h4 
             a(href='/recoverpassword') Recuperar contraseña
-
           form(action="/api/logout" method="post")
-            button.clickBtnlogOut.logoutBtn(type="submit") Salir
+            button.clickBtnlogOut.logoutBtn(id="logout" type="submit") Salir
     main
       div#mainContainer
         h1#h1Slogan= "¡Hola "+user+"!"
@@ -35,7 +31,5 @@ html(lang='en')
           button.clickBtn#searchButton Buscar
           div#cardsContainer
           div(id="spinner" class="loader") Loading...
-  script(type='text/javascript', src='//cdn.jsdelivr.net/npm/sweetalert2@11')
-  script(type='text/javascript', src='sweetalert2.min.js')
-  script(type='text/javascript', src='/scripts/homeNavigation.js')
+  script(type='text/javascript', src='https://cdn.jsdelivr.net/npm/sweetalert2@11.4.33/dist/sweetalert2.all.min.js')
 include ./footer.pug
