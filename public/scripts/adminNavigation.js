@@ -28,7 +28,6 @@ for (let i = 0; i < deleteUserBtn.length; i++) {
 
 
 //-----------------Crear usuario, dentro del form(admin)-------------------//
-
 const btnFormCreateUser = document.getElementById("createNewUser");
 const sectFormCreate = document.getElementById("formCreate");
 sectFormCreate.style.display = "none";
@@ -59,7 +58,6 @@ formCreateUser.addEventListener('submit', function (e) {
     role: cRole.value
   }
 console.log("este es el newUser", newUser)
-//función para crearlo
   async function createUser(){
     try {
       await fetch('/api/users', {
@@ -84,7 +82,6 @@ console.log("este es el newUser", newUser)
 
 
 //-----------------Editar usuario(admin)-------------------//
-
 const btnEditUser = document.querySelectorAll(".desplegarUser"); //despliega form edit
 const formEditUser = document.querySelectorAll(".editUserForm");//formulario para EDIT user (se crea en cada tarjeta)
 
@@ -107,7 +104,7 @@ for (let i = 0; i < btnEditUser.length; i++) {
   })
 }
 
-//botón de todas las tarjetas para editar usuario (se manda ya la info editada)
+
 const editUserbtn = document.querySelectorAll(".editUser");
 
 for (let x = 0; x < editUserbtn.length; x++) {

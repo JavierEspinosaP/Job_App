@@ -1,5 +1,3 @@
-//Selectores
-
 const mainContainer = document.getElementById('mainContainer')
 const searchForm = document.getElementById('searchForm')
 const inputValue = document.getElementById('inputValue').value
@@ -8,7 +6,6 @@ const cardsContainer = document.getElementById('cardsContainer')
 const spinner = document.getElementById('spinner')
 const logout = document.getElementById('logout')
 
-//Navegacion
 
 Swal.fire({
     title: 'User Logged!',

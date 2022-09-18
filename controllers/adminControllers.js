@@ -1,5 +1,3 @@
-
-
 const adminModel = require('../models/admin');
 const apiSchema = require('../schemas/offers_admin');
 require('../utils/db_sql')

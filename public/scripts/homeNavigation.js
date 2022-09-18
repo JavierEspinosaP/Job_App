@@ -21,7 +21,8 @@ const loginPassword = document.getElementById('loginPassword')
 const spinner = document.getElementById('spinner')
 const urlLink = document.getElementById('urlLink')
 
-//Navegacion
+
+
 signUpAccess.addEventListener('click', () => {
     mainContainer.style.display = 'none'
     signUpContainer.style.display = 'block'
@@ -79,11 +80,6 @@ loginForm.addEventListener('submit', () => {
     }
 
 })
-
-
-
-
-
 
 
 searchButton.addEventListener('click', () => {

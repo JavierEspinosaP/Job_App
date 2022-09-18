@@ -9,19 +9,17 @@ html(lang='en')
         #logContainer
         div.logContainer
           h4
-            a(href='/profile') profile
+            a(href='/profile') Perfil
           h4
-            a(href='/favorites') favorites 
+            a(href='/favorites') Favoritos 
           h4
             a(href='/') Ofertas aplicadas
-            //- Solo visibles par aadministrador
           h4
-            a(href='/api/users') users(admin)
+            a(href='/api/users') Usuarios
           h4
-            a(href='api/dashboard') dashboard(admin)
-            //----------------------------------
+            a(href='api/dashboard') Tablón
           h4
-            a(href='/api/logout') Logout
+            button.clickBtnlogOut.logoutBtn(href='/api/logout') Salir
     main
       div#h2SignUpContainer
         h2#h2SignUp #{offer[0].title}

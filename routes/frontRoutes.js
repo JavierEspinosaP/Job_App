@@ -13,8 +13,6 @@ frontRouter.get('/favorites', authToken, frontController.getFavorites);
 frontRouter.get('/profile', authToken, frontController.getProfile);
 frontRouter.post('/profile', authToken, frontController.updateUser);
 
-
-//Vistas solo de admin
 frontRouter.get('/users',authToken, authAdmin, frontController.getUsers);
 frontRouter.get('/dashboard', authToken, authAdmin,  adminController.getOffers);
 

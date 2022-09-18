@@ -1,10 +1,7 @@
-//REQUIRES
 require('dotenv').config();
 const userQueries = require('../queries/userQueries')
 const pool = require('../utils/db_sql')
 
-
-//REGISTRO DE USUARIO
 
 const registerUser = async (user) => {
     let client, result;
@@ -22,10 +19,9 @@ const registerUser = async (user) => {
         client.release();
     }
     return result
-
 }
 
-//LOGIN DE USUARIO (ya registrado)
+
 const signInUser = async (user) => {
 
     let client, result;
@@ -41,7 +37,7 @@ const signInUser = async (user) => {
     return result
 }
 
-//update status logged colum
+
 const loggedStatus= async (email) => {
     let client, result;
     try {
@@ -58,8 +54,6 @@ const loggedStatus= async (email) => {
 }
 
 
-
-//VISTA DE USUARIO: favoritos
 const getFavorites = async (email) => {
     let client, result;
     try {
@@ -76,8 +70,6 @@ const getFavorites = async (email) => {
 }
 
 
-
-//Guardar favorito - usuario
 const saveFavorite = async (obj) => {
     let client, result;
     try {
@@ -94,7 +86,7 @@ const saveFavorite = async (obj) => {
     return result
 }
 
-//editar perfil
+
 const editProfile = async () => {
     let client, result;
     try {
@@ -108,10 +100,9 @@ const editProfile = async () => {
         client.release();
     }
     return result
-
 }
 
-//Borrar favorito - usuario
+
 const deleteFavorites = async () => {
     let client, result;
     try {
@@ -125,10 +116,9 @@ const deleteFavorites = async () => {
         client.release();
     }
     return result
-
 }
 
-//Get user by email
+
 const userProfile = async (email) => {
     console.log("Holi desde users userProfile");
     let client, result;
@@ -144,10 +134,9 @@ const userProfile = async (email) => {
     } finally {
         client.release();
     }
-
 }
 
-// Salir de la app: logout
+
 const logoutUser = async (email) => {
     let client, result;
     try {
@@ -164,7 +153,6 @@ const logoutUser = async (email) => {
 }
 
 
-//recuperar contraseña
 const recoveredPassword = async () => {
     let client, result;
     try {
@@ -181,7 +169,6 @@ const recoveredPassword = async () => {
 }
 
 
-//cambiar contraseña
 const changedPassword = async (user) => {
     let client, result;
     try {
@@ -196,6 +183,7 @@ const changedPassword = async (user) => {
     }
     return result
 }
+
 
 
 module.exports = {

@@ -18,7 +18,7 @@ header{
 }
 
 body {
-    font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
 .header {
@@ -86,14 +86,14 @@ body {
 
 #signUpAccess{
   padding-left: 100px;
-    cursor: pointer;
+  cursor: pointer;
 }
 
 
 #h1Slogan{
-    text-align: center;
-    padding: 30px 30px;
-    font-size: 30px;
+  text-align: center;
+  padding: 30px 30px;
+  font-size: 30px;
 }
 
 #h3Slogan{
@@ -208,7 +208,7 @@ footer{
 }
 
 .backBtn:hover {
-  background-position: right center; /* change the direction of the change here */
+  background-position: right center;
   color: #fff;
   text-decoration: none;
 }
@@ -310,13 +310,6 @@ footer{
 }
 
 
-/* .btnClass{
-    margin: 20px;
-    border-radius: 10% / 50%;;
-    padding: 7px;
-    background-color: #ffda9e;
-} */
-
 .logoutBtn{
   margin-top: 140px;
   background-image: linear-gradient(to right, #F7971E 0%, #FFD200  51%, #F7971E  100%);
@@ -414,23 +407,23 @@ footer{
 }
 
 #signUpForm input .btnSend:hover {
-  background-position: right center; /* change the direction of the change here */
+  background-position: right center;
   color: #fff;
   text-decoration: none;
 }
 
 #mainContainer{
-    display:block;
+  display:block;
 }
 
 #comeBackButtonContainer{
-    margin-top: 50px;
-    display: flex;
-    justify-content:center;
+  margin-top: 50px;
+  display: flex;
+  justify-content:center;
 }
 
 #signUpContainer{
-    display: none;
+   display: none;
 }
 
 #LoginFormContainer{
@@ -488,7 +481,7 @@ footer{
 }
 
 #loginForm input .btnSend:hover{
-  background-position: right center; /* change the direction of the change here */
+  background-position: right center;
   color: #fff;
   text-decoration: none;
 }
@@ -584,21 +577,21 @@ footer{
 }
 
 #comeBackButtonContainer2{
-    margin-top:50px;
+  margin-top:50px;
 }
 
 #h2Login{
-    margin-top:50px;
+  margin-top:50px;
 }
 
 .hide{
-    display: none;
+  display: none;
 }
 
 #cardsContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
@@ -613,7 +606,7 @@ footer{
 }
 
 #offerCard:hover{
-   background-color: rgb(155, 195, 221); 
+  background-color: rgb(155, 195, 221); 
 }
 
 #buttonsCard{
@@ -735,37 +728,37 @@ footer{
 }
 
 .recoverBtn:hover{
-  background-position: right center; /* change the direction of the change here */
+  background-position: right center;
   color: #fff;
   text-decoration: none;
 }
 
 #searchContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hide{
-    display: none;
+  display: none;
 }
 
 .loader {
-    display: none;
-    color: #eeb854;
-    font-size: 90px;
-    text-indent: -9999em;
-    overflow: hidden;
-    width: 1em;
-    height: 1em;
-    border-radius: 50%;
-    margin: 72px auto;
-    position: relative;
-    -webkit-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
-    animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+  display: none;
+  color: #eeb854;
+  font-size: 90px;
+  text-indent: -9999em;
+  overflow: hidden;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  margin: 72px auto;
+  position: relative;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+  animation: load6 1.7s infinite ease, round 1.7s infinite ease;
   }
   @-webkit-keyframes load6 {
     0% {

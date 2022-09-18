@@ -20,11 +20,7 @@ const getSearch = async (req, res) => {
             offers.push(dataOffers)
         }
         const merged = [].concat.apply([], offers);
-        //Traer ofertas de mongo
-
         const mongoOffers = await apiSchema.find();
-        // merged.concat(mongoOffers);
-        // mongoOffers.concat(merged);
         const allOffers = [...mongoOffers, ...merged];
         res.status(200).json(allOffers)
 
@@ -35,7 +31,7 @@ const getSearch = async (req, res) => {
 }
 
 const signUpUser = async (req, res) => {
-    const { name, surname, email, password } = req.body //(name, surname, email, password)
+    const { name, surname, email, password } = req.body
     const hash = await bcrypt.hash(password, 10)
     try {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) && /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password)) {
@@ -205,7 +201,6 @@ const resetPass = async (req, res) => {
         console.log('Error:', error);
     }
 }
-
 
 
 

@@ -1,7 +1,6 @@
 const users = require('../models/users');
 const adminModel = require('../models/admin');
 
-//Traer el scraper
 const scraper = require('../utils/scraper')
 
 const Swal = require('sweetalert2')
@@ -17,8 +16,6 @@ const getHome = async (req, res) => {
 };
 
 
-
-// "/dashboard_user"
 const getDashboardUser = async (req, res) => {
     try {
         res.render("dashboard_user");
@@ -33,8 +30,6 @@ const getDashboardUser = async (req, res) => {
     }
 };
 
-
-// "/profile"
 const getProfile = async (req, res) => {
     const profile = req.user.email;
     try {
@@ -46,7 +41,7 @@ const getProfile = async (req, res) => {
     }
 }
 
-//updateUser
+
 const updateUser = async (req, res) => {
     try {
         await adminModel.editUser(req.body);
@@ -58,7 +53,7 @@ const updateUser = async (req, res) => {
 }
 
 
-// "/users"
+
 const getUsers = async (req, res) => {
     try {
 
@@ -70,7 +65,7 @@ const getUsers = async (req, res) => {
     }
 };
 
-// "/dashboard"
+
 const getDashboardAdmin = async (req, res) => {
     try {
         res.render("dashboard", { section: "dashboard" });
@@ -81,7 +76,6 @@ const getDashboardAdmin = async (req, res) => {
 };
 
 
-//"changePassword": `UPDATE users SET password = $1 WHERE users.email = $2`
 const changePasswordView = async (req, res) => {
     res.render('change_pass')
 }
@@ -91,39 +85,17 @@ const resetPasswordView = async (req, res) => {
 }
 
 
-//"recoverPassword":`SELECT password FROM users WHERE users.email = $1`
 const recoverPasswordView = async (req, res) => {
     res.render('recover_pass')
 }
 
-// //Save Favorite
-// const saveFavorite = async (req, res, next) => {
-//     let client;
-//     const { body } = req.body
-//     try {
-//         client = await pool.connect();
-//         const data = await pool.query(userQueries.saveFav)
-//         //no existe query - falta pasarle los datos
-//         return res.status(200).json("Favorito guardado correctamente")
-//     } catch (err) {
-//         return next(err);
-//     } finally {
-//         client.release();
-//     }
-// }
 
 
-// ***GET DE FAVORITOS
 const getFavorites = async (req, res) => {
     const email = req.query.email;
     try {
-
-        //const userFavs = await users.getFavorites(email); 
         const userFavs = await users.getFavorites("example@gmail.com");
-
-        // [] array de ofertas con ID de MONGO
-        // llamo a las ofertas de mongo con ID en bucle, recorrer array en bucle
-
+        
         let offers = [];
         for (let i = 0; i < userFavs.length; i++) {
             let offer = {};
@@ -135,16 +107,14 @@ const getFavorites = async (req, res) => {
                     budget: 5000,
                     description: 'Desarrollo FullStack',
                 }
-
-
-            } else { //id mongo
+            } else {
                 const mongoOffer = await admin.getOffer(ref)
                 offer = mongoOffer[0];
             }
             offers.push(offer);
         }
-        console.log(offers);
-        res.render("favorites", { section: "favorites", offers });
+            console.log(offers);
+            res.render("favorites", { section: "favorites", offers });
 
     } catch (error) {
         return res.status(400).json(error);
@@ -153,8 +123,6 @@ const getFavorites = async (req, res) => {
 
 
 
-
-//Scrapeo
 const getScrap = async (req, res) => {
     try {
 
