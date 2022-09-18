@@ -18,8 +18,8 @@ html(lang='en')
             a(href='/api/users') Usuarios
           h4
             a(href='api/dashboard') Tablón
-          h4
-            button.clickBtnlogOut.logoutBtn(href='/api/logout') Salir
+          form(action="/api/logout" method="post")
+            button.clickBtnlogOut.logoutBtn(type="submit") Salir
     main
       div#h2SignUpContainer
         h2#h2SignUp #{offer[0].title}

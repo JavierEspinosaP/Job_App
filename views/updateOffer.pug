@@ -3,21 +3,24 @@ html(lang='en')
   include ./head.pug
   body
     header
-      h1 
-        a(href='/') Job Finder
-      #logContainer
-        h4
-          a(href='/profile') Perfil
-        h4
-          a(href='/favorites') Favoritos 
-        h4
-          a(href='/') Ofertas aplicadas
-        h4
-          a(href='/api/users') Usuarios
-        h4
-          a(href='api/dashboard') Tablón
-        h4
-          button.clickBtnlogOut.logoutBtn(href='/api/logout') Salir
+      div.headerDash
+        h1 
+          a(href='/') Job Finder
+        #logContainer
+        div.logContainer
+          h4
+            a(href='/profile') Perfil
+          h4
+            a(href='/favorites') Favoritos 
+          h4
+            a(href='/') Ofertas aplicadas
+          h4
+            a(href='/api/users') Usuarios
+          h4
+            a(href='api/dashboard') Tablón
+          form(action="/api/logout" method="post")
+            button.clickBtnlogOut.logoutBtn(type="submit") Salir
+    main
     main
       div#h2SignUpContainer
         h2#h2SignUp Editar Oferta
