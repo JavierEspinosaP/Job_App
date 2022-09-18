@@ -28,8 +28,10 @@ html(lang='en')
         div#searchFormContainer
         div#searchContainer
           input.searchInput(id="inputValue" placeholder="Introduce tu busqueda")
+          input(type="hidden" id="userEmail" value=user)
           button.clickBtn#searchButton Buscar
           div#cardsContainer
           div(id="spinner" class="loader") Loading...
   script(type='text/javascript', src='https://cdn.jsdelivr.net/npm/sweetalert2@11.4.33/dist/sweetalert2.all.min.js')
+  script(type='text/javascript', src='../scripts/dashboardNavigation.js')
 include ./footer.pug

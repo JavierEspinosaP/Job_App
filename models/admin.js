@@ -64,8 +64,7 @@ const deleteUser = async (email) => {
 }
 
 
-const getOffer = async (id) => {
-
+const getOffer = async (url) => {
     try {
         console.log("Estas en admin getOffer", url);
         const offer = await apiSchema.find({ url });

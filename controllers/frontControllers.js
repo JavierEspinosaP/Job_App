@@ -24,12 +24,12 @@ const getHome = async (req, res) => {
 const getDashboardUser = async (req, res) => {
     const user = req.user.email;
     try {
-res.render("dashboard_user", { user });
-Swal.fire({
+        res.render("dashboard_user", { user });
+        Swal.fire({
             title: 'User logged!',
             icon: 'success',
             confirmButtonText: 'Cool!'
-          })
+        })
 
 
     } catch (error) {
@@ -124,6 +124,7 @@ const getFavorites = async (req, res) => {
                     date: 2022 - 09 - 13,
                     budget: 5000,
                     description: 'Desarrollo FullStack',
+                    url: ref
                 }
             } else { //id mongo
                 console.log("Comienza por mongo");
