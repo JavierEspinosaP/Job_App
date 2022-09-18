@@ -88,10 +88,6 @@ console.log("este es el newUser", newUser)
 const btnEditUser = document.querySelectorAll(".desplegarUser"); //despliega form edit
 const formEditUser = document.querySelectorAll(".editUserForm");//formulario para EDIT user (se crea en cada tarjeta)
 
-// const eName = document.getElementById('editName');
-// const eSurname = document.getElementById('editSurname');
-// const eEmail = document.getElementById('paramEmail');
-
 const sectFormEdit = document.querySelectorAll(".sectFormEdit");
 
 for(const section of sectFormEdit){

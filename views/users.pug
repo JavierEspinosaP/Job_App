@@ -39,7 +39,7 @@ html(lang='en')
                 input#inputPassword(type='password' placeholder='Password')
                 label Role:
                 input#inputRole(type='text' placeholder='Role')
-                button#createUser.btnClass(type="submit") Crear usuario
+                button#createUser.btnClass.logoutBtn(type="submit") Crear usuario
             ul#addUsers(action="/api/users" method="POST")
 
         h3#h3Slogan
@@ -52,8 +52,8 @@ html(lang='en')
             p.pOffer #{user.email}
             p.pOffer=user.role
             div#buttonsCard
-              button.deleteUser.clickBtnDelete(value="delete" user_email=user.email) Delete
-              button.desplegarUser.clickBtnDelete(type="click" edit_index=user.user_id) Edit 
+              button.deleteUser.clickBtnDelete.btnClass(value="delete" user_email=user.email) Delete
+              button#editBtn.desplegarUser.clickBtnDelete.btnClass(type="click" edit_index=user.user_id) Edit 
               section.sectFormEdit(id_user=user.user_id)
                 form.editUserForm
                   div#editUserDiv
@@ -64,7 +64,7 @@ html(lang='en')
                     input.editSurname(type='text' placeholder='User surname' surname_id=user.user_id)
                     label Email:
                     input.paramEmail(type='text' placeholder='Email' email_id=user.user_id)
-                    button.editUser.clickBtn(type="click" btn_index=user.user_id) Edit user
+                    button.editUser.clickBtn.btnClass(type="click" btn_index=user.user_id) Edit user
                 ul#addUsers(action="/api/users" method="POST")
 
     script(type='text/javascript', src='../scripts/adminNavigation.js')
