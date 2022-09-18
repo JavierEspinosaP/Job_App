@@ -1,31 +1,40 @@
 const users = require('../models/users');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const transporter = require('../utils/nodemailer'); 
-const passport = require('passport');
+const transporter = require('../utils/nodemailer');
 require('dotenv').config()
+const Swal = require('sweetalert2')
 
 const signUpUser = async (req, res) => {
     const { name, surname, email, password } = req.body //(name, surname, email, password)
     const hash = await bcrypt.hash(password, 10)
     try {
-        await users.registerUser({ name, surname, email, hash })
-        await users.loggedStatus(email)
-        const response = await users.signInUser({ email, password })
-        const payload = {
-            email: response[0].email,
-            check: true
-        };
-        const token = jwt.sign(payload, process.env.SECRET_KEY, {
-            expiresIn: 3600
-        })
-        res.cookie("access-token", token, {
-            httpOnly: true,
-            sameSite: "strict"
-        }).redirect(`/dashboard_user`)
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) && /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password)) {
+            await users.registerUser({ name, surname, email, hash })
+            await users.loggedStatus(email)
+            const response = await users.signInUser({ email, password })
+            const payload = {
+                email: response[0].email,
+                check: true
+            };
+            const token = jwt.sign(payload, process.env.SECRET_KEY, {
+                expiresIn: 3600
+            })
+            res.cookie("access-token", token, {
+                httpOnly: true,
+                sameSite: "strict"
+            }).redirect(`/dashboard_user`)
+        }
+        else {
+            console.log(err)
+        }
     }
     catch (err) {
-        console.log(err)
+        setTimeout(() => {
+         console.log(err)
+        res.redirect('/')   
+        },5000)
+        
     }
 
 }
@@ -34,12 +43,13 @@ const loginUser = async (req, res) => {
     const { email, password } = req.body
 
     try {
-        const response = await users.signInUser({ email, password })
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) && /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password)){
+       const response = await users.signInUser({ email, password })
 
         if (email == response[0].email) {
             const validPass = await bcrypt.compare(password, response[0].password)
             if (validPass) {
-               await users.loggedStatus(email)
+                await users.loggedStatus(email)
                 if (response[0].role == 'admin') {
                     const payload = {
                         email: response[0].email,
@@ -65,9 +75,20 @@ const loginUser = async (req, res) => {
                         httpOnly: true,
                         sameSite: "strict"
                     }).redirect(`/dashboard_user`)
-                }}}}
+                }
+            }
+        }           
+        } 
+        else{
+            setTimeout(() => {
+             res.redirect('/')   
+            }, 5000);
+            
+        }
+    }
     catch (err) {
         console.log(err);
+        res.redirect('/')
     }
 
 }
@@ -80,19 +101,20 @@ const logoutUser = async (req, res) => {
     console.log(decoded);
     const email = decoded.email
     users.logoutUser(email)
+    res.clearCookie("access-token")
     res.redirect('/')
 }
 
 const changePassword = async (req, res) => {
-    const {password} = req.body
-    
+    const { password } = req.body
+
     const token = (req.headers.cookie).slice(13);
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
     const userEmail = decoded.email
     const hash = await bcrypt.hash(password, 10)
-     try {
+    try {
 
-        users.changedPassword({password: hash, email: userEmail})
+        users.changedPassword({ password: hash, email: userEmail })
         res.redirect('/dashboard_user')
     } catch (err) {
         console.log(err);
@@ -100,11 +122,11 @@ const changePassword = async (req, res) => {
 }
 
 const recoverPassword = async (req, res) => {
-    const {email} = req.body
+    const { email } = req.body
     try {
         const token = jwt.sign({ email: req.body.email }, process.env.RECOVER_KEY, { expiresIn: '20m' });
         console.log(token);
-        const url = `http://localhost:3005/recoverpass/`+ token;
+        const url = `http://localhost:3005/recoverpass/` + token;
         console.log(email);
         await transporter.sendMail({
             to: req.body.email,

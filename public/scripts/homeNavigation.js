@@ -9,8 +9,15 @@ const comeBackButton2 = document.getElementById('comeBackButton2')
 const searchForm = document.getElementById('searchForm')
 const inputValue = document.getElementById('inputValue').value
 const searchButton = document.getElementById('searchButton')
-
+const searchButton2 = document.getElementById('searchButton2')
+const signUpForm = document.getElementById('signUpForm')
+const signUpEmail = document.getElementById('signUpEmail')
+const signUpPassword = document.getElementById('signUpPassword')
+const repeatPassword = document.getElementById('repeatPassword')
 const cardsContainer = document.getElementById('cardsContainer')
+const loginForm = document.getElementById('loginForm')
+const loginEmail = document.getElementById('loginEmail')
+const loginPassword = document.getElementById('loginPassword')
 const spinner = document.getElementById('spinner')
 
 //Navegacion
@@ -33,6 +40,47 @@ comeBackButton2.addEventListener('click', () => {
     mainContainer.style.display = 'block'
     loginContainer.style.display = 'none'
 })
+
+signUpForm.addEventListener('submit', () => {
+    if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(signUpEmail.value) && /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(signUpPassword.value)){}
+    else if(signUpPassword.value!=repeatPassword.value){
+        Swal.fire({
+            title: `Passwords don't match!!`,
+            icon: 'error',
+            confirmButtonText: 'Ok...'
+          })
+    }
+    else{
+        Swal.fire({
+            title: 'Invalid email or password format, please enter a valid email and a password with an uppercase, a number and minimum of 8 characters long',
+            icon: 'error',
+            confirmButtonText: 'Ok...'
+          })
+    }
+})
+
+
+loginForm.addEventListener('submit', () => {
+    if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(loginEmail.value) && /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(loginPassword.value)){}
+    else if(signUpPassword.value!=repeatPassword.value){
+        Swal.fire({
+            title: `Passwords don't match!!`,
+            icon: 'error',
+            confirmButtonText: 'Ok...'
+          })
+    }
+    else{
+        Swal.fire({
+            title: 'Invalid email or password format, please enter a valid email and a password with an uppercase, a number and minimum of 8 characters long',
+            icon: 'error',
+            confirmButtonText: 'Ok...'
+          })
+    }
+})
+
+
+
+
 
 
 
@@ -73,6 +121,12 @@ searchButton.addEventListener('click', () => {
         }
 
     }
+
+
+
+
+
     searchData()
 
 })
+

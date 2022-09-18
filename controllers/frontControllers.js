@@ -4,6 +4,8 @@ const apiSchema = require('../schemas/offers_admin');
 //Traer el scraper
 const scraper = require('../utils/scraper')
 
+const Swal = require('sweetalert2')
+
 
 const getHome = async (req, res) => {
     try {
@@ -44,6 +46,11 @@ const getSearch = async (req, res) => {
 const getDashboardUser = async (req, res) => {
     try {
         res.render("dashboard_user");
+        Swal.fire({
+            title: 'User logged!',
+            icon: 'success',
+            confirmButtonText: 'Cool!'
+          })
 
     } catch (error) {
         return res.status(400).json(error);
@@ -80,6 +87,7 @@ const getUsers = async (req, res) => {
     try {
 
         res.render("users", { section: "users" });
+
 
     } catch (error) {
         return res.status(400).json(error);
