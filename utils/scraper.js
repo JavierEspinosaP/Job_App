@@ -15,7 +15,7 @@ const arrScrapers = [ scrap = async (url, inputQuery) => {
 
         //Inicializamos una instancia del navegador (browser) con puppeteer.launch() y añadimos en el objeto de configuración la opción headless
         console.log("Opening the browser...");
-        const browser = await puppeteer.launch({headless:false})
+        const browser = await puppeteer.launch({headless:true, args: ['--no-sandbox'] })
 
         //Abrimos una nueva pestaña en el navegador creando una instancia con el método newPage() a la que llamaremos page
         const page = await browser.newPage();
@@ -81,7 +81,7 @@ scrap2 = async (url2, inputQuery) => {
 
         //Inicializamos una instancia del navegador (browser) con puppeteer.launch() y añadimos en el objeto de configuración la opción headless
         console.log("Opening the browser...");
-        const browser2 = await puppeteer.launch({headless:false})
+        const browser2 = await puppeteer.launch({headless:true, args: ['--no-sandbox'] })
 
         //Abrimos una nueva pestaña en el navegador creando una instancia con el método newPage() a la que llamaremos page
         const page2 = await browser2.newPage();
