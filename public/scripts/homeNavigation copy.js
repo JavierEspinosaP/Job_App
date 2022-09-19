@@ -92,7 +92,7 @@ searchButton.addEventListener('click', () => {
         let offersData = await responseOffers.json()
         spinner.style.display = "none"
         for (let i = 0; i < offersData.length; i++) {
-            if (offersData[i].url == undefined) {
+            if ((offersData[i].url).length<3) {
                 let offer = `
             <section class="bot-left" id="offerCard">
             <h3>${offersData[i].proyect_name}</h3>

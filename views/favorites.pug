@@ -11,18 +11,39 @@ html(lang='en')
           h4
             a(href='/profile') Perfil
           h4
+            a(href='/favorites') Favoritos 
+          h4
             a(href='/') Ofertas aplicadas
           h4
             a(href='/api/users') Usuarios
           h4
-            a(href='api/dashboard') Tablón
-          form(action="/api/logout" method="post")
-            button.clickBtnlogOut.logoutBtn(type="submit") Salir
+            a(href='/dashboard') Tablón
+            //----------------------------------
+          h4
+            a(href='/api/logout') Salir
     main
       div#mainContainer
-        h1#h1Slogan FAVORITES
-        h3#h3Slogan Estos son tus favoritos
-        p=section
-        p=offers[0].title
+        h1#h1Slogan Tablón
+        h3#h3Slogan
+          | Listado de todas tus ofertas favoritas:
+        .offers 
+          each offer in {offers}
+            .offer
+            -for(let i=0;i<offers.length; i++)
+              div.bot-left.offerCard.offerCardContainer#offerDiv
+                p.pOffer= offer[i].id
+                h2.h2Offer= offer[i].proyect_name
+                p.pOffer= offer[i].published
+                h3.h3Offer= offer[i].budget
+                p.pOffer= offer[i].description
+                -var url=offer[i].id;
+                div.offerOptions
+                  h4
+                    a(href='api/ads/open/'+url) Ver oferta completa
+                    br
+                    a(href='api/favorites/delete/'+url) Borrar favorito
+          else 
+            p no values
 
+    script(type='text/javascript', src='../scripts/homeNavigation.js')
 include ./footer.pug

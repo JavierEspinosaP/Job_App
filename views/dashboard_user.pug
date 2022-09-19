@@ -22,12 +22,13 @@ html(lang='en')
             button.clickBtnlogOut.logoutBtn(id="logout" type="submit") Salir
     main
       div#mainContainer
-        h1#h1Slogan ¡Hola!
+        h1#h1Slogan= "¡Hola "+user+"!"
         h3#h3Slogan
           | Tenemos nuevas ofertas publicadas, ¿les echas un vistazo?
         div#searchFormContainer
         div#searchContainer
           input.searchInput(id="inputValue" placeholder="Introduce tu busqueda")
+          input(type="hidden" id="userEmail" value=user)
           button.clickBtn#searchButton Buscar
           div#cardsContainer
           div(id="spinner" class="loader") Loading...
